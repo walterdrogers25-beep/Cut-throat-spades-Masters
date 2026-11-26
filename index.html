@@ -1,0 +1,2693 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>Cut Throat Spades Masters</title>
+    <meta name="description" content="Cut Throat Spades Masters — the Victorian Parlor where spades is a test of nerve. Respect must be earned. Play Solo or Team League on the room's own table — cards dealt on the photograph, faces at the seats, live video big, the room all around you." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --ink:#0d0a08;
+        --coal:#161009;
+        --panel:#1c130b;
+        --panel-2:#241708;
+        --burgundy:#571c26;
+        --burgundy-deep:#33101a;
+        --gold:#c7a65b;
+        --gold-bright:#ecd28c;
+        --gold-dim:#8f7648;
+        --ivory:#f4ead3;
+        --parchment:#d9c9a3;
+        --muted:#a68f66;
+        --felt:#1d5c3a;
+        --felt-deep:#0f3a22;
+        --red:#c8452c;
+        --line:rgba(199,166,91,.32);
+        --serif:"Playfair Display",Georgia,serif;
+        --body:"Cormorant Garamond",Georgia,serif;
+      }
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{
+        margin:0;background:var(--ink);color:var(--ivory);
+        font-family:var(--body);font-size:1.16rem;line-height:1.55;
+        -webkit-font-smoothing:antialiased;
+      }
+      img{display:block;max-width:100%}
+      button{font-family:inherit;cursor:pointer;min-height:2.75rem}
+      a{color:var(--gold-bright)}
+      ::selection{background:var(--burgundy);color:var(--ivory)}
+
+      /* ---------- menu — one corner button, everything tucked inside ---------- */
+      .menu-wrap{position:fixed;top:.55rem;right:.55rem;z-index:70}
+      .menu-btn{
+        font-family:var(--serif);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;
+        color:var(--gold-bright);background:rgba(13,10,8,.88);backdrop-filter:blur(8px);
+        border:1px solid var(--gold);border-radius:99px;padding:.55rem 1rem;min-height:2.6rem;
+        box-shadow:0 8px 22px rgba(0,0,0,.45);
+      }
+      .menu-btn:hover{background:rgba(199,166,91,.2)}
+      .menu-panel{
+        position:absolute;right:0;top:calc(100% + .5rem);width:min(80vw,17.5rem);
+        background:linear-gradient(180deg,var(--panel-2),var(--panel));
+        border:1px solid var(--gold-dim);border-radius:10px;padding:.5rem;
+        box-shadow:0 24px 50px rgba(0,0,0,.6);
+      }
+      .menu-panel a,.menu-item{
+        display:flex;align-items:center;gap:.5rem;width:100%;text-align:left;
+        color:var(--parchment);text-decoration:none;background:none;border:none;border-radius:6px;
+        font-family:var(--serif);font-size:.88rem;letter-spacing:.05em;
+        padding:.6rem .7rem;min-height:2.6rem;cursor:pointer;
+      }
+      .menu-panel a:hover,.menu-item:hover{background:rgba(199,166,91,.14);color:var(--gold-bright)}
+      .menu-item .menu-state{margin-left:auto;color:var(--gold-bright);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}
+      .menu-item.danger{color:#e8a58c}
+      .menu-item.armed{background:#7a2415;color:#ffe9dd}
+      .menu-sep{height:1px;background:var(--line);margin:.4rem .2rem}
+
+      /* ---------- hero ---------- */
+      .hero{
+        position:relative;min-height:100svh;
+        display:flex;flex-direction:column;justify-content:flex-end;
+        overflow:hidden;isolation:isolate;
+      }
+      .hero-bg{position:absolute;inset:0;z-index:-2}
+      .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%;
+        animation:heroDrift 26s ease-in-out infinite alternate}
+      @keyframes heroDrift{from{transform:scale(1)}to{transform:scale(1.07)}}
+      .hero::before{
+        content:"";position:absolute;inset:0;z-index:-1;
+        background:
+          linear-gradient(180deg,rgba(13,10,8,.62) 0%,rgba(13,10,8,.18) 34%,rgba(13,10,8,.55) 68%,var(--ink) 100%),
+          radial-gradient(120% 60% at 50% 0%,transparent 40%,rgba(13,10,8,.35) 100%);
+      }
+      .hero-glow{
+        position:absolute;z-index:-1;left:50%;top:6%;width:74vmin;height:74vmin;
+        transform:translateX(-50%);border-radius:50%;pointer-events:none;
+        background:radial-gradient(circle,rgba(255,176,66,.20) 0%,rgba(255,140,40,.07) 42%,transparent 68%);
+        animation:flicker 3.4s ease-in-out infinite;
+      }
+      @keyframes flicker{0%,100%{opacity:.85}38%{opacity:1}52%{opacity:.72}64%{opacity:.95}81%{opacity:.8}}
+      .hero-inner{max-width:68rem;margin:0 auto;padding:7.5rem 1.25rem 2.2rem;text-align:center;width:100%}
+      .hero-rule{display:flex;align-items:center;gap:.9rem;justify-content:center;margin-bottom:1.1rem}
+      .hero-rule::before,.hero-rule::after{content:"";height:1px;width:min(120px,22vw);
+        background:linear-gradient(90deg,transparent,var(--gold));display:block}
+      .hero-rule::after{background:linear-gradient(90deg,var(--gold),transparent)}
+      .hero-rule span{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-bright)}
+      h1{
+        font-family:var(--serif);font-weight:900;line-height:.98;margin:0;
+        font-size:clamp(2.9rem,11.5vw,6.4rem);letter-spacing:.01em;
+        color:var(--ivory);text-shadow:0 4px 34px rgba(0,0,0,.75);
+      }
+      h1 .goldword{color:var(--gold-bright);font-style:italic;font-weight:800}
+      .tagline{
+        margin:1.15rem 0 0;font-family:var(--serif);font-weight:600;
+        font-size:clamp(.95rem,3.6vw,1.35rem);letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+        text-indent:.42em;
+      }
+      .hero-sub{max-width:36rem;margin:1.2rem auto 0;font-size:1.28rem;color:var(--parchment);font-style:italic}
+      .hero-ctas{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.9rem}
+      .btn{
+        font-family:var(--serif);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;
+        padding:.9rem 1.5rem;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+        border:1px solid var(--gold);transition:background .2s,color .2s,transform .2s;min-height:3rem;
+      }
+      .btn-gold{background:linear-gradient(180deg,#dcbc72,#b28c3e);color:#221503;border-color:#e8cd8a}
+      .btn-gold:hover{background:linear-gradient(180deg,#eed28e,#c39f4a)}
+      .btn-ghost{background:rgba(13,10,8,.45);color:var(--gold-bright)}
+      .btn-ghost:hover{background:rgba(199,166,91,.16)}
+      .hero-stats{
+        margin:2.6rem auto 0;max-width:60rem;width:100%;
+        display:grid;grid-template-columns:repeat(4,1fr);
+        border-top:1px solid var(--line);
+      }
+      .hero-stats div{padding:.95rem .4rem .4rem;text-align:center}
+      .hero-stats b{display:block;font-family:var(--serif);font-size:1.55rem;color:var(--gold-bright);font-weight:800;line-height:1}
+      .hero-stats span{font-size:.98rem;color:var(--parchment);font-style:italic}
+      @media (max-width:560px){
+        .hero-stats{grid-template-columns:repeat(2,1fr)}
+        .hero-inner{padding-top:5.5rem}
+        section{scroll-margin-top:1.5rem}
+      }
+
+      /* ---------- sections ---------- */
+      section{padding:4.6rem 1.25rem;max-width:74rem;margin:0 auto;scroll-margin-top:4.5rem}
+      .sec-head{text-align:center;max-width:44rem;margin:0 auto 2.4rem}
+      .sec-kicker{font-family:var(--serif);font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+      h2{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,6vw,2.9rem);margin:.45rem 0 .5rem;line-height:1.08}
+      .sec-head p{color:var(--parchment);font-size:1.2rem;font-style:italic;margin:0}
+      .orn{display:flex;align-items:center;gap:.8rem;justify-content:center;margin-top:1rem;color:var(--gold)}
+      .orn::before,.orn::after{content:"";height:1px;width:74px;background:var(--line)}
+      .orn svg{width:15px;height:15px}
+
+      /* ---------- the table ---------- */
+      .table-wrap{
+        background:linear-gradient(180deg,var(--panel-2),var(--panel));
+        border:1px solid var(--line);border-radius:10px;padding:1.1rem;
+        box-shadow:0 30px 60px rgba(0,0,0,.5);
+      }
+      .rafael-bar{
+        display:flex;gap:.9rem;align-items:flex-start;
+        background:var(--burgundy-deep);border:1px solid rgba(199,166,91,.4);
+        border-radius:8px;padding:.8rem .95rem;margin-bottom:1rem;
+      }
+      .rafael-bar img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top;
+        border:2px solid var(--gold);flex:none}
+      .rafael-bar .who{font-family:var(--serif);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-bright);margin:0 0 .15rem}
+      .rafael-bar .says{margin:0;font-style:italic;font-size:1.14rem;line-height:1.4;color:var(--ivory)}
+      .score-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem}
+      .score-chip{
+        background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:8px;
+        padding:.5rem .55rem;display:flex;gap:.55rem;align-items:center;min-width:0;
+      }
+      .score-chip img{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--gold-dim);flex:none}
+      .score-chip.turn{border-color:var(--gold-bright);box-shadow:0 0 0 1px var(--gold-bright),0 0 18px rgba(236,210,140,.25)}
+      .score-chip .nm{font-family:var(--serif);font-size:.78rem;font-weight:700;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .score-chip .nums{font-size:.92rem;color:var(--parchment);line-height:1.25;white-space:nowrap}
+      .score-chip .nums b{color:var(--gold-bright)}
+      @media (max-width:640px){.score-strip{grid-template-columns:repeat(2,1fr)}}
+      .felt-zone{position:relative;padding:.4rem 0 .2rem}
+      .felt{
+        position:relative;margin:0 auto;width:min(100%,620px);aspect-ratio:1.28;
+        background:#0f3a22;
+        border-radius:50%;
+        border:10px solid #4a2c14;
+        outline:2px solid var(--gold-dim);
+        box-shadow:inset 0 0 60px rgba(0,0,0,.55),0 18px 40px rgba(0,0,0,.5);
+      }
+      .felt::after{content:"";position:absolute;inset:9%;border:1px solid rgba(236,210,140,.22);border-radius:50%;pointer-events:none}
+      .seat{position:absolute;display:flex;flex-direction:column;align-items:center;gap:.2rem;z-index:3;width:86px;margin-left:-43px;text-align:center}
+      .seat img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--gold);background:#000}
+      .seat .sname{font-family:var(--serif);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory);text-shadow:0 1px 4px #000}
+      .seat .sbooks{font-size:.82rem;color:var(--gold-bright);background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:99px;padding:.02rem .5rem}
+      .seat-n{left:50%;top:-14px}
+      .seat-w{left:9%;top:50%;transform:translateY(-50%)}
+      .seat-e{left:91%;top:50%;transform:translateY(-50%)}
+      .seat-s{left:50%;bottom:-16px}
+      .slot{position:absolute;width:52px;height:74px;margin:-37px 0 0 -26px;z-index:2}
+      .slot-n{left:50%;top:33%}.slot-s{left:50%;top:67%}
+      .slot-w{left:33%;top:50%}.slot-e{left:67%;top:50%}
+      .trick-note{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;
+        font-family:var(--serif);font-style:italic;color:rgba(244,234,211,.5);font-size:.95rem;text-align:center;width:60%}
+      .pcard{
+        width:52px;height:74px;border-radius:6px;background:#fdf8ec;color:#1c1a17;
+        border:1px solid #cbbd97;box-shadow:0 6px 14px rgba(0,0,0,.45);
+        display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+        padding:.24rem .34rem;font-family:var(--serif);line-height:1;
+        animation:cardIn .28s ease both;
+      }
+      @keyframes cardIn{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
+      .pcard .r{font-weight:800;font-size:1.02rem}
+      .pcard .s{font-size:1.05rem}
+      .pcard.red{color:var(--red)}
+      .pcard.win{outline:3px solid var(--gold-bright);box-shadow:0 0 22px rgba(236,210,140,.65)}
+      .shuffle-stage{position:absolute;inset:0;display:none;place-items:center;z-index:5}
+      .shuffle-stage.on{display:grid}
+      .deck-half{position:absolute;width:52px;height:74px;border-radius:6px;
+        background:repeating-linear-gradient(45deg,#571c26 0 6px,#43121c 6px 12px);
+        border:2px solid var(--gold-dim);box-shadow:0 8px 18px rgba(0,0,0,.5)}
+      .deck-l{animation:riffleL .9s ease-in-out infinite}
+      .deck-r{animation:riffleR .9s ease-in-out infinite}
+      @keyframes riffleL{0%,100%{transform:translate(-30px,0) rotate(-7deg)}50%{transform:translate(-4px,-7px) rotate(-1deg)}}
+      @keyframes riffleR{0%,100%{transform:translate(30px,0) rotate(7deg)}50%{transform:translate(4px,5px) rotate(1deg)}}
+      /* the cut — a real deck on the felt, waiting for the player's tap */
+      .deck-cut{
+        position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;
+        width:60px;height:86px;border-radius:7px;border:2px solid var(--gold);
+        background:repeating-linear-gradient(45deg,#571c26 0 6px,#43121c 6px 12px);
+        box-shadow:4px 4px 0 -1px #2a0d13,8px 8px 0 -2px #571c26,0 14px 26px rgba(0,0,0,.55);
+        padding:0;min-height:0;
+      }
+      .deck-cut .cut-top{
+        position:absolute;left:0;right:0;top:0;height:52%;border-radius:6px 6px 0 0;
+        border-bottom:2px solid var(--gold);
+        background:repeating-linear-gradient(45deg,#571c26 0 6px,#43121c 6px 12px);
+      }
+      .deck-cut.cutting .cut-top{animation:cutMove .58s ease forwards}
+      @keyframes cutMove{0%{transform:none}45%{transform:translate(30px,-5px)}100%{transform:translate(3px,32px)}}
+      .deck-cut::after{
+        content:"Tap to cut";position:absolute;top:calc(100% + .55rem);left:50%;transform:translateX(-50%);
+        font-family:var(--serif);font-size:.66rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+        color:var(--gold-bright);white-space:nowrap;text-shadow:0 1px 5px #000;
+      }
+      .deck-cut:focus-visible{outline:3px solid var(--gold-bright);outline-offset:3px}
+      /* v3: dealer badge, renig flag, cleared rooms, chat lock */
+      .dealer-badge{display:inline-block;margin-top:.15rem;font-size:.58rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1c1a17;background:var(--gold-bright);border-radius:99px;padding:.1rem .45rem}
+      .slot.renig .pcard{outline:3px solid #c0392b;box-shadow:0 0 18px rgba(192,57,43,.7)}
+      .renig-btn.alert{outline:2px solid #c0392b;box-shadow:0 0 14px rgba(192,57,43,.55)}
+      .room.cleared{outline:2px solid var(--gold-bright)}
+      .room .badge.cleared{background:var(--gold-bright);border-color:#e8cd8a;color:#1c1a17}
+      .chat-lock{color:var(--gold-bright);font-size:.95rem;margin:.4rem 0}
+      /* wide screen — the table takes the room it's given */
+      body.wide section{max-width:92rem}
+      body.wide .felt{width:min(94vw,860px)}
+      body.wide .table-wrap{padding:1.4rem}
+      @media (orientation:landscape) and (max-height:620px){
+        .hero{min-height:0}
+        .hero-inner{padding-top:4.2rem;padding-bottom:1.4rem}
+        section{padding:2.1rem 1rem}
+        .felt{width:min(100%,600px,108vh)}
+        .hand-zone{min-height:0}
+      }
+      .table-status{text-align:center;font-style:italic;color:var(--parchment);min-height:1.7em;margin:.9rem 0 .4rem;font-size:1.14rem}
+      .hand-zone{min-height:96px}
+      .hand{display:flex;justify-content:center;align-items:flex-end;padding:.4rem .2rem 0;flex-wrap:nowrap;--cw:52px;--step:35px}
+      .hcard{
+        flex:none;width:var(--cw);height:calc(var(--cw)*1.46);margin-left:calc(var(--step) - var(--cw));border-radius:6px;
+        background:#fdf8ec;color:#1c1a17;border:1px solid #cbbd97;
+        box-shadow:0 6px 14px rgba(0,0,0,.45);
+        display:flex;flex-direction:column;align-items:flex-start;padding:calc(var(--cw)*.09) calc(var(--cw)*.11);
+        font-family:var(--serif);line-height:1;position:relative;transition:transform .15s,box-shadow .15s;
+      }
+      .hcard:first-child{margin-left:0}
+      .hcard .r{font-weight:800;font-size:calc(var(--cw)*.34)}
+      .hcard .s{font-size:calc(var(--cw)*.37)}
+      .hcard.red{color:var(--red)}
+      .hcard.legal{box-shadow:0 0 0 2px var(--gold),0 8px 16px rgba(0,0,0,.5)}
+      .hcard.legal:hover,.hcard.legal:focus-visible{transform:translateY(-12px)}
+      .hcard.illegal{opacity:.42;cursor:not-allowed}
+      .hcard:disabled{cursor:default}
+      @media (max-width:430px){.pcard{width:46px;height:66px}.slot{width:46px;height:66px;margin:-33px 0 0 -23px}}
+      .controls{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:.9rem}
+      .btn-small{font-size:.72rem;padding:.7rem 1.1rem;min-height:2.75rem}
+      .btn-danger{border-color:#a4553f;color:#e8a58c;background:rgba(0,0,0,.3)}
+      .btn-danger:hover{background:rgba(164,85,63,.2)}
+      .btn-danger.armed{background:#7a2415;color:#ffe9dd;border-color:#e8a58c}
+      .bid-row{display:none;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.6rem}
+      .bid-row.on{display:flex}
+      .bid-btn{
+        width:2.9rem;height:2.9rem;border-radius:50%;border:1px solid var(--gold);
+        background:rgba(0,0,0,.4);color:var(--gold-bright);
+        font-family:var(--serif);font-weight:800;font-size:1.05rem;padding:0;
+      }
+      .bid-btn:hover{background:rgba(199,166,91,.25)}
+      .result-panel{display:none;margin-top:1rem;background:rgba(0,0,0,.38);border:1px solid var(--line);border-radius:8px;padding:1rem}
+      .result-panel.on{display:block}
+      .result-panel h3{font-family:var(--serif);margin:.1rem 0 .7rem;font-size:1.25rem;color:var(--gold-bright);text-align:center}
+      .result-table{width:100%;border-collapse:collapse;font-size:1.05rem}
+      .result-table th{font-family:var(--serif);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.3rem .4rem;border-bottom:1px solid var(--line)}
+      .result-table td{padding:.42rem .4rem;border-bottom:1px solid rgba(199,166,91,.14);color:var(--parchment)}
+      .result-table td:first-child{color:var(--ivory);font-family:var(--serif);font-size:.95rem}
+      .tag{display:inline-block;font-family:var(--serif);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+        border:1px solid var(--gold);color:var(--gold-bright);border-radius:99px;padding:.14rem .55rem;margin-left:.4rem;vertical-align:middle}
+      .tag.bad{border-color:#a4553f;color:#e8a58c}
+      .match-banner{display:none;text-align:center;padding:1rem .6rem .2rem}
+      .match-banner.on{display:block}
+      .match-banner .big{font-family:var(--serif);font-weight:900;font-size:clamp(1.5rem,5.5vw,2.2rem);color:var(--gold-bright);margin:0}
+      .match-banner p{font-style:italic;color:var(--parchment);margin:.3rem 0 0}
+
+      /* ---------- leagues ---------- */
+      .league-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+      @media (max-width:760px){.league-grid{grid-template-columns:1fr}}
+      .league{
+        border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);
+      }
+      .league header{padding:1.3rem 1.4rem 1rem;background:linear-gradient(160deg,var(--burgundy-deep),var(--panel));border-bottom:1px solid var(--line)}
+      .league h3{font-family:var(--serif);font-size:1.65rem;margin:0;font-weight:800}
+      .league header p{margin:.25rem 0 0;font-style:italic;color:var(--parchment)}
+      .league ul{list-style:none;margin:0;padding:1rem 1.4rem 1.4rem}
+      .league li{padding:.5rem 0 .5rem 1.5rem;position:relative;border-bottom:1px dashed rgba(199,166,91,.16);color:var(--parchment)}
+      .league li:last-child{border-bottom:none}
+      .league li::before{content:"♠";position:absolute;left:0;color:var(--gold);font-size:.85em;top:.62rem}
+      .league li b{color:var(--ivory)}
+      .house-code{
+        margin-top:1.1rem;border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.4rem;
+        background:linear-gradient(180deg,rgba(87,28,38,.35),rgba(0,0,0,.25));
+      }
+      .house-code h3{font-family:var(--serif);margin:0 0 .6rem;font-size:1.15rem;letter-spacing:.06em;color:var(--gold-bright);text-align:center}
+      .house-code ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.35rem 2rem}
+      @media (max-width:640px){.house-code ul{grid-template-columns:1fr}}
+      .house-code li{padding:.32rem 0 .32rem 1.4rem;position:relative;color:var(--parchment)}
+      .house-code li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:.7em;top:.55rem}
+
+      /* ---------- tour ---------- */
+      .chips{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.6rem}
+      .chip{
+        border:1px solid var(--gold-dim);background:transparent;color:var(--parchment);
+        font-family:var(--serif);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+        border-radius:99px;padding:.6rem 1.1rem;min-height:2.75rem;
+      }
+      .chip[aria-pressed="true"]{background:linear-gradient(180deg,#dcbc72,#b28c3e);color:#221503;border-color:#e8cd8a;font-weight:700}
+      .tour-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+      .room{
+        display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel);
+        text-align:left;padding:0;color:inherit;width:100%;
+      }
+      .room .imgwrap{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#0a0705}
+      .room img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+      .room:hover img,.room:focus-visible img{transform:scale(1.05)}
+      .room .badge{
+        position:absolute;top:.55rem;left:.55rem;background:rgba(13,10,8,.82);border:1px solid var(--gold);
+        color:var(--gold-bright);font-family:var(--serif);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+        padding:.28rem .6rem;border-radius:99px;
+      }
+      .room .badge.newb{background:var(--burgundy);border-color:#d98a97;color:#ffe9dd}
+      .room .plate{padding:.75rem .9rem .9rem;display:flex;align-items:baseline;justify-content:space-between;gap:.6rem}
+      .room .rname{font-family:var(--serif);font-weight:700;font-size:1.06rem;line-height:1.2}
+      .room .rnum{font-family:var(--serif);color:var(--gold);font-size:.85rem;flex:none}
+      .hometurf{margin-top:2rem;text-align:center}
+      .hometurf h3{font-family:var(--serif);font-size:1.3rem;margin:0 0 .3rem}
+      .hometurf p{font-style:italic;color:var(--parchment);margin:0 auto 1rem;max-width:36rem}
+      .turf-plates{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center}
+      .turf-plates span{
+        border:1px solid var(--line);border-radius:4px;padding:.55rem 1rem;
+        font-family:var(--serif);font-size:.92rem;color:var(--gold-bright);background:rgba(0,0,0,.3);
+      }
+
+      /* lightbox */
+      .lightbox{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:1rem;background:rgba(5,3,2,.9)}
+      .lightbox.on{display:grid}
+      .lb-card{max-width:56rem;width:100%;background:var(--panel);border:1px solid var(--gold-dim);border-radius:10px;overflow:hidden;max-height:92svh;overflow-y:auto}
+      .lb-card img{width:100%;aspect-ratio:3/2;object-fit:cover}
+      .lb-body{padding:1.2rem 1.4rem 1.5rem}
+      .lb-body h3{font-family:var(--serif);font-size:1.7rem;margin:0 0 .3rem}
+      .lb-body p{color:var(--parchment);margin:.3rem 0;font-size:1.16rem}
+      .lb-close{margin-top:1rem}
+
+      /* ---------- hosts ---------- */
+      .rafael-feature{
+        display:grid;grid-template-columns:300px 1fr;gap:1.6rem;align-items:center;
+        border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin-bottom:1.4rem;
+        background:linear-gradient(140deg,var(--burgundy-deep),var(--panel) 62%);
+      }
+      @media (max-width:700px){.rafael-feature{grid-template-columns:1fr;text-align:center;justify-items:center}}
+      .rafael-feature img{width:100%;max-width:300px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:8px;border:2px solid var(--gold)}
+      .rafael-feature h3{font-family:var(--serif);font-size:1.9rem;margin:0}
+      .rafael-feature .role{color:var(--gold-bright);font-family:var(--serif);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin:.3rem 0 .8rem}
+      .rafael-feature blockquote{margin:.7rem 0;padding-left:1rem;border-left:2px solid var(--gold);font-style:italic;color:var(--parchment);font-size:1.18rem}
+      @media (max-width:700px){.rafael-feature blockquote{border-left:none;padding-left:0}}
+      .host-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+      .host{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);text-align:center;padding-bottom:1rem}
+      .host img{width:100%;aspect-ratio:3/3.4;object-fit:cover;object-position:top;background:#0a0705}
+      .host h3{font-family:var(--serif);font-size:1.18rem;margin:.8rem .5rem .1rem}
+      .host p{margin:0 .6rem;color:var(--gold);font-style:italic;font-size:1rem}
+
+      /* ---------- records / finishing ---------- */
+      .plaque-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+      @media (max-width:820px){.plaque-grid{grid-template-columns:1fr}}
+      .plaque{
+        border:1px solid var(--gold-dim);border-radius:8px;padding:1.4rem 1.3rem;text-align:center;
+        background:linear-gradient(180deg,#241a0d,#171008);
+        box-shadow:inset 0 0 0 4px rgba(13,10,8,.6),inset 0 0 0 5px rgba(199,166,91,.25);
+      }
+      .plaque .glyph{font-size:2rem;color:var(--gold);line-height:1}
+      .plaque h3{font-family:var(--serif);font-size:1.35rem;margin:.6rem 0 .4rem;color:var(--gold-bright)}
+      .plaque p{color:var(--parchment);margin:0;font-size:1.08rem}
+      .finish-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.2rem}
+      @media (max-width:820px){.finish-list{grid-template-columns:1fr}}
+      .finish-item{border:1px solid var(--line);border-radius:10px;padding:1.3rem;background:var(--panel)}
+      .finish-item .no{font-family:var(--serif);font-size:2rem;color:var(--gold);font-weight:900;line-height:1}
+      .finish-item h3{font-family:var(--serif);font-size:1.25rem;margin:.5rem 0 .35rem}
+      .finish-item p{color:var(--parchment);margin:0}
+      .duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+      @media (max-width:760px){.duo{grid-template-columns:1fr}}
+      .duo .panel{border:1px solid var(--line);border-radius:10px;padding:1.3rem 1.4rem;background:var(--panel)}
+      .duo h3{font-family:var(--serif);font-size:1.3rem;margin:0 0 .5rem;color:var(--gold-bright)}
+      .duo p{color:var(--parchment);margin:0 0 .5rem}
+      .duo p:last-child{margin-bottom:0}
+      /* ---------- parlor shop — cash app coin packs ---------- */
+      .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.9rem 0}
+      @media (max-width:560px){.pack-grid{grid-template-columns:1fr}}
+      .pack-card{border:1px solid var(--line);border-radius:8px;padding:1rem;background:var(--panel-2)}
+      .pack-card h4{font-family:var(--serif);font-size:1.1rem;margin:0 0 .2rem;color:var(--gold-bright)}
+      .pack-coins{font-size:1.05rem;color:var(--ivory);margin:0}
+      .pack-price{font-family:var(--serif);font-size:1.3rem;color:var(--gold-bright);margin:.1rem 0 .6rem}
+      .pack-card .btn{display:flex;width:100%;margin:.35rem 0}
+      .btn-cash{background:#00d632;color:#06210f;border-color:#00d632}
+      .btn-cash:hover{background:#2be36b}
+      .pack-note{font-size:.98rem;color:var(--muted);font-style:italic;margin:.4rem 0 0}
+      .purse-line{font-size:1.15rem}
+      .name-line{display:block;margin:.6rem 0 .2rem;color:var(--parchment)}
+      .name-line input{display:block;width:100%;margin-top:.35rem;padding:.7rem .8rem;border-radius:6px;border:1px solid var(--gold-dim);background:rgba(13,10,8,.6);color:var(--ivory);font-family:var(--body);font-size:1.05rem}
+      .claim-msg{min-height:1.4em;font-style:italic}
+      .owner-box{margin-top:1rem;border-top:1px solid var(--line);padding-top:.9rem}
+      .claim-row{display:flex;justify-content:space-between;align-items:center;gap:.8rem;border:1px solid var(--line);border-radius:6px;padding:.6rem .8rem;margin:.5rem 0;background:var(--panel-2)}
+      .claim-row .btn{flex:none}
+      .gate{
+        margin-top:1.2rem;border:1px solid var(--gold-dim);border-radius:10px;padding:1.3rem 1.4rem;text-align:center;
+        background:linear-gradient(180deg,rgba(87,28,38,.3),rgba(0,0,0,.25));
+      }
+      .gate h3{font-family:var(--serif);margin:0 0 .4rem;font-size:1.3rem;color:var(--gold-bright)}
+      .gate p{color:var(--parchment);margin:0;font-style:italic;font-size:1.16rem}
+
+      footer{border-top:1px solid var(--line);padding:2.4rem 1.25rem 3rem;text-align:center}
+      footer .fname{font-family:var(--serif);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;color:var(--gold)}
+      footer p{color:var(--muted);font-style:italic;margin:.5rem auto 0;max-width:34rem}
+      footer a{font-style:normal}
+
+
+      /* ---------- v2: the room photo IS the table ---------- */
+      .room-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:0}
+      .room-veil{position:absolute;inset:0;border-radius:50%;z-index:1;pointer-events:none;
+        background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,.10),rgba(0,0,0,.42) 82%)}
+      .room-plate{position:absolute;left:50%;top:7px;transform:translateX(-50%);z-index:4;
+        font-family:var(--serif);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;
+        color:var(--gold-bright);background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:99px;padding:.16rem .8rem}
+      .felt.cam-on #seat0{display:none}
+      /* ---------- v2: timer ---------- */
+      .timer-bar{position:relative;height:22px;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:0 0 1rem;background:rgba(0,0,0,.4)}
+      .timer-fill{position:absolute;inset:0;width:100%;background:linear-gradient(90deg,#8a6b22,var(--gold-bright));transition:width .2s linear}
+      .timer-fill.low{background:linear-gradient(90deg,#7a2415,#c8452c)}
+      .timer-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+        font-family:var(--serif);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ivory);text-shadow:0 1px 4px #000}
+      /* ---------- v2: mode + opponents + room strip ---------- */
+      .mode-row,.opp-row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;justify-content:center;margin:0 0 .8rem}
+      .mode-label{font-family:var(--serif);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright)}
+      .mode-btn{border:1px solid var(--gold-dim);background:rgba(0,0,0,.35);color:var(--parchment);border-radius:99px;
+        padding:.5rem 1.1rem;font-family:var(--serif);font-weight:700;font-size:.95rem;cursor:pointer}
+      .mode-btn[aria-pressed="true"]{background:var(--gold);color:#1a1410;border-color:var(--gold-bright)}
+      .mode-note{font-style:italic;color:var(--muted);font-size:1rem;width:100%;text-align:center}
+      .opp-row label{font-family:var(--serif);font-size:.85rem;color:var(--parchment);display:flex;gap:.4rem;align-items:center}
+      .opp-row select{background:#1d1710;color:var(--ivory);border:1px solid var(--gold);border-radius:6px;padding:.4rem .5rem;font-family:var(--body);font-size:1rem}
+      .room-strip{display:flex;gap:.45rem;overflow-x:auto;padding:.2rem 0 .6rem;margin:0 0 .6rem;scrollbar-width:thin}
+      .room-chip{flex:none;display:flex;flex-direction:column;align-items:center;gap:.25rem;background:none;
+        border:1px solid transparent;border-radius:8px;padding:.25rem;cursor:pointer;width:78px}
+      .room-chip img{width:68px;height:44px;object-fit:cover;border-radius:6px;border:2px solid var(--gold-dim)}
+      .room-chip span{font-family:var(--serif);font-size:.6rem;color:var(--parchment);text-align:center;line-height:1.15}
+      .room-chip[aria-pressed="true"]{border-color:var(--gold);background:rgba(199,166,91,.12)}
+      .room-chip[aria-pressed="true"] img{border-color:var(--gold-bright)}
+      /* ---------- v2: live video tile (big) ---------- */
+      .live-tile{display:flex;justify-content:center;margin-bottom:1rem}
+      .live-tile[hidden]{display:none}
+      .live-tile-inner{text-align:center}
+      .live-tile video{width:min(340px,86vw);aspect-ratio:4/3;object-fit:cover;border-radius:10px;
+        border:3px solid var(--gold);box-shadow:0 0 0 2px #1a1410,0 10px 30px rgba(0,0,0,.6);background:#000}
+      .live-tile-cap{margin-top:.35rem;font-family:var(--serif);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright)}
+      .live-dot{width:7px;height:7px;border-radius:50%;background:#ff5a5a;display:inline-block;margin:0 3px;vertical-align:middle;
+        box-shadow:0 0 6px #ff5a5a;animation:livepulse 1.2s infinite}
+      @keyframes livepulse{50%{opacity:.35}}
+      /* ---------- v2: seats, egg, records ---------- */
+      .you-medal{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;
+        background:radial-gradient(circle at 35% 30%,#f3d98a,#b8933f 65%,#8a6b22);color:#1a1410;font-weight:800;font-size:13px;
+        border:2px solid var(--gold);flex:none}
+      .score-chip .you-medal{width:38px;height:38px;font-size:10px}
+      .seat .egg-drop{position:absolute;top:-26px;left:50%;margin-left:-13px;font-size:26px;animation:eggf 1.2s ease-in forwards;pointer-events:none;z-index:6}
+      @keyframes eggf{0%{transform:translateY(-14px) scale(.6);opacity:0}35%{transform:translateY(0) scale(1.15);opacity:1}
+        60%{transform:translateY(2px) scale(1.25,.55);opacity:1}100%{transform:translateY(6px) scale(1.6,.3);opacity:0}}
+      .score-chip.team-chip{border-color:var(--gold);background:rgba(199,166,91,.08)}
+      .records-live{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.1rem}
+      @media (max-width:760px){.records-live{grid-template-columns:1fr}}
+      .tourney-table{background:#0f1417;border:1px solid #333f45;border-radius:10px;padding:10px 12px;margin-bottom:10px}
+      .tourney-table h4{margin:0 0 6px;color:var(--ivory);font-size:15px}
+      .tourney-table ul{list-style:none;margin:0 0 8px;padding:0}
+      .tourney-table li{padding:2px 0;color:var(--parchment);font-size:14px}
+      .records-list{list-style:none;margin:0;padding:0}
+      .records-list li{padding:6px 0;border-bottom:1px solid #2b353b;color:var(--parchment);font-size:14px}
+      .records-list li:last-child{border-bottom:0}
+      /* ---------- v2: championships ---------- */
+      .champ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+      .champ{display:block;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;padding:0;cursor:pointer}
+      .champ img{width:100%;height:150px;object-fit:cover}
+      .champ .cbody{padding:1rem 1.1rem}
+      .champ h4{font-family:var(--serif);color:var(--gold-bright);margin:0 0 .2rem;font-size:1.15rem}
+      .champ p{color:var(--parchment);margin:0 0 .7rem}
+      /* ---------- v2: live panel ---------- */
+      .live-panel h4{font-family:var(--serif);color:var(--gold-bright);margin:1rem 0 .3rem;font-size:1.05rem}
+      .live-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:.6rem 0}
+      .lobby-list p{margin:.3rem 0}
+      .lobby-row{display:flex;justify-content:space-between;gap:.6rem;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(199,166,91,.14)}
+      .lobby-msg{font-style:italic;color:var(--gold-bright);min-height:1.4em}
+      .chat-list{max-height:180px;overflow-y:auto;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem;margin:.4rem 0}
+      .chat-list p{margin:.3rem 0;font-size:1.05rem}
+      .cwho{color:var(--gold-bright);font-family:var(--serif)}
+      .chat-row{display:flex;gap:.5rem}
+      .chat-row input{flex:1;background:#1d1710;border:1px solid var(--gold);border-radius:6px;color:var(--ivory);padding:.6rem .7rem;font-family:var(--body);font-size:1rem;min-width:0}
+      .cam-msg{font-style:italic;color:var(--muted)}
+      .seat-photo-row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin:.5rem 0}
+      .seat-photo-preview img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+      .seat-photo-preview .you-medal{width:52px;height:52px;font-size:14px}
+      .bid-prompt{font-family:var(--serif);color:var(--gold-bright);font-size:.95rem;align-self:center}
+      .lb-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+
+      @media (prefers-reduced-motion: reduce){
+        html{scroll-behavior:auto}
+        .hero-bg img,.hero-glow,.deck-l,.deck-r,.pcard,.deck-cut.cutting .cut-top{animation:none}
+        .room img{transition:none}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu-wrap">
+      <button class="menu-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="menuPanel">&#9776; Menu</button>
+      <div class="menu-panel" id="menuPanel" role="menu" aria-label="Parlor menu" hidden>
+        <a href="#table" role="menuitem">The Table</a>
+        <a href="#leagues" role="menuitem">The Leagues</a>
+        <a href="#tour" role="menuitem">World Tour</a>
+        <a href="#hosts" role="menuitem">The Hosts</a>
+        <a href="#records" role="menuitem">Hall of Records</a>
+        <a href="#finishing" role="menuitem">Finishing Touches</a>
+        <div class="menu-sep" aria-hidden="true"></div>
+        <button class="menu-item" id="menuSound" role="menuitem">Sound <span class="menu-state" id="soundState">On</span></button>
+        <button class="menu-item" id="menuVoice" role="menuitem">Rafael's Voice <span class="menu-state" id="voiceState">On</span></button>
+        <button class="menu-item" id="menuWide" role="menuitem">Wide Screen <span class="menu-state" id="wideState">Off</span></button>
+        <div class="menu-sep" aria-hidden="true"></div>
+        <button class="menu-item" id="menuRestart" role="menuitem">Restart Match</button>
+        <button class="menu-item danger" id="menuForfeit" role="menuitem">Forfeit Match</button>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-bg"><img src="assets/hero.jpg" alt="The New Orleans Jazz Parlor — crimson drapes, chandeliers, and card tables under stained glass" /></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-rule"><span>The Victorian Card League</span></div>
+        <h1>Cut Throat<br /><span class="goldword">Spades</span></h1>
+        <p class="tagline">Respect Must Be Earned</p>
+        <p class="hero-sub">Four seats. Fifty-two cards. Thirty-two rooms around the world, eight hosts who know your name — and not one guaranteed friend at the table.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="#table">Take Your Seat</a>
+          <a class="btn btn-ghost" href="#tour">Walk the World Tour</a>
+        </div>
+        <div class="hero-stats" aria-label="The Parlor in numbers">
+          <div><b>32</b><span>Rooms on the tour</span></div>
+          <div><b>8</b><span>Hosts of the house</span></div>
+          <div><b>2</b><span>Leagues — Solo &amp; Team</span></div>
+          <div><b>250</b><span>Points takes the match</span></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= THE TABLE ================= -->
+    <section id="table">
+      <div class="sec-head">
+        <p class="sec-kicker">The Practice Table</p>
+        <h2>Sit Down. The Cards Are Real.</h2>
+        <p>This is the dream, playable: a Solo League hand against three of the house's own, dealt with a shuffle and a cut, called live by Rafael Torres. The table never leaves your sight — every card played stays in view.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="rafael-bar">
+          <img src="assets/hosts/rafael-torres.webp" alt="Rafael Torres" />
+          <div>
+            <p class="who">Rafael Torres · Live Commentary</p>
+            <p class="says" id="rafaelSays" aria-live="polite">Welcome to the Parlor, friend. Press shuffle and deal — and remember, in this house, respect must be earned.</p>
+          </div>
+        </div>
+
+        <div class="live-tile" id="liveTile" hidden>
+          <div class="live-tile-inner">
+            <video id="liveVideo" autoplay playsinline muted></video>
+            <div class="live-tile-cap"><span class="live-dot"></span><span id="liveName">You — live</span></div>
+          </div>
+        </div>
+
+        <div class="score-strip" id="scoreStrip" aria-label="Match scores"></div>
+        <div class="timer-bar" id="timerBar" hidden><div class="timer-fill" id="timerFill"></div><span class="timer-label" id="timerLabel"></span></div>
+
+        <div class="mode-row" role="group" aria-label="League mode">
+          <span class="mode-label">League</span>
+          <button class="mode-btn" type="button" id="modeSolo" aria-pressed="true">Solo League</button>
+          <button class="mode-btn" type="button" id="modeTeam" aria-pressed="false">Team League · 2v2</button>
+          <span class="mode-note" id="modeNote">Solo: every soul for itself — min bid 3, Egg Rule in force.</span>
+        </div>
+        <div class="opp-row" id="oppRow">
+          <span class="mode-label">Your table</span>
+          <label>West <select id="oppW" aria-label="West opponent"></select></label>
+          <label>North <select id="oppN" aria-label="North opponent"></select></label>
+          <label>East <select id="oppE" aria-label="East opponent"></select></label>
+          <button class="btn btn-gold btn-small" type="button" id="oppRandom">Random table</button>
+        </div>
+        <div class="room-strip" id="roomStrip" role="group" aria-label="Choose your room"></div>
+
+        <div class="felt-zone">
+          <div class="felt" id="felt">
+            <img class="room-photo" id="roomPhoto" src="assets/rooms/rome-imperial-table.jpg" alt="Rome Imperial Table — room photograph" />
+            <div class="room-veil"></div>
+            <div class="room-plate" id="roomPlate">Rome Imperial Table</div>
+            <div class="seat seat-n" id="seat2"></div>
+            <div class="seat seat-w" id="seat1"></div>
+            <div class="seat seat-e" id="seat3"></div>
+            <div class="seat seat-s" id="seat0"></div>
+            <div class="slot slot-n" id="slot2"></div>
+            <div class="slot slot-w" id="slot1"></div>
+            <div class="slot slot-e" id="slot3"></div>
+            <div class="slot slot-s" id="slot0"></div>
+            <p class="trick-note" id="trickNote">The felt is empty.<br />Shuffle and deal to begin.</p>
+            <div class="shuffle-stage" id="shuffleStage" aria-hidden="true">
+              <div class="deck-half deck-l"></div>
+              <div class="deck-half deck-r"></div>
+            </div>
+            <button class="deck-cut" id="cutDeck" aria-label="Cut the deck" hidden><span class="cut-top" aria-hidden="true"></span></button>
+          </div>
+        </div>
+
+        <p class="table-status" id="tableStatus" aria-live="polite">Your seat is waiting, South side of the table.</p>
+
+        <div class="hand-zone"><div class="hand" id="hand" aria-label="Your cards"></div></div>
+
+        <div class="bid-row" id="bidRow" role="group" aria-label="Choose your bid"></div>
+
+        <div class="controls">
+          <button class="btn btn-gold btn-small" id="mainBtn">Shuffle &amp; Deal</button>
+          <button class="btn btn-ghost btn-small" id="stopShuffleBtn" hidden>Stop Shuffle</button>
+          <button class="btn btn-ghost btn-small renig-btn" id="renigBtn" hidden>Call renig</button>
+        </div>
+
+        <div class="match-banner" id="matchBanner">
+          <p class="big" id="matchTitle"></p>
+          <p id="matchSub"></p>
+        </div>
+
+        <div class="result-panel" id="resultPanel">
+          <h3 id="resultTitle">Hand One — The Reckoning</h3>
+          <table class="result-table">
+            <thead><tr><th>Player</th><th>Bid</th><th>Books</th><th>Hand</th><th>Match</th></tr></thead>
+            <tbody id="resultBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE LEAGUES ================= -->
+    <section id="leagues">
+      <div class="sec-head">
+        <p class="sec-kicker">Two Ways to Bleed</p>
+        <h2>The Leagues</h2>
+        <p>Walter's rules, exactly as he set them in the Masters brief. They override every older spec, every prototype, every house habit.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="league-grid">
+        <article class="league">
+          <header>
+            <h3>Solo League</h3>
+            <p>Four players. Every soul for themselves.</p>
+          </header>
+          <ul>
+            <li><b>Race to 250.</b> You score for the books you <b>bid</b>, not the books you take — extra books past your bid score nothing.</li>
+            <li><b>Minimum bid 3.</b> There is no nil in this house — nobody hides.</li>
+            <li><b>The Egg Rule:</b> take zero books in a hand and your score resets to 0. All of it. Gone.</li>
+            <li><b>Bids of 3–6 pay 10 a book; bids of 7–13 pay 20 a book</b> when they make — fortune favors the loud.</li>
+            <li><b>First hand, bid 7 or more and make it?</b> The match ends on the spot. You take the room.</li>
+            <li>Miss your bid and you are <b>set</b> — ten points a bid book comes out of your score, with interest owed to the house's laughter.</li>
+          </ul>
+        </article>
+
+        <article class="league">
+          <header>
+            <h3>Team League</h3>
+            <p>Two against two. Trust is a currency — spend it carefully.</p>
+          </header>
+          <ul>
+            <li><b>Race to 250.</b> The combined bid is the law — you score for the books you bid.</li>
+            <li><b>Both partners must bid</b> — bids from 0 to 13. Zero is allowed; there is <b>no bonus</b> for it. A team's combined bid is raised to 4 if it falls below 4.</li>
+            <li>Make the combined bid: <b>10 a book on bids 4–9, 20 a book on bids 10–13</b>. Miss it: <b>−10 a book</b>. Together, either way.</li>
+            <li><b>No first-hand shortcut:</b> a combined bid of 10 on the first hand scores like any other hand — it does not end the match.</li>
+            <li><b>A Boston</b> — bid 11 or more and take all 13 books — ends the match the moment the last card falls. Bid 10 and take all 13? That is <b>200 points</b>, not a Boston.</li>
+            <li><b>Throw-in:</b> if both teams' combined bids add up to less than 11, the hand is thrown in and redealt — no score changes.</li>
+            <li><b>Two consecutive failed team hands</b> and the match is over. No third chances.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="house-code">
+        <h3>— The House Code, Both Leagues —</h3>
+        <ul>
+          <li>The table stays in view at all times — you see every card, including your partner's plays.</li>
+          <li>Spades are trump, playable at any time — including leading the very first trick.</li>
+          <li>Restart, quit, and forfeit are on the table at any moment. No traps, no locked doors.</li>
+          <li>A renig must be caught and challenged to count — call it from the table and the house judges it. A confirmed renig costs the reneging side 4 books; a false call costs the accuser 4 books. The house AI never renigs on purpose.</li>
+          <li>No table talk in Team League: no chat, no voice, no hints. Enforced at the table.</li>
+          <li>Camera and mic at live tables are optional — and never touch who wins.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= WORLD TOUR ================= -->
+    <section id="tour">
+      <div class="sec-head">
+        <p class="sec-kicker">Thirty-Two Doors, One League</p>
+        <h2>The World Tour</h2>
+        <p>Every stop is a real room from Walter's own Parlor — and every room gets its own table, designed from its own photograph. Win a stop and it is cleared in gold. The count: the 23 original rooms — including Tokyo, Sydney, the Swiss Alps, and the ISS, the four Emergent once marked “Coming Soon” and which are open now — plus the four new arrivals Walter sent over on November 14, and the five Home Turf stops where the game really lives. Thirty-two doors in all.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="chips" role="group" aria-label="Filter rooms">
+        <button class="chip" data-filter="all" aria-pressed="true">All Rooms</button>
+        <button class="chip" data-filter="classic" aria-pressed="false">The 23 Classics</button>
+        <button class="chip" data-filter="new" aria-pressed="false">New Arrivals</button>
+        <button class="chip" data-filter="turf" aria-pressed="false">Home Turf</button>
+      </div>
+
+      <div class="tour-grid" id="tourGrid"></div>
+
+      <div class="hometurf">
+        <h3>Plus the Home Turf</h3>
+        <p>Five everyday stops, open from the very first day — because cut throat doesn't only live in chandeliers. It lives wherever four people and a deck can be found.</p>
+        <div class="turf-plates">
+          <span>Backyard Cookout</span>
+          <span>Home Living Room</span>
+          <span>Jail Day Room</span>
+          <span>The Park</span>
+          <span>Hangout Spot</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHAMPIONSHIPS ================= -->
+    <section class="champ-section" id="championships">
+      <div class="sec-head">
+        <p class="sec-kicker">Same Room, Same Stakes</p>
+        <h2>Championships</h2>
+        <p>Six championship rooms. Every player at a championship match sees the same room — same table, same lights, same stakes. Pick your room and play for your reputation.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+      <div class="champ-grid" id="champGrid"></div>
+    </section>
+
+    <!-- ================= HOSTS ================= -->
+    <section id="hosts">
+      <div class="sec-head">
+        <p class="sec-kicker">The House Staff</p>
+        <h2>Eight Hosts. Zero Strangers.</h2>
+        <p>The same eight faces from the original Parlor — gold-ringed, named, and on duty in every room.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <article class="rafael-feature">
+        <img src="assets/hosts/rafael-torres.webp" alt="Rafael Torres, the Parlor's commentator, in a crimson jacket" />
+        <div>
+          <h3>Rafael Torres</h3>
+          <p class="role">AI Commentator · The Voice of the Parlor</p>
+          <p style="color:var(--parchment);margin:0">Rafael calls the moments that matter — the set, the spade break, the last-trick steal — live, as the cards fall. You heard him at the table above. In the finished Parlor, he never misses a hand.</p>
+          <blockquote>“Spades have entered the dance — and the whole table just held its breath.”</blockquote>
+          <blockquote>“Set! The bid collapses. The Parlor shows no mercy, and neither do I.”</blockquote>
+        </div>
+      </article>
+
+      <div class="host-grid" id="hostGrid"></div>
+    </section>
+
+    <!-- ================= HALL OF RECORDS ================= -->
+    <section id="records">
+      <div class="sec-head">
+        <p class="sec-kicker">Glory &amp; Shame, Both Framed</p>
+        <h2>The Hall of Records</h2>
+        <p>Maya Redbird keeps the board. What happens at the table does not stay at the table.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="plaque-grid">
+        <article class="plaque">
+          <div class="glyph" aria-hidden="true">♛</div>
+          <h3>The Tournament</h3>
+          <p>Names are drawn one by one from the bowl into the bracket. Two semifinal tables play down; the top two from each table reach the Final. The champion takes the prize — and the room.</p>
+        </article>
+        <article class="plaque">
+          <div class="glyph" aria-hidden="true"><svg width="30" height="36" viewBox="0 0 30 36"><path d="M15 2 C22 2 27 12 27 21 a12 12 0 1 1 -24 0 C3 12 8 2 15 2 Z" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3>Egged</h3>
+          <p>Finish a hand with zero books and the ceremony is swift: an egg drops on your portrait and bursts, in front of everyone. Then the Egg Rule takes your score to zero. Both sting.</p>
+        </article>
+        <article class="plaque">
+          <div class="glyph" aria-hidden="true">♠</div>
+          <h3>In the Hole</h3>
+          <p>End a match in the negative and your name is carved letter by letter in glowing gold and hung on the Hall of Records board — where it stays, shining, until you play your way off it.</p>
+        </article>
+      <div class="records-live">
+        <article class="plaque">
+          <div class="glyph" aria-hidden="true">♛</div>
+          <h3>The Tournament Draw</h3>
+          <p>Eight names. Two semifinal tables of four. Win your table and the Final is yours — the Parlor keeps the draw honest.</p>
+          <button class="btn btn-gold" type="button" id="tourneyDraw">Draw the Names</button>
+          <div class="tourney-bracket" id="tourneyBracket"><p style="color:var(--parchment)">Eight names. Two semifinal tables. One champion. Draw the names and the Parlor does the rest.</p></div>
+        </article>
+        <article class="plaque">
+          <div class="glyph" aria-hidden="true">♠</div>
+          <h3>Match History &amp; In the Hole</h3>
+          <p>Every match that ends at your table is written here — win, loss, or in the hole — so the Parlor remembers what the room saw.</p>
+          <ul class="records-list" id="recordsList"><li>No matches on the board yet. Play a hand and the Parlor will remember it.</li></ul>
+          <h3 style="margin-top:14px">In the Hole</h3>
+          <p>The hall of shame, kept honest: anyone who finishes a match below zero.</p>
+          <ul class="records-list" id="holeBoard"><li>The board is clean. Nobody has finished in the hole yet.</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= FINISHING TOUCHES ================= -->
+    <section id="finishing">
+      <div class="sec-head">
+        <p class="sec-kicker">The Dream, Finished Properly</p>
+        <h2>The Finishing Touches</h2>
+        <p>Three details were left unfinished in the Emergent build. In this design, they are the crown jewels — two of them you can already hear and see at the table above.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="finish-list">
+        <article class="finish-item">
+          <p class="no">01</p>
+          <h3>A Song for Every Room</h3>
+          <p>Each room on the World Tour carries its own theme — jazz under the New Orleans chandeliers, strings in the Paris Salon, something cold and electronic humming aboard the ISS. You don't just see the room. You hear where you are.</p>
+        </article>
+        <article class="finish-item">
+          <p class="no">02</p>
+          <h3>Rafael, Live</h3>
+          <p>Full live commentary from Rafael Torres, calling the big moments as they land: the set, the spade break, the last-trick steal, the egg. The table above runs his voice in miniature — the finished Parlor gives him every hand.</p>
+        </article>
+        <article class="finish-item">
+          <p class="no">03</p>
+          <h3>The Shuffle &amp; the Cut</h3>
+          <p>Before every deal, the riffle happens in front of you — and the cut is yours to make. Press “Shuffle &amp; Deal,” watch the two halves of the deck marry, then tap the deck on the felt to cut it before a single card is dealt, one at a time, all the way around. No cards appear from nowhere. That's the ceremony, every single hand.</p>
+        </article>
+      </div>
+
+      <div class="duo">
+        <article class="panel live-panel">
+          <h3>Live at the Table</h3>
+          <p><b style="color:var(--ivory)">“Match me with anyone online.”</b> One tap and the Parlor finds you a real table — open matchmaking against live players, with table chat capped at 140 characters, short and sharp like the game itself.</p>
+          <div class="live-row">
+            <button class="btn btn-gold btn-small" type="button" id="matchBtn">Find a Live Table</button>
+            <button class="btn btn-ghost btn-small" type="button" id="createLobbyBtn">Open My Table</button>
+          </div>
+          <div class="lobby-list" id="lobbyList"><p>Open tables appear here when the Parlor is connected.</p></div>
+          <p class="lobby-msg" id="lobbyMsg" aria-live="polite"></p>
+          <h4>Table Talk</h4>
+          <div class="chat-list" id="chatList"><p style="color:var(--muted)">No table talk yet.</p></div>
+          <div class="chat-row">
+            <input id="chatInput" type="text" maxlength="140" placeholder="Say something sharp — 140 characters" aria-label="Table chat message" />
+            <button class="btn btn-gold btn-small" type="button" id="chatSend">Send</button>
+          </div>
+          <p class="chat-lock" id="chatLock" hidden>Table talk is off during Team League — no chat, no voice, no hints.</p>
+          <h4>Your Camera</h4>
+          <p>Camera is always optional — it never affects play or who wins. When it's on, your live video sits above the table in a big box, the way it should be.</p>
+          <div class="live-row">
+            <button class="btn btn-gold btn-small" type="button" id="camBtn">Turn Camera On</button>
+            <span class="cam-msg" id="camMsg" aria-live="polite"></span>
+          </div>
+          <h4>Create-a-Player</h4>
+          <p>Wear your own face at the table. Your photo becomes the gold-ringed portrait on your seat.</p>
+          <div class="seat-photo-row">
+            <span id="seatPhotoPreview" class="seat-photo-preview"></span>
+            <label class="btn btn-ghost btn-small" for="seatPhotoInput">Choose a Photo</label>
+            <input id="seatPhotoInput" type="file" accept="image/*" hidden />
+            <button class="btn btn-ghost btn-small" type="button" id="seatPhotoRemove">Remove</button>
+          </div>
+        </article>
+        <article class="panel">
+          <h3>The Parlor Shop</h3>
+          <p>Clothes, accessories, and services, bought with coins earned at the table — the sharper you play, the sharper you dress. Real-money coin packs are open now — pay with Cash App. (Stripe stays switched off until it's ready.)</p>
+          <p>One law above all: <b style="color:var(--ivory)">nothing in the shop touches the cards, the bids, or who wins.</b> Style is for sale. Victory is not.</p>
+          <p class="purse-line">Your purse: <b id="purseBalance">0</b> coins</p>
+          <label class="name-line">Your player name
+            <input id="playerName" type="text" maxlength="40" autocomplete="nickname" placeholder="e.g. MagicNumber10" />
+          </label>
+          <p class="pack-note">Your player name must match the name you put in the Cash App note — that is how Walter finds your payment and credits your coins.</p>
+          <div class="pack-grid" id="coinPacks">
+            <article class="pack-card">
+              <h4>Starter Purse</h4>
+              <p class="pack-coins">500 coins</p>
+              <p class="pack-price">$4.99</p>
+              <a class="btn btn-cash" href="https://cash.app/$DevellRajels/4.99" target="_blank" rel="noopener">Pay with Cash App</a>
+              <p class="pack-note">Pay with your in-game player name in the Cash App note, then come back and tap I Paid.</p>
+              <button class="btn btn-ghost btn-small" id="paid-pack-starter" type="button">I Paid — record my claim</button>
+            </article>
+            <article class="pack-card">
+              <h4>Parlor Purse</h4>
+              <p class="pack-coins">1,200 coins</p>
+              <p class="pack-price">$9.99</p>
+              <a class="btn btn-cash" href="https://cash.app/$DevellRajels/9.99" target="_blank" rel="noopener">Pay with Cash App</a>
+              <p class="pack-note">Pay with your in-game player name in the Cash App note, then come back and tap I Paid.</p>
+              <button class="btn btn-ghost btn-small" id="paid-pack-parlor" type="button">I Paid — record my claim</button>
+            </article>
+            <article class="pack-card">
+              <h4>High Roller&rsquo;s Vault</h4>
+              <p class="pack-coins">3,000 coins</p>
+              <p class="pack-price">$19.99</p>
+              <a class="btn btn-cash" href="https://cash.app/$DevellRajels/19.99" target="_blank" rel="noopener">Pay with Cash App</a>
+              <p class="pack-note">Pay with your in-game player name in the Cash App note, then come back and tap I Paid.</p>
+              <button class="btn btn-ghost btn-small" id="paid-pack-vault" type="button">I Paid — record my claim</button>
+            </article>
+            <article class="pack-card">
+              <h4>The Gilded Vault</h4>
+              <p class="pack-coins">7,500 coins</p>
+              <p class="pack-price">$39.99</p>
+              <a class="btn btn-cash" href="https://cash.app/$DevellRajels/39.99" target="_blank" rel="noopener">Pay with Cash App</a>
+              <p class="pack-note">Pay with your in-game player name in the Cash App note, then come back and tap I Paid.</p>
+              <button class="btn btn-ghost btn-small" id="paid-pack-gilded" type="button">I Paid — record my claim</button>
+            </article>
+          </div>
+          <p id="coinClaimMsg" class="claim-msg" aria-live="polite"></p>
+          <div class="owner-box">
+            <button class="btn btn-ghost btn-small" id="ownerClaimsBtn" type="button">For Walter — Coin claims</button>
+            <div id="ownerClaimsPanel" hidden>
+              <p>Pending claims — check Cash App for the payment under the player&rsquo;s name, then tap Mark credited. The coins land in the player&rsquo;s purse the next time the game loads on their phone. Nothing here touches the cards.</p>
+              <div id="ownerClaims"><p>Loading the till…</p></div>
+              <button class="btn btn-ghost btn-small" id="ownerRefresh" type="button">Refresh list</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="gate">
+        <h3>What “Finished” Means Here</h3>
+        <p>The game plays end to end on a phone — portrait and landscape — with no dead screens and nothing covering the table. And it isn't finished until Walter plays a hand, looks up, and says the words: “Good to debut.”</p>
+      </div>
+    </section>
+
+    <footer>
+      <p class="fname">Cut Throat Spades Masters</p>
+      <p>The dream design, drawn entirely from Walter's original Emergent build of October 16, 2026 — his rooms, his hosts, his rules. <a href="https://spades-parlor.preview.emergentagent.com/" target="_blank" rel="noopener">Visit the original Spades-Parlor</a>.</p>
+    </footer>
+
+    <!-- room lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbName">
+      <div class="lb-card">
+        <img id="lbImg" src="assets/rooms/paris-salon.jpg" alt="Paris Salon — room photograph" />
+        <div class="lb-body">
+          <h3 id="lbName"></h3>
+          <p id="lbDesc"></p>
+          <p style="font-style:italic;color:var(--muted)">Every room is dealt its own table, designed from its own photograph — and its own theme song in the air.</p>
+          <div class="lb-actions">
+            <button class="btn btn-gold" type="button" id="lbPlay">Play at This Table</button>
+            <button class="btn btn-gold lb-close" id="lbClose">Back to the Tour</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    /* ==================== DATA ==================== */
+    var ROOMS = [
+      {n:"Paris Salon", f:"rooms/paris-salon.jpg", d:"The Eiffel Tower beyond the terrace glass, luxury at nightfall, romance in the lighting. Paris deals slowly — and cuts deep.", kind:"classic"},
+      {n:"London Crown Room", f:"rooms/london-crown-room.jpg", d:"Tower Bridge in the mist, traditional British elegance, dark wood and darker intentions.", kind:"classic"},
+      {n:"Rome Imperial Table", f:"rooms/rome-imperial-table.jpg", d:"Colosseum stone and Roman gold. Empires fell here; your bid can too.", kind:"classic"},
+      {n:"Cairo Royal Chamber", f:"rooms/cairo-royal-chamber.jpg", d:"The Great Pyramid keeps watch over warm sandstone and royal textiles. Pharaohs played for keeps.", kind:"classic"},
+      {n:"Tokyo Neon Lounge", f:"rooms/tokyo-neon-lounge.jpg", d:"Tokyo Tower glowing through premium dark interiors and modern neon. Once a Coming Soon room — now open, and worth the wait.", kind:"classic", open:true},
+      {n:"New York Grand Suite", f:"rooms/new-york-grand-suite.jpg", d:"A Manhattan penthouse above the skyline. The city never sleeps; neither does this table.", kind:"classic"},
+      {n:"Las Vegas High Stakes", f:"rooms/las-vegas-high-stakes.jpg", d:"The Strip blazing outside an exclusive gaming lounge. Drama is the house specialty.", kind:"classic"},
+      {n:"Venice Masked Salon", f:"rooms/venice-masked-salon.jpg", d:"The Grand Canal, Venetian masks, ornate historic décor. Nobody's face tells the truth here.", kind:"classic"},
+      {n:"Dubai Gold Room", f:"rooms/dubai-gold-room.jpg", d:"The Burj Khalifa above polished gold accents and luxury furnishings. Subtlety checked its coat at the door.", kind:"classic"},
+      {n:"Rio Carnival Club", f:"rooms/rio-carnival-club.jpg", d:"Christ the Redeemer over vibrant color and a festive room. Even the losses feel like a parade.", kind:"classic"},
+      {n:"Sydney Harbor Table", f:"rooms/sydney-harbor-table.jpg", d:"The Opera House sails across the harbor view, elegant and modern. Once Coming Soon — now open.", kind:"classic", open:true},
+      {n:"Moscow Winter Palace", f:"rooms/moscow-winter-palace.jpg", d:"Red Square elegance under winter light. Cold outside, colder at the table.", kind:"classic"},
+      {n:"Mumbai Maharaja Room", f:"rooms/mumbai-maharaja-room.jpg", d:"The Gateway of India, rich textiles, carved detail everywhere you look. A royal room for royal bids.", kind:"classic"},
+      {n:"Hong Kong Dragon Hall", f:"rooms/hong-kong-dragon-hall.jpg", d:"Victoria Harbour's dramatic skyline and dragon motifs coiled through the hall. Play bold; the dragons respect it.", kind:"classic"},
+      {n:"Athens Olympian Lounge", f:"rooms/athens-olympian-lounge.jpg", d:"Acropolis stone and classical gold. The gods are watching, and they keep score.", kind:"classic"},
+      {n:"Swiss Alpine Retreat", f:"rooms/swiss-alpine-retreat.jpg", d:"The Matterhorn, timber and stone, a warm fireplace against the snow. Once Coming Soon — now open.", kind:"classic", open:true},
+      {n:"Caribbean Private Island", f:"rooms/caribbean-private-island.jpg", d:"Tropical ocean around a private terrace lounge. The only thing cut throat here is the game.", kind:"classic"},
+      {n:"New Orleans Jazz Parlor", f:"rooms/new-orleans-jazz-parlor.jpg", d:"French Quarter soul — brass on the walls, crimson drapes, stained glass, and a band that never quite stops. The Parlor's beating heart.", kind:"classic"},
+      {n:"Marrakech Lantern Room", f:"rooms/marrakech-lantern-room.jpg", d:"The historic medina outside, patterned tile and warm lantern light inside. Every shadow is golden.", kind:"classic"},
+      {n:"Singapore Skyline Club", f:"rooms/singapore-skyline-club.jpg", d:"Marina Bay below, sleek modern luxury all around. Precision play for a precision city.", kind:"classic"},
+      {n:"Antarctic Expedition", f:"rooms/antarctic-expedition.jpg", d:"A polar research station in the ice — futuristic, warm inside, and a hundred miles from the nearest excuse.", kind:"classic"},
+      {n:"Lunar Outpost", f:"rooms/lunar-outpost.jpg", d:"A moon base lounge over grey lunar seas. Low gravity. High stakes.", kind:"classic"},
+      {n:"ISS Station", f:"rooms/iss-station.jpg", d:"The International Space Station, Earth turning in the window. Once Coming Soon — now open. The highest game in the league, literally.", kind:"classic", open:true},
+      {n:"Atlantis Underwater", f:"new/atlantis-underwater.jpg", d:"Walter's newest arrival: a mermaid statue, jellyfish chandeliers, and a table grown from an octopus's embrace. Twenty fathoms down, the pressure is real.", kind:"new"},
+      {n:"Amazon Jungle Room", f:"new/amazon-jungle.jpg", d:"Walter's newest arrival: an elephant stands at the table, leopard-print chairs, a parrot on duty, and the river burning gold at sunset.", kind:"new"},
+      {n:"Tokyo Cherry Blossom", f:"new/tokyo-cherry-blossom.jpg", d:"Walter's newest arrival: cherry blossoms, Mt. Fuji, a pagoda, and a full moon over the felt. Beauty this calm should not be trusted.", kind:"new"},
+      {n:"Gothic Red Parlor", f:"new/gothic-red-parlor.jpg", d:"Walter's newest arrival: fireplace, candles, red velvet — and a storm pressing its face to the window. The Parlor's dark heart.", kind:"new"},
+      {n:"Backyard Cookout", f:"rooms/backyard-cookout.jpg", d:"The grill is going, the music is on, and the table is a picnic bench with a game on it. This is where it started.", kind:"turf"},
+      {n:"Home Living Room", f:"rooms/home-living-room.jpg", d:"Couch, coffee table, and the game that built the Parlor. No velvet, no gold — just the cards and the people you love.", kind:"turf"},
+      {n:"Jail Day Room", f:"rooms/jail-day-room.jpg", d:"A hard room and an honest game. The day room table takes no prisoners and gives no quarter.", kind:"turf"},
+      {n:"The Park", f:"rooms/the-park.jpg", d:"A bench, a breeze, and a deck that has seen a thousand summers. The game travels anywhere the people do.", kind:"turf"},
+      {n:"Hangout Spot", f:"rooms/hangout-spot.jpg", d:"The spot where everybody gathers — folding chairs, a wobbly table, and the loudest game in the building.", kind:"turf"}
+    ];
+
+    var HOSTS = [
+      {n:"Evelyn Brooks", f:"evelyn-brooks", r:"Grand Parlor Hostess"},
+      {n:"Alexander Chen", f:"alexander-chen", r:"Tournament Steward"},
+      {n:"Amara Shah", f:"amara-shah", r:"Paris Salon Host"},
+      {n:"Samir Haddad", f:"samir-haddad", r:"ISS Station Guide"},
+      {n:"Marcus Reed", f:"marcus-reed", r:"Rules Adviser"},
+      {n:"Maya Redbird", f:"maya-redbird", r:"Hall of Records Curator"},
+      {n:"Isabelle Laurent", f:"isabelle-laurent", r:"World Tour Concierge"}
+    ];
+
+    /* ==================== TOUR ==================== */
+    /* v3: cleared stops — win a match in a room and it is cleared in gold, stored on this device */
+    function clearedRooms(){ return loadJSON('cts.cleared.v1', []); }
+    function markRoomCleared(i){
+      var c = clearedRooms();
+      if (c.indexOf(i) < 0){ c.push(i); saveJSON('cts.cleared.v1', c); }
+    }
+    function renderTourGrid(){
+      var tourGrid = document.getElementById('tourGrid');
+      if (!tourGrid) return;
+      tourGrid.innerHTML = '';
+      var cleared = clearedRooms();
+      ROOMS.forEach(function(room, i){
+        var b = document.createElement('button');
+        b.className = 'room' + (cleared.indexOf(i) >= 0 ? ' cleared' : '');
+        b.setAttribute('data-kind', room.kind);
+        var badge = cleared.indexOf(i) >= 0 ? '<span class="badge cleared">Cleared ✓</span>'
+          : (room.kind === 'classic'
+            ? (room.open ? '<span class="badge">Now Open</span>' : '')
+            : (room.kind === 'new' ? '<span class="badge newb">New Arrival</span>' : '<span class="badge">Home Turf</span>'));
+        b.innerHTML = '<div class="imgwrap"><img src="assets/' + room.f + '" alt="' + room.n + ' — room photograph" />' + badge + '</div>' +
+          '<div class="plate"><span class="rname">' + room.n + '</span><span class="rnum">' +
+          (room.kind === 'classic' ? 'Stop ' + (i + 1) : (room.kind === 'new' ? 'New' : 'Home Turf')) + '</span></div>';
+        b.addEventListener('click', function(){ openRoom(i); });
+        tourGrid.appendChild(b);
+      });
+      var activeChip = document.querySelector('.chip[aria-pressed="true"]');
+      var f = activeChip ? activeChip.getAttribute('data-filter') : 'all';
+      tourGrid.querySelectorAll('.room').forEach(function(r){
+        r.style.display = (f === 'all' || r.getAttribute('data-kind') === f) ? '' : 'none';
+      });
+    }
+    renderTourGrid();
+
+    var chips = document.querySelectorAll('.chip');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.setAttribute('aria-pressed','false'); });
+        chip.setAttribute('aria-pressed','true');
+        var f = chip.getAttribute('data-filter');
+        document.querySelectorAll('.room').forEach(function(r){
+          r.style.display = (f === 'all' || r.getAttribute('data-kind') === f) ? '' : 'none';
+        });
+      });
+    });
+
+    var lightbox = document.getElementById('lightbox');
+    function openRoom(i){
+      var room = ROOMS[i];
+      currentLbRoom = i;
+      document.getElementById('lbImg').src = 'assets/' + room.f;
+      document.getElementById('lbImg').alt = room.n + ' — room photograph';
+      document.getElementById('lbName').textContent = room.n;
+      document.getElementById('lbDesc').textContent = room.d;
+      lightbox.classList.add('on');
+      document.getElementById('lbClose').focus();
+    }
+    function closeRoom(){ lightbox.classList.remove('on'); }
+    document.getElementById('lbClose').addEventListener('click', closeRoom);
+    lightbox.addEventListener('click', function(e){ if (e.target === lightbox) closeRoom(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeRoom(); });
+
+    /* ==================== HOSTS ==================== */
+    var hostGrid = document.getElementById('hostGrid');
+    HOSTS.forEach(function(h){
+      var a = document.createElement('article');
+      a.className = 'host';
+      a.innerHTML = '<img src="assets/hosts/' + h.f + '.webp" alt="' + h.n + ', ' + h.r + '" />' +
+        '<h3>' + h.n + '</h3><p>' + h.r + '</p>';
+      hostGrid.appendChild(a);
+    });
+
+    /* ==================== THE GAME ==================== */
+    var SUITS = ['S','H','D','C'];
+    var SUIT_GLYPH = {S:'♠', H:'♥', D:'♦', C:'♣'};
+    var SUIT_NAME = {S:'spades', H:'hearts', D:'diamonds', C:'clubs'};
+    var RANKS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+    var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function wait(ms){ return new Promise(function(res){ setTimeout(res, REDUCED ? Math.min(ms, 60) : ms); }); }
+
+    var PLAYERS = [
+      {name:'You', short:'You', img:null},
+      {name:'Marcus Reed', short:'Marcus', img:'assets/hosts/marcus-reed.webp'},
+      {name:'Amara Shah', short:'Amara', img:'assets/hosts/amara-shah.webp'},
+      {name:'Isabelle Laurent', short:'Isabelle', img:'assets/hosts/isabelle-laurent.webp'}
+    ];
+
+    var G = null;
+    var dealToken = 0;
+    /* v3: counterclockwise is the law — South, East, North, West */
+    var SEAT_CCW = [0, 3, 2, 1];
+    function nextSeat(p){ return SEAT_CCW[(SEAT_CCW.indexOf(p) + 1) % 4]; }
+    function newMatch(){
+      dealToken++;
+      clearTimer();
+      G = {
+        phase:'idle', handNo:0, dealer:3,
+        scores:[0,0,0,0], hands:[[],[],[],[]], bids:[null,null,null,null],
+        books:[0,0,0,0], trick:[], leader:0, turn:0,
+        spadesBroken:false, busy:false, matchOver:false, forfeited:false,
+        mode: MODE, teamScores:[0,0], teamFails:[0,0], bidTurn:0
+      };
+      document.getElementById('shuffleStage').classList.remove('on');
+      var cd0 = document.getElementById('cutDeck');
+      if (cd0){ cd0.hidden = true; cd0.classList.remove('cutting'); }
+      if (cutResolver){ var rr = cutResolver; cutResolver = null; rr(); }
+      if (shuffleResolver){ var sr0 = shuffleResolver; shuffleResolver = null; sr0(); }
+      pendingDeck = null;
+      var sb0 = document.getElementById('stopShuffleBtn');
+      if (sb0) sb0.hidden = true;
+      renderScores(); renderSeats(); renderHand();
+      updateChatLock(); updateRenigBtn();
+      setStatus('Your seat is waiting, South side of the table.');
+      var mb = document.getElementById('mainBtn');
+      mb.textContent = 'Shuffle & Deal'; mb.disabled = false;
+      document.getElementById('trickNote').innerHTML = 'The felt is empty.<br />Shuffle and deal to begin.';
+      document.getElementById('resultPanel').classList.remove('on');
+      document.getElementById('matchBanner').classList.remove('on');
+      clearSlots();
+    }
+
+    function say(text){ document.getElementById('rafaelSays').textContent = text; speak(text); }
+    function setStatus(text){ document.getElementById('tableStatus').textContent = text; }
+
+    function cardEl(card, extra){
+      var d = document.createElement('div');
+      d.className = 'pcard' + (card.suit === 'H' || card.suit === 'D' ? ' red' : '') + (extra ? ' ' + extra : '');
+      d.innerHTML = '<span class="r">' + card.rank + '</span><span class="s">' + SUIT_GLYPH[card.suit] + '</span>';
+      return d;
+    }
+    function clearSlots(){
+      for (var i = 0; i < 4; i++){ document.getElementById('slot' + i).innerHTML = ''; document.getElementById('slot' + i).classList.remove('renig'); }
+      document.getElementById('trickNote').style.display = (G && G.phase === 'idle') ? '' : 'none';
+    }
+
+    function seatImgHtml(p, i){
+      if (i === 0 && typeof PROFILE !== 'undefined' && PROFILE && PROFILE.photo){
+        return '<img src="' + PROFILE.photo + '" alt="You" />';
+      }
+      if (i === 0) return '<span class="you-medal">YOU</span>';
+      return '<img src="' + p.img + '" alt="' + p.name + '" />';
+    }
+    function renderScores(){
+      var strip = document.getElementById('scoreStrip');
+      strip.innerHTML = '';
+      if (G && G.mode === 'team'){
+        var obA = officialTeamBid(0), obB = officialTeamBid(1);
+        var bidA = obA == null ? '–' : obA;
+        var bidB = obB == null ? '–' : obB;
+        var teamDefs = [
+          {name: 'You & ' + PLAYERS[2].short, bid: bidA, books: G.books[0] + G.books[2], score: G.teamScores[0], seats: [0, 2]},
+          {name: PLAYERS[1].short + ' & ' + PLAYERS[3].short, bid: bidB, books: G.books[1] + G.books[3], score: G.teamScores[1], seats: [1, 3]}
+        ];
+        teamDefs.forEach(function(tm){
+          var chip = document.createElement('div');
+          chip.className = 'score-chip team-chip' + (G.phase === 'playing' && tm.seats.indexOf(G.turn) >= 0 ? ' turn' : '');
+          chip.innerHTML = '<div><div class="nm">' + tm.name + '</div>' +
+            '<div class="nums">Bid <b>' + tm.bid + '</b> · Books <b>' + tm.books + '</b><br />Score <b>' + tm.score + '</b></div></div>';
+          strip.appendChild(chip);
+        });
+      }
+      PLAYERS.forEach(function(p, i){
+        var chip = document.createElement('div');
+        chip.className = 'score-chip' + (G && G.phase === 'playing' && G.turn === i ? ' turn' : '');
+        chip.id = 'chip' + i;
+        var bid = G && G.bids[i] !== null && G.bids[i] !== undefined ? G.bids[i] : '–';
+        var books = G ? G.books[i] : 0;
+        var score = G ? (G.mode === 'team' ? G.teamScores[i % 2 === 0 ? 0 : 1] : G.scores[i]) : 0;
+        chip.innerHTML = seatImgHtml(p, i) + '<div><div class="nm">' + p.name + '</div>' +
+          '<div class="nums">Bid <b>' + bid + '</b> · Books <b>' + books + '</b><br />Score <b>' + score + '</b></div></div>';
+        strip.appendChild(chip);
+      });
+    }
+    function renderSeats(){
+      var felt = document.getElementById('felt');
+      if (felt) felt.classList.toggle('cam-on', !!cameraOn);
+      [0,1,2,3].forEach(function(i){
+        var seat = document.getElementById('seat' + i);
+        if (!seat) return;
+        var left = G ? G.hands[i].length : 0;
+        var live = (i === 0 && cameraOn) ? ' <span class="live-dot"></span>LIVE' : '';
+        seat.innerHTML = seatImgHtml(PLAYERS[i], i) +
+          '<span class="sname">' + PLAYERS[i].short + live + '</span>' +
+          '<span class="sbooks">' + (G && G.phase !== 'idle' ? left + ' cards · ' + G.books[i] + ' books' : 'Waiting') + '</span>' +
+          ((G && G.dealer === i) ? '<span class="dealer-badge">Dealer</span>' : '');
+      });
+    }
+    function legalCards(){
+      var hand = G.hands[0];
+      if (!G.trick.length) return hand.slice();
+      var led = G.trick[0].card.suit;
+      var follow = hand.filter(function(c){ return c.suit === led; });
+      return follow.length ? follow : hand.slice();
+    }
+    function renderHand(){
+      var zone = document.getElementById('hand');
+      zone.innerHTML = '';
+      if (!G || !G.hands[0].length) return;
+      var myTurn = G.phase === 'playing' && G.turn === 0 && !G.busy;
+      var legal = myTurn ? legalCards() : [];
+      G.hands[0].forEach(function(card){
+        var b = document.createElement('button');
+        var isLegal = legal.indexOf(card) !== -1;
+        b.className = 'hcard' + (card.suit === 'H' || card.suit === 'D' ? ' red' : '') +
+          (myTurn ? (isLegal ? ' legal' : ' illegal') : '');
+        b.disabled = !myTurn;
+        b.setAttribute('aria-label', 'Play ' + card.rank + ' of ' + SUIT_NAME[card.suit]);
+        if (myTurn && !isLegal && G.trick.length) b.title = 'Off-suit while holding ' + SUIT_NAME[G.trick[0].card.suit] + ' — a renig if you play it.';
+        b.innerHTML = '<span class="r">' + card.rank + '</span><span class="s">' + SUIT_GLYPH[card.suit] + '</span>';
+        b.addEventListener('click', function(){ playCard(0, card); });
+        zone.appendChild(b);
+      });
+      fitHand();
+    }
+
+    function buildDeck(){
+      var deck = [];
+      SUITS.forEach(function(s){ RANKS.forEach(function(r, idx){ deck.push({suit:s, rank:r, val:idx + 2}); }); });
+      for (var i = deck.length - 1; i > 0; i--){
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = deck[i]; deck[i] = deck[j]; deck[j] = t;
+      }
+      return deck;
+    }
+    function sortHand(hand){
+      var order = {S:0, H:1, D:2, C:3};
+      hand.sort(function(a, b){ return order[a.suit] - order[b.suit] || b.val - a.val; });
+    }
+    function estimateBid(hand){
+      var pts = 0, counts = {S:0,H:0,D:0,C:0};
+      hand.forEach(function(c){
+        counts[c.suit]++;
+        if (c.val === 14) pts += 1;
+        else if (c.val === 13) pts += 0.7;
+        else if (c.val === 12) pts += 0.3;
+      });
+      pts += counts.S * 0.85;
+      SUITS.forEach(function(s){ if (s !== 'S' && counts[s] <= 1 && counts.S >= 2) pts += 0.4; });
+      var bid = Math.round(pts + (Math.random() * 1.2 - 0.6));
+      return Math.max(3, Math.min(10, bid));
+    }
+
+    async function dealHand(){
+      if (G.matchOver) newMatch();
+      dealToken++;
+      var token = dealToken;
+      G.phase = 'shuffling'; G.busy = true;
+      G.handNo++; G.dealer = nextSeat(G.dealer);
+      G.books = [0,0,0,0]; G.bids = [null,null,null,null]; G.trick = [];
+      G.spadesBroken = false;
+      clearSlots();
+      document.getElementById('resultPanel').classList.remove('on');
+      document.getElementById('matchBanner').classList.remove('on');
+      document.getElementById('bidRow').classList.remove('on');
+      document.getElementById('mainBtn').disabled = true;
+      renderScores(); renderSeats(); renderHand();
+      say('Hand ' + G.handNo + '. The shuffle is on — twenty seconds, and the dealer can stop it when the deck feels honest. Then the cut belongs to you.');
+      /* v3: if this shuffle follows a throw-in, keep the reason visible — the
+         redeal would otherwise overwrite the throw-in notice. */
+      if (G.throwInNotice){ setStatus(G.throwInNotice + ' Shuffling — twenty seconds on the clock. Stop the shuffle when it feels right, then cut.'); G.throwInNotice = null; }
+      else setStatus('Shuffling — twenty seconds on the clock. Stop the shuffle when it feels right, then cut.');
+      sfx('shuffle');
+      var stage = document.getElementById('shuffleStage');
+      stage.classList.add('on');
+      G.shuffleStopped = false;
+      var stopBtn = document.getElementById('stopShuffleBtn');
+      if (stopBtn) stopBtn.hidden = false;
+      var shuffleDone = new Promise(function(res){ shuffleResolver = res; });
+      startTimer(20, 'Shuffle', function(){ if (shuffleResolver){ var sr = shuffleResolver; shuffleResolver = null; sr(); } });
+      await shuffleDone;
+      if (token !== dealToken) { stage.classList.remove('on'); if (stopBtn) stopBtn.hidden = true; return; }
+      clearTimer();
+      stage.classList.remove('on');
+      if (stopBtn) stopBtn.hidden = true;
+      /* — the cut: the player makes it — the deck is built BEFORE the cut, so the cut can actually move it — */
+      G.phase = 'cutting'; G.busy = false;
+      pendingDeck = buildDeck();
+      var deckBtn = document.getElementById('cutDeck');
+      deckBtn.hidden = false;
+      startTimer(20, 'Cut the deck', doCut);
+      var mb = document.getElementById('mainBtn');
+      mb.disabled = false; mb.textContent = 'Cut the Deck';
+      say('The deck is squared on the felt, waiting. The cut is yours, South — tap the deck and make it honest.');
+      setStatus('Your cut. Tap the deck on the felt — or press Cut the Deck.');
+      await new Promise(function(res){ cutResolver = res; });
+      if (token !== dealToken) return;
+      /* — the deal: one card at a time, all the way around — */
+      G.phase = 'dealing'; G.busy = true;
+      clearTimer();
+      mb.disabled = true; mb.textContent = 'Dealing…';
+      var deck = pendingDeck || buildDeck();
+      pendingDeck = null;
+      G.hands = [[],[],[],[]];
+      for (var i = 0; i < 52; i++){
+        G.hands[SEAT_CCW[i % 4]].push(deck[i]);
+        if (i % 2 === 0) sfx('deal');
+        renderSeats();
+        if (i % 4 === 0) renderHand();
+        await wait(24);
+        if (token !== dealToken) return;
+      }
+      G.hands.forEach(sortHand);
+      G.phase = 'bidding'; G.busy = false;
+      mb.textContent = 'Hand in Progress…';
+      renderScores(); renderSeats(); renderHand();
+      say('The cards are dealt. ' + PLAYERS[1].short + ', ' + PLAYERS[2].short + ' and ' + PLAYERS[3].short + ' are studying their hands like confessions. Bids are in order — the leader starts.');
+      setStatus('Bidding, in turn — the leader starts.');
+      startBidding();
+    }
+
+    function showBidRow(){
+      var row = document.getElementById('bidRow');
+      row.innerHTML = '';
+      var minBid = (G.mode === 'team') ? 0 : 3;
+      var prompt = document.createElement('span');
+      prompt.className = 'bid-prompt';
+      prompt.textContent = 'Your bid:';
+      row.appendChild(prompt);
+      for (var b = minBid; b <= 13; b++){
+        (function(bid){
+          var btn = document.createElement('button');
+          btn.className = 'bid-btn'; btn.textContent = bid;
+          btn.setAttribute('aria-label', 'Bid ' + bid);
+          btn.addEventListener('click', function(){ placeBid(bid); });
+          row.appendChild(btn);
+        })(b);
+      }
+      row.classList.add('on');
+      startTimer(15, 'Your bid', autoBid);
+    }
+
+    function placeBid(bid){
+      sfx('click');
+      clearTimer();
+      G.bids[0] = bid;
+      document.getElementById('bidRow').classList.remove('on');
+      renderScores(); renderSeats(); renderHand();
+      if (G.mode === 'solo' && bid >= 7) say('Seven! The South seat swings for the fences — make it, and it pays twenty a book. Miss, and the room will dine on it for a week.');
+      G.bidTurn = nextSeat(0);
+      advanceBid();
+    }
+
+    function trickWinner(trick){
+      var led = trick[0].card.suit, best = 0;
+      for (var i = 1; i < trick.length; i++){
+        var c = trick[i].card, b = trick[best].card;
+        if (c.suit === b.suit){ if (c.val > b.val) best = i; }
+        else if (c.suit === 'S') best = i;
+      }
+      return trick[best].player;
+    }
+    function currentBest(trick){
+      var led = trick[0].card.suit, best = trick[0];
+      trick.forEach(function(t){
+        if (t.card.suit === best.card.suit){ if (t.card.val > best.card.val) best = t; }
+        else if (t.card.suit === 'S' && best.card.suit !== 'S') best = t;
+      });
+      return best;
+    }
+
+    function aiChoose(p){
+      var hand = G.hands[p], trick = G.trick;
+      var byVal = function(a, b){ return a.val - b.val; };
+      if (!trick.length){
+        var nonSpades = hand.filter(function(c){ return c.suit !== 'S'; });
+        if (nonSpades.length){
+          var counts = {};
+          nonSpades.forEach(function(c){ counts[c.suit] = (counts[c.suit] || 0) + 1; });
+          var bestSuit = null, bestCount = -1;
+          Object.keys(counts).forEach(function(s){ if (counts[s] > bestCount){ bestCount = counts[s]; bestSuit = s; } });
+          var inSuit = nonSpades.filter(function(c){ return c.suit === bestSuit; }).sort(byVal);
+          return inSuit[inSuit.length - 1];
+        }
+        return hand.slice().sort(byVal)[0];
+      }
+      var led = trick[0].card.suit;
+      var follow = hand.filter(function(c){ return c.suit === led; });
+      var best = currentBest(trick);
+      if (follow.length){
+        var winners = follow.filter(function(c){ return c.val > best.card.val && best.card.suit === led; }).sort(byVal);
+        if (winners.length && (trick.length === 3 || Math.random() < 0.65)) return winners[0];
+        return follow.slice().sort(byVal)[0];
+      }
+      var spades = hand.filter(function(c){ return c.suit === 'S'; }).sort(byVal);
+      if (spades.length){
+        var winSpade = spades.filter(function(c){ return best.card.suit !== 'S' || c.val > best.card.val; });
+        if (winSpade.length && (trick.length === 3 || Math.random() < 0.6)) return winSpade[0];
+      }
+      var nonSpades2 = hand.filter(function(c){ return c.suit !== 'S'; }).sort(byVal);
+      return nonSpades2.length ? nonSpades2[0] : spades[0];
+    }
+
+    async function runTurn(){
+      var token = dealToken;
+      renderScores(); renderSeats(); renderHand();
+      updateRenigBtn();
+      if (G.phase !== 'playing') return;
+      var p = G.turn;
+      if (p === 0){
+        setStatus(G.trick.length ? 'Your play — follow ' + SUIT_NAME[G.trick[0].card.suit] + ' if you can.' : 'Your lead. Any card — spades included.');
+        startTimer(15, 'Your play', forceLowest);
+        return;
+      }
+      G.busy = true; renderHand();
+      await wait(750);
+      if (token !== dealToken || G.phase !== 'playing' || G.turn !== p) { return; }
+      playCard(p, aiChoose(p));
+    }
+
+    /* ==================== v3: RENIG — detection, challenge, penalties ==================== */
+    /* A renig is a play of a non-led suit while holding the led suit. The engine
+       knows the led suit and every hand, so detection is deterministic. The call
+       window closes when the trick is cleared. Confirmed renig: the reneging side
+       loses 4 books. False call: the accuser loses 4 books. The house AI never
+       renigs; when the human renigs, an AI opponent calls it most of the time
+       (75% — the house sometimes misses it, like any dealer). */
+    var RENIG_PENALTY = 4;
+    function applyRenigPenalty(p){
+      if (!G) return;
+      G.books[p] = Math.max(0, G.books[p] - RENIG_PENALTY);
+    }
+    function maybeAiRenigCall(rp){
+      setTimeout(function(){
+        if (!G || G.phase !== 'playing') return;
+        if (!G.pendingRenig || G.pendingRenig.player !== rp) return;
+        if (Math.random() >= 0.75) return;
+        G.pendingRenig = null;
+        applyRenigPenalty(rp);
+        say('Renig — called! ' + PLAYERS[rp].short + ' played off-suit holding the led suit. Four books come off that seat, and the room saw all of it.');
+        setStatus('Renig called on ' + PLAYERS[rp].short + ' — four books lost.');
+        updateRenigBtn(); renderScores(); renderSeats();
+      }, 900);
+    }
+    function callRenig(){
+      if (!G || G.phase !== 'playing') return;
+      if (G.pendingRenig){
+        var rp = G.pendingRenig.player;
+        G.pendingRenig = null;
+        applyRenigPenalty(rp);
+        say('Renig — called and confirmed! ' + PLAYERS[rp].short + ' played off-suit holding the led suit. Four books come off that seat.');
+        setStatus('Renig confirmed on ' + PLAYERS[rp].short + ' — four books lost.');
+      } else {
+        applyRenigPenalty(0);
+        say('False call! No renig on the table — the accuser loses four books. The house does not bluff.');
+        setStatus('False renig call — you lose four books.');
+      }
+      updateRenigBtn(); renderScores(); renderSeats();
+    }
+    function updateRenigBtn(){
+      var b = document.getElementById('renigBtn');
+      if (!b) return;
+      b.hidden = !(G && G.phase === 'playing');
+      b.classList.toggle('alert', !!(G && G.pendingRenig));
+    }
+
+    async function playCard(p, card){
+      var token = dealToken;
+      if (!G || G.phase !== 'playing') return;
+      if (G.turn !== p) return;
+      if (G.trick.length >= 4) return;
+      var idx = G.hands[p].indexOf(card);
+      if (idx === -1) return;
+      if (p === 0) clearTimer();
+      G.hands[p].splice(idx, 1);
+      /* v3: renig detection — off-suit while holding the led suit */
+      if (G.trick.length){
+        var ledSuit = G.trick[0].card.suit;
+        if (card.suit !== ledSuit && G.hands[p].some(function(c){ return c.suit === ledSuit; })){
+          G.pendingRenig = {player: p, handNo: G.handNo};
+          say('Hold on — that looked like a renig. ' + PLAYERS[p].short + ' played off-suit holding ' + SUIT_NAME[ledSuit] + '. Call it if you saw it.');
+          setStatus('Possible renig by ' + PLAYERS[p].short + ' — call it before the trick is cleared.');
+          maybeAiRenigCall(p);
+        }
+      }
+      var wasBest = G.trick.length ? currentBest(G.trick) : null;
+      G.trick.push({player:p, card:card});
+      var slot = document.getElementById('slot' + p);
+      slot.innerHTML = ''; slot.appendChild(cardEl(card));
+      if (G.pendingRenig && G.pendingRenig.player === p) slot.classList.add('renig');
+      sfx('card');
+      document.getElementById('trickNote').style.display = 'none';
+      if (card.suit === 'S' && !G.spadesBroken){
+        G.spadesBroken = true;
+        say('Spades have entered the dance! ' + PLAYERS[p].short + ' breaks them out — and the whole table just held its breath.');
+      }
+      G.busy = false;
+      renderScores(); renderSeats(); renderHand();
+      if (G.trick.length < 4){
+        G.turn = nextSeat(p);
+        runTurn();
+        return;
+      }
+      /* trick complete */
+      var winner = trickWinner(G.trick);
+      var winSlot = document.getElementById('slot' + winner).firstChild;
+      if (winSlot) winSlot.classList.add('win');
+      G.books[winner]++;
+      if (winner === 0) sfx('win');
+      var lastPlay = G.trick[3];
+      var stole = lastPlay.player === winner && wasBest && wasBest.player !== winner && lastPlay.card.suit === 'S' && G.trick[0].card.suit !== 'S';
+      if (stole) say('A steal at the death! ' + PLAYERS[winner].short + ' trumps the final card and snatches the book from ' + PLAYERS[wasBest.player].short + '. Ice cold.');
+      else if (winner === 0 && card.suit === 'S') say('The South seat takes it with authority. That is how you announce yourself.');
+      setStatus(PLAYERS[winner].short + ' takes the trick — ' + G.books[winner] + ' book' + (G.books[winner] === 1 ? '' : 's') + '.');
+      renderScores(); renderSeats();
+      await wait(1150);
+      if (token !== dealToken || G.phase !== 'playing') return;
+      clearSlots();
+      G.trick = [];
+      G.pendingRenig = null; updateRenigBtn();
+      G.leader = winner; G.turn = winner;
+      if (G.hands[0].length === 0 && G.hands[1].length === 0){ endHand(); return; }
+      runTurn();
+    }
+
+    /* v3: the official team bid is the combined bid, raised to 4 if it falls below 4 */
+    function officialTeamBid(side){
+      if (!G || G.mode !== 'team') return null;
+      var a = G.bids[side === 0 ? 0 : 1], b = G.bids[side === 0 ? 2 : 3];
+      if (a == null || b == null) return null;
+      return Math.max(4, a + b);
+    }
+
+    function endHand(){
+      G.phase = 'handEnd';
+      clearTimer();
+      updateChatLock(); updateRenigBtn();
+      var rows = '', instantNote = '', notes = [];
+      var matchWinner = -1, winnerLabel = '', winnerIsYou = false, leaderIdx = 0;
+      if (G.mode === 'team'){
+        var tA = {bid: officialTeamBid(0), books: G.books[0] + G.books[2]};
+        var tB = {bid: officialTeamBid(1), books: G.books[1] + G.books[3]};
+        var teams = [
+          {name: 'You & ' + PLAYERS[2].short, side: 0, bid: tA.bid, books: tA.books},
+          {name: PLAYERS[1].short + ' & ' + PLAYERS[3].short, side: 1, bid: tB.bid, books: tB.books}
+        ];
+        teams.forEach(function(tm){
+          var made = tm.books >= tm.bid, pts = 0, tag = '';
+          if (made){
+            /* v3: pay per BID book — 10 a book on 4–9, 20 a book on 10–13. Bid 10 + all 13 is 200 points, not a Boston. */
+            if (tm.bid === 10 && tm.books === 13){ pts = 200; tag = '<span class="tag">Ten + all 13 · 200</span>'; }
+            else { pts = tm.bid * (tm.bid >= 10 ? 20 : 10); tag = '<span class="tag">Made it</span>'; }
+            G.teamScores[tm.side] += pts;
+            G.teamFails[tm.side] = 0;
+            if (tm.bid >= 11 && tm.books === 13){ matchWinner = tm.side; winnerLabel = tm.name; instantNote = 'Boston — bid 11 or more and took all thirteen. The match is over, and the room is on its feet.'; }
+            /* v3: the first-hand team-bid-10 auto-win is OUT — a first-hand 10 scores like any other hand. */
+          } else {
+            pts = -tm.bid * 10; G.teamScores[tm.side] += pts;
+            G.teamFails[tm.side]++;
+            tag = '<span class="tag bad">Set</span>';
+            if (tm.side === 0) notes.push('setYou');
+            if (G.teamFails[tm.side] >= 2 && matchWinner < 0){ matchWinner = 1 - tm.side; winnerLabel = teams[1 - tm.side].name; instantNote = 'Two failed hands in a row — the match is over.'; }
+          }
+          rows += '<tr><td>' + tm.name + '</td><td>' + tm.bid + '</td><td>' + tm.books + '</td><td>' +
+            (pts > 0 ? '+' + pts : pts) + tag + '</td><td>' + G.teamScores[tm.side] + '</td></tr>';
+        });
+        if (matchWinner < 0){
+          if (G.teamScores[0] >= 250){ matchWinner = 0; winnerLabel = teams[0].name; }
+          else if (G.teamScores[1] >= 250){ matchWinner = 1; winnerLabel = teams[1].name; }
+        }
+        winnerIsYou = matchWinner === 0;
+      } else {
+        var instantWinner = -1;
+        for (var i = 0; i < 4; i++){
+          var bid = G.bids[i], books = G.books[i], pts = 0, tag = '';
+          if (books === 0){ G.scores[i] = 0; pts = 0; tag = '<span class="tag bad">Egged — score reset</span>'; if (i === 0){ notes.push('eggYou'); showEgg(0); } }
+          else if (books >= bid){
+            /* v3: pay per BID book — 10 a book on 3–6, 20 a book on 7–13. No points for extra books. */
+            pts = bid * (bid >= 7 ? 20 : 10);
+            tag = bid >= 7 ? '<span class="tag">Bid 7+ · 20 a book</span>' : '<span class="tag">Made it</span>';
+            G.scores[i] += pts;
+            if (G.handNo === 1 && bid >= 7 && instantWinner < 0) instantWinner = i;
+          } else { pts = -bid * 10; G.scores[i] += pts; tag = '<span class="tag bad">Set</span>'; if (i === 0) notes.push('setYou'); }
+          rows += '<tr><td>' + PLAYERS[i].name + '</td><td>' + bid + '</td><td>' + books + '</td><td>' +
+            (pts > 0 ? '+' + pts : pts) + tag + '</td><td>' + G.scores[i] + '</td></tr>';
+        }
+        for (var j = 1; j < 4; j++) if (G.scores[j] > G.scores[leaderIdx]) leaderIdx = j;
+        if (instantWinner >= 0){ matchWinner = instantWinner; winnerLabel = PLAYERS[instantWinner].name; instantNote = 'A first-hand bid of seven or more, made. The match is over before it began.'; }
+        else if (G.scores[leaderIdx] >= 250){ matchWinner = leaderIdx; winnerLabel = PLAYERS[leaderIdx].name; }
+        winnerIsYou = matchWinner === 0;
+      }
+      document.querySelector('#resultPanel thead th').textContent = G.mode === 'team' ? 'Team' : 'Player';
+      document.getElementById('resultBody').innerHTML = rows;
+      document.getElementById('resultTitle').textContent = 'Hand ' + G.handNo + ' — The Reckoning' + (G.mode === 'team' ? ' · Team League' : '');
+      document.getElementById('trickNote').style.display = '';
+      document.getElementById('trickNote').innerHTML = 'Hand ' + G.handNo + ' is in the books.';
+      document.getElementById('resultPanel').classList.add('on');
+      renderScores(); renderSeats(); renderHand();
+      if (notes.indexOf('eggYou') !== -1 || notes.indexOf('setYou') !== -1) sfx('bad');
+      if (notes.indexOf('eggYou') !== -1) say('EGGED. Zero books, and the ceremony is merciless — your score returns to zero, South. The room will remember this hand.');
+      else if (notes.indexOf('setYou') !== -1) say('Set! The South bid collapses, and the Parlor shows no mercy. Shake it off — the next shuffle is already calling.');
+      else if (G.mode === 'solo' && G.bids[0] >= 7 && G.books[0] >= G.bids[0]) say('A giant’s bid, and it stands! Twenty a book, and the whole room felt that one.');
+      else if (G.mode === 'team') say('Hand ' + G.handNo + ' is in the books. ' + (G.teamScores[0] > G.teamScores[1] ? 'Your team leads — ' : (G.teamScores[1] > G.teamScores[0] ? 'West and East lead — ' : 'Level after hand ' + G.handNo + ' — ')) + 'first to 250 takes the Parlor.');
+      else say('Hand ' + G.handNo + ' is in the books. ' + PLAYERS[leaderIdx].short + ' leads the match at ' + G.scores[leaderIdx] + ' — first to 250 takes the Parlor.');
+      if (matchWinner >= 0){
+        G.matchOver = true; G.phase = 'matchEnd';
+        if (winnerIsYou){ markRoomCleared(ROOM_IDX); renderTourGrid(); }
+        var banner = document.getElementById('matchBanner');
+        document.getElementById('matchTitle').textContent =
+          winnerIsYou ? 'You take the match!' : winnerLabel + ' take the match';
+        document.getElementById('matchSub').textContent =
+          instantNote || (winnerIsYou
+            ? 'Champion of the Parlor. Respect, as ever, was earned — every single book of it.'
+            : 'The room applauds through its teeth. Your seat will be here when you want it back.');
+        sfx(winnerIsYou ? 'champion' : 'bad');
+        banner.classList.add('on');
+        say(instantNote || (winnerIsYou ? 'CHAMPION! The South seat rules the Parlor tonight. Remember the name, because the Hall of Records certainly will.' : winnerLabel + ' take the match. The Parlor bows — this time.'));
+        document.getElementById('mainBtn').textContent = 'Start a New Match';
+        setStatus('Match over. Start a new match whenever you are ready.');
+        var rec = {result: (winnerIsYou ? 'Won' : 'Lost') + ' — ' + winnerLabel, mode: G.mode === 'team' ? 'Team League' : 'Solo League',
+          room: ROOMS[ROOM_IDX].n, score: G.mode === 'team' ? (G.teamScores[0] + ' – ' + G.teamScores[1]) : String(G.scores[0]),
+          date: new Date().toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'})};
+        saveRecord(rec);
+        renderRecords();
+        var myScore = G.mode === 'team' ? G.teamScores[0] : G.scores[0];
+        if (myScore < 0){
+          var hole = loadJSON('cts.hole.v1', []);
+          hole.unshift({name: (typeof PROFILE !== 'undefined' && PROFILE && PROFILE.name) || 'You', score: myScore, date: rec.date});
+          saveJSON('cts.hole.v1', hole.slice(0, 20));
+          renderRecords();
+        }
+      } else {
+        document.getElementById('mainBtn').textContent = 'Deal Hand ' + (G.handNo + 1);
+        setStatus('Hand complete. Deal the next hand when you are ready.');
+      }
+      document.getElementById('mainBtn').disabled = false;
+      updateChatLock();
+    }
+
+    /* ==================== SOUND — synthesized live, no audio files ==================== */
+    var AC = null, soundOn = true, voiceOn = true, audioStarted = false;
+    function ac(){
+      if (!AC){ var Ctor = window.AudioContext || window.webkitAudioContext; if (Ctor) AC = new Ctor(); }
+      if (AC && AC.state === 'suspended') AC.resume();
+      return AC;
+    }
+    function noiseSrc(ctx, dur){
+      var len = Math.max(1, Math.floor(ctx.sampleRate * dur));
+      var buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      var src = ctx.createBufferSource(); src.buffer = buf; return src;
+    }
+    function burst(t, dur, freq, vol, type){
+      var ctx = AC; var src = noiseSrc(ctx, dur);
+      var f = ctx.createBiquadFilter(); f.type = type || 'bandpass'; f.frequency.value = freq; f.Q.value = 1.1;
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(vol, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      src.connect(f); f.connect(g); g.connect(ctx.destination);
+      src.start(t); src.stop(t + dur + 0.05);
+    }
+    function tone(t, freq, dur, vol, type){
+      var ctx = AC; var o = ctx.createOscillator(); o.type = type || 'sine'; o.frequency.value = freq;
+      var g = ctx.createGain();
+      g.gain.setValueAtTime(vol, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(t); o.stop(t + dur + 0.05);
+    }
+    function sfx(name){
+      if (!soundOn) return;
+      try {
+        var ctx = ac(); if (!ctx) return;
+        var t = ctx.currentTime;
+        if (name === 'click') tone(t, 660, 0.07, 0.07, 'triangle');
+        else if (name === 'card'){ burst(t, 0.06, 1600, 0.22, 'highpass'); tone(t, 230, 0.05, 0.05, 'square'); }
+        else if (name === 'deal') burst(t, 0.045, 1200, 0.14);
+        else if (name === 'shuffle'){ for (var i = 0; i < 16; i++) burst(t + i * 0.075 + (i % 2) * 0.02, 0.05, 850 + Math.random() * 750, 0.15); }
+        else if (name === 'cut'){ burst(t, 0.16, 620, 0.2); burst(t + 0.2, 0.16, 480, 0.2); }
+        else if (name === 'win'){ tone(t, 659, 0.16, 0.11); tone(t + 0.12, 880, 0.26, 0.11); }
+        else if (name === 'bad'){ tone(t, 220, 0.3, 0.11, 'triangle'); tone(t + 0.16, 165, 0.42, 0.11, 'triangle'); }
+        else if (name === 'champion'){ var seq = [523, 659, 784, 1046]; for (var j = 0; j < seq.length; j++) tone(t + j * 0.13, seq[j], 0.32, 0.11); }
+      } catch (e) {}
+    }
+    /* the room theme — a slow, low jazz pad under the table */
+    var CHORDS = [[130.81,164.81,196.00,246.94],[174.61,220.00,261.63,329.63],[110.00,130.81,164.81,196.00],[98.00,123.47,146.83,196.00]];
+    var music = { on:false, step:0, timer:null, gain:null };
+    function playChord(){
+      if (!music.on || !AC) return;
+      var ctx = AC, t = ctx.currentTime;
+      var chord = CHORDS[music.step % CHORDS.length]; music.step++;
+      chord.forEach(function(fr){
+        var o = ctx.createOscillator(); o.type = 'triangle'; o.frequency.value = fr;
+        var g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.22, t + 1.1);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 4.4);
+        o.connect(g); g.connect(music.gain);
+        o.start(t); o.stop(t + 4.6);
+      });
+    }
+    function startMusic(){
+      if (!soundOn || music.on) return;
+      var ctx = ac(); if (!ctx) return;
+      music.gain = ctx.createGain(); music.gain.gain.value = 0;
+      music.gain.connect(ctx.destination);
+      music.gain.gain.linearRampToValueAtTime(0.055, ctx.currentTime + 1.6);
+      music.on = true; music.step = 0;
+      playChord();
+      music.timer = setInterval(playChord, 4200);
+    }
+    function stopMusic(){
+      if (!music.on) return;
+      music.on = false;
+      if (music.timer) clearInterval(music.timer);
+      if (music.gain && AC) music.gain.gain.linearRampToValueAtTime(0.0001, AC.currentTime + 0.4);
+    }
+    function initAudio(){
+      if (audioStarted) return;
+      audioStarted = true;
+      try { ac(); if (soundOn) startMusic(); } catch (e) {}
+    }
+    document.addEventListener('pointerdown', initAudio);
+    function speak(text){
+      if (!voiceOn || !('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(text);
+        u.rate = 0.98; u.pitch = 0.85;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+
+    /* ==================== HAND FIT — all thirteen cards, always on screen ==================== */
+    function fitHand(){
+      var zone = document.getElementById('hand');
+      if (!zone) return;
+      var n = zone.children.length;
+      if (!n) return;
+      var W = zone.clientWidth;
+      if (!W) return;
+      var cw = 58;
+      if (n > 1) cw = Math.max(30, Math.min(58, W / (1 + (n - 1) * 0.64)));
+      var step = cw;
+      if (n > 1) step = Math.max(15, Math.min(cw * 0.72, (W - cw) / (n - 1)));
+      zone.style.setProperty('--cw', cw.toFixed(1) + 'px');
+      zone.style.setProperty('--step', step.toFixed(1) + 'px');
+    }
+    window.addEventListener('resize', fitHand);
+
+    /* ==================== THE CUT ==================== */
+    var cutResolver = null;
+    var pendingDeck = null;
+    var shuffleResolver = null;
+    /* v3: the dealer stops the shuffle — twenty seconds on the clock, or the button */
+    function stopShuffle(){
+      if (!G || G.phase !== 'shuffling') return;
+      if (!shuffleResolver) return;
+      G.shuffleStopped = true;
+      var r = shuffleResolver; shuffleResolver = null;
+      clearTimer();
+      say('The dealer stops the shuffle — the deck is squared, and the cut is yours.');
+      setStatus('Shuffle stopped by the dealer. Your cut.');
+      r();
+    }
+    function doCut(){
+      if (!G || G.phase !== 'cutting') return;
+      var deckBtn = document.getElementById('cutDeck');
+      if (deckBtn.classList.contains('cutting')) return;
+      clearTimer();
+      deckBtn.classList.add('cutting');
+      sfx('cut');
+      /* v3: a real cut — the deck is split at a cut point and reordered, not just displayed */
+      if (pendingDeck && pendingDeck.length === 52){
+        var cutAt = 1 + Math.floor(Math.random() * 51);
+        G.cutPoint = cutAt;
+        pendingDeck = pendingDeck.slice(cutAt).concat(pendingDeck.slice(0, cutAt));
+        setStatus('Cut at card ' + cutAt + ' of 52 — the deck is split there. Dealing counterclockwise, one card at a time.');
+      } else {
+        setStatus('Cut. Dealing counterclockwise — one card at a time, all the way around the table.');
+      }
+      var res = cutResolver; cutResolver = null;
+      setTimeout(function(){
+        deckBtn.hidden = true;
+        deckBtn.classList.remove('cutting');
+        if (res) res();
+      }, REDUCED ? 90 : 580);
+    }
+    document.getElementById('cutDeck').addEventListener('click', function(){ initAudio(); doCut(); });
+    document.getElementById('stopShuffleBtn').addEventListener('click', function(){ initAudio(); stopShuffle(); });
+
+    /* ==================== MENU — one corner, out of the way of play ==================== */
+    var menuBtn = document.getElementById('menuBtn');
+    var menuPanel = document.getElementById('menuPanel');
+    function closeMenu(){ menuPanel.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); }
+    menuBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      initAudio();
+      var open = menuPanel.hidden;
+      menuPanel.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menuPanel.addEventListener('click', function(e){ e.stopPropagation(); });
+    document.addEventListener('click', function(){ if (!menuPanel.hidden) closeMenu(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    menuPanel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    document.getElementById('menuSound').addEventListener('click', function(){
+      soundOn = !soundOn;
+      document.getElementById('soundState').textContent = soundOn ? 'On' : 'Off';
+      if (soundOn){ initAudio(); startMusic(); sfx('click'); }
+      else { stopMusic(); if ('speechSynthesis' in window) try { window.speechSynthesis.cancel(); } catch (e) {} }
+    });
+    document.getElementById('menuVoice').addEventListener('click', function(){
+      voiceOn = !voiceOn;
+      document.getElementById('voiceState').textContent = voiceOn ? 'On' : 'Off';
+      if (!voiceOn && 'speechSynthesis' in window) try { window.speechSynthesis.cancel(); } catch (e) {}
+      if (voiceOn) speak('At your service, friend.');
+    });
+    var wideOn = false;
+    function setWide(on){
+      wideOn = on;
+      document.body.classList.toggle('wide', on);
+      document.getElementById('wideState').textContent = on ? 'On' : 'Off';
+      setTimeout(fitHand, 60);
+    }
+    document.getElementById('menuWide').addEventListener('click', function(){
+      if (!wideOn){
+        if (document.documentElement.requestFullscreen){ try { document.documentElement.requestFullscreen().catch(function(){}); } catch (e) {} }
+        setWide(true);
+      } else {
+        if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen();
+        setWide(false);
+      }
+    });
+    document.addEventListener('fullscreenchange', function(){
+      if (!document.fullscreenElement && wideOn) setWide(false);
+    });
+
+    /* ==================== CONTROLS ==================== */
+    document.getElementById('mainBtn').addEventListener('click', function(){
+      initAudio();
+      if (!G) return;
+      if (G.phase === 'cutting'){ doCut(); return; }
+      if (G.busy) return;
+      if (G.matchOver){ newMatch(); say('A fresh match, a fresh deck, a fresh chance at glory. Shuffle when ready.'); return; }
+      if (G.phase === 'idle' || G.phase === 'handEnd') dealHand();
+    });
+    var renigBtn = document.getElementById('renigBtn');
+    if (renigBtn) renigBtn.addEventListener('click', function(){ initAudio(); callRenig(); });
+    document.getElementById('menuRestart').addEventListener('click', function(){
+      closeMenu();
+      newMatch();
+      say('The match is wiped clean — new scores, new deck, same hunger. Shuffle and deal when you are ready.');
+    });
+    var forfeitArmed = false, forfeitTimer = null;
+    document.getElementById('menuForfeit').addEventListener('click', function(){
+      var item = document.getElementById('menuForfeit');
+      if (!G || G.matchOver){ closeMenu(); return; }
+      if (!forfeitArmed){
+        forfeitArmed = true;
+        item.classList.add('armed');
+        item.textContent = 'Forfeit — tap again to confirm';
+        forfeitTimer = setTimeout(function(){ forfeitArmed = false; item.classList.remove('armed'); item.textContent = 'Forfeit Match'; }, 3500);
+        return;
+      }
+      clearTimeout(forfeitTimer);
+      forfeitArmed = false;
+      item.classList.remove('armed');
+      item.textContent = 'Forfeit Match';
+      closeMenu();
+      dealToken++;
+      clearTimer();
+      G.matchOver = true; G.forfeited = true; G.phase = 'matchEnd';
+      document.getElementById('bidRow').classList.remove('on');
+      document.getElementById('shuffleStage').classList.remove('on');
+      var cd = document.getElementById('cutDeck'); cd.hidden = true; cd.classList.remove('cutting');
+      if (cutResolver){ var r = cutResolver; cutResolver = null; r(); }
+      if (shuffleResolver){ var srF = shuffleResolver; shuffleResolver = null; srF(); }
+      pendingDeck = null;
+      var sbF = document.getElementById('stopShuffleBtn');
+      if (sbF) sbF.hidden = true;
+      document.getElementById('matchTitle').textContent = 'You forfeit the match';
+      document.getElementById('matchSub').textContent = 'The Parlor notes the empty chair — and keeps your seat warm for the rematch.';
+      document.getElementById('matchBanner').classList.add('on');
+      document.getElementById('mainBtn').textContent = 'Start a New Match';
+      document.getElementById('mainBtn').disabled = false;
+      say('The South seat rises and walks. It happens to the proud, friend — what matters is whether you sit back down.');
+      setStatus('Match forfeited.');
+      renderHand();
+    });
+
+    /* ==================== v2: TIMERS ==================== */
+    var timerId = null, timerEnds = 0, timerTotal = 0;
+    function startTimer(sec, label, onExpire){
+      clearTimer();
+      timerTotal = sec; timerEnds = Date.now() + sec * 1000;
+      var bar = document.getElementById('timerBar');
+      var lab = document.getElementById('timerLabel');
+      var fill = document.getElementById('timerFill');
+      if (!bar || !lab || !fill) return;
+      bar.hidden = false;
+      var tick = function(){
+        var left = Math.max(0, (timerEnds - Date.now()) / 1000);
+        lab.textContent = label + ' — ' + Math.ceil(left) + 's';
+        fill.style.width = (left / timerTotal * 100) + '%';
+        fill.classList.toggle('low', left <= 5);
+        if (left <= 0){ clearTimer(); onExpire(); }
+      };
+      tick();
+      timerId = setInterval(tick, 200);
+    }
+    function clearTimer(){
+      if (timerId){ clearInterval(timerId); timerId = null; }
+      var bar = document.getElementById('timerBar');
+      if (bar) bar.hidden = true;
+      var lab = document.getElementById('timerLabel');
+      if (lab) lab.textContent = '';
+    }
+    function autoBid(){
+      if (!G || G.phase !== 'bidding') return;
+      var bid = (G.mode === 'team') ? estimateBidTeam(G.hands[0]) : estimateBid(G.hands[0]);
+      say('The clock ran out on the South seat — the Parlor bids ' + bid + ' for you. Play faster next time, friend.');
+      placeBid(bid);
+    }
+    function forceLowest(){
+      if (!G || G.phase !== 'playing' || G.turn !== 0) return;
+      var legal = legalCards();
+      if (!legal.length) return;
+      legal.sort(function(a,b){ return a.val - b.val; });
+      var card = legal[0];
+      say('Out of time, South — the house plays your lowest ' + SUIT_NAME[card.suit] + ' for you. The clock is not your friend here.');
+      playCard(0, card);
+    }
+
+    /* ==================== v2: IN-TURN BIDDING ==================== */
+    function startBidding(){
+      G.bidTurn = nextSeat(G.dealer);
+      advanceBid();
+    }
+    function advanceBid(){
+      if (G.phase !== 'bidding') return;
+      var done = true;
+      for (var i = 0; i < 4; i++) if (G.bids[i] === null || G.bids[i] === undefined) done = false;
+      if (done){ beginPlay(); return; }
+      var p = G.bidTurn;
+      if (G.bids[p] !== null && G.bids[p] !== undefined){ G.bidTurn = nextSeat(p); advanceBid(); return; }
+      if (p === 0){
+        var minBid = (G.mode === 'team') ? 0 : 3;
+        say('Your bid, South — ' + (G.mode === 'team' ? '0 to 13; your partner bids too.' : 'minimum three, and no nil in this house.'));
+        setStatus('Your bid. Choose ' + minBid + ' to 13' + (G.mode === 'team' ? ' — your team needs the combined bid.' : ' — bids of 7 or more pay 20 a book if they make.'));
+        showBidRow();
+        return;
+      }
+      G.busy = true;
+      setStatus(PLAYERS[p].short + ' is thinking over a bid…');
+      setTimeout(function(){
+        if (G.phase !== 'bidding') return;
+        if (G.bids[p] !== null && G.bids[p] !== undefined) return;
+        G.bids[p] = (G.mode === 'team') ? estimateBidTeam(G.hands[p]) : estimateBid(G.hands[p]);
+        renderScores();
+        G.bidTurn = nextSeat(p);
+        advanceBid();
+      }, 650);
+    }
+    function beginPlay(){
+      document.getElementById('bidRow').classList.remove('on');
+      clearTimer();
+      /* v3: throw-in — both teams' combined OFFICIAL bids under 11 means the hand
+         is thrown in and redealt with no score change. The brief does not define
+         throw-in scoring or redeal, so the best option is a clean redeal. Safety
+         valve: after 3 straight throw-ins the hand plays as bid, so the table
+         can never loop forever on low bids. */
+      if (G.mode === 'team'){
+        var ob0 = officialTeamBid(0), ob1 = officialTeamBid(1);
+        if (ob0 !== null && ob1 !== null && ob0 + ob1 < 11){
+          G.throwIns = (G.throwIns || 0) + 1;
+          if (G.throwIns <= 3){
+            say('Throw-in — both teams bid too low to play the hand. No score changes; the deck is shuffled again.');
+            setStatus('Throw-in — both combined bids total ' + (ob0 + ob1) + ', under 11. Redealing.');
+            G.throwInNotice = 'Throw-in — both combined bids total ' + (ob0 + ob1) + ', under 11. Redealing.';
+            dealHand();
+            return;
+          }
+        }
+      }
+      G.throwIns = 0;
+      G.phase = 'playing';
+      G.leader = nextSeat(G.dealer); G.turn = G.leader;
+      updateChatLock(); updateRenigBtn();
+      renderScores(); renderSeats(); renderHand();
+      say('Bids are in. ' + PLAYERS[G.leader].short + ' leads. Remember — spades may lead at any time in this house. Even now.');
+      setStatus(PLAYERS[G.leader].short + ' to lead the first trick.');
+      runTurn();
+    }
+    function estimateBidTeam(hand){
+      var pts = 0, counts = {S:0,H:0,D:0,C:0};
+      hand.forEach(function(c){
+        counts[c.suit]++;
+        if (c.val === 14) pts += 1;
+        else if (c.val === 13) pts += 0.7;
+        else if (c.val === 12) pts += 0.3;
+      });
+      pts += counts.S * 0.85;
+      SUITS.forEach(function(s){ if (s !== 'S' && counts[s] <= 1 && counts.S >= 2) pts += 0.4; });
+      var bid = Math.round(pts + (Math.random() * 1.2 - 0.6));
+      if (pts < 1.2 && Math.random() < 0.45) bid = 0;
+      return Math.max(0, Math.min(13, bid));
+    }
+
+    /* ==================== v2: ROOMS AS TABLES ==================== */
+    var ROOM_IDX = 2;
+    var currentLbRoom = null;
+    var MODE = 'solo';
+    var cameraOn = false;
+    var liveStream = null;
+    var OPP_HOSTS = [
+      {n:'Evelyn Brooks', f:'evelyn-brooks'}, {n:'Alexander Chen', f:'alexander-chen'},
+      {n:'Amara Shah', f:'amara-shah'}, {n:'Samir Haddad', f:'samir-haddad'},
+      {n:'Marcus Reed', f:'marcus-reed'}, {n:'Maya Redbird', f:'maya-redbird'},
+      {n:'Isabelle Laurent', f:'isabelle-laurent'}
+    ];
+    var CHAMP = [
+      {n:'The Island Championship', sub:'Caribbean Private Island', f:'rooms/caribbean-private-island.jpg'},
+      {n:'The Summit Club', sub:'Swiss Alpine Retreat', f:'rooms/swiss-alpine-retreat.jpg'},
+      {n:'The Marble Arena', sub:'Athens Olympian Lounge', f:'rooms/athens-olympian-lounge.jpg'},
+      {n:"The Dragon's Table", sub:'Hong Kong Dragon Hall', f:'rooms/hong-kong-dragon-hall.jpg'},
+      {n:'The Royal Court', sub:'Mumbai Maharaja Room', f:'rooms/mumbai-maharaja-room.jpg'},
+      {n:'The Zero-Gravity Championship', sub:'ISS Station', f:'rooms/iss-station.jpg'}
+    ];
+    function hostPlayer(h){ return {name: h.n, short: h.n.split(' ')[0], img: 'assets/hosts/' + h.f + '.webp'}; }
+    function setRoom(i){
+      ROOM_IDX = i;
+      var r = ROOMS[i];
+      var img = document.getElementById('roomPhoto');
+      img.src = 'assets/' + r.f;
+      img.alt = r.n + ' — room photograph';
+      document.getElementById('roomPlate').textContent = r.n;
+      setRoomMusic(i);
+      document.querySelectorAll('#roomStrip button').forEach(function(b, j){
+        b.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+      });
+      if (G) say('Welcome to the ' + r.n + '. ' + r.d);
+    }
+    function setChampRoom(i){
+      var c = CHAMP[i];
+      var img = document.getElementById('roomPhoto');
+      img.src = 'assets/' + c.f;
+      img.alt = c.n + ' — championship room';
+      document.getElementById('roomPlate').textContent = c.n;
+      document.querySelectorAll('#roomStrip button').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      say('The ' + c.n + ' — ' + c.sub + '. All players at this match see the same room. Play for your reputation.');
+      document.getElementById('table').scrollIntoView({behavior:'smooth'});
+    }
+    function renderRoomStrip(){
+      var strip = document.getElementById('roomStrip');
+      if (!strip) return;
+      strip.innerHTML = '';
+      ROOMS.forEach(function(r, i){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'room-chip';
+        b.setAttribute('aria-pressed', i === ROOM_IDX ? 'true' : 'false');
+        b.innerHTML = '<img src="assets/' + r.f + '" alt="" /><span>' + r.n + '</span>';
+        b.addEventListener('click', function(){ setRoom(i); });
+        strip.appendChild(b);
+      });
+    }
+    function renderChampGrid(){
+      var grid = document.getElementById('champGrid');
+      if (!grid) return;
+      CHAMP.forEach(function(c, i){
+        var b = document.createElement('button');
+        b.className = 'champ'; b.type = 'button';
+        b.innerHTML = '<img src="assets/' + c.f + '" alt="' + c.n + '" /><div class="cbody"><h4>' + c.n + '</h4><p>' + c.sub + '</p><span class="btn btn-gold btn-small">Select Room</span></div>';
+        b.addEventListener('click', function(){ setChampRoom(i); });
+        grid.appendChild(b);
+      });
+    }
+    var MUSIC_VARIANTS = [
+      [[130.81,164.81,196.00,246.94],[174.61,220.00,261.63,329.63],[110.00,130.81,164.81,196.00],[98.00,123.47,146.83,196.00]],
+      [[146.83,185.00,220.00,293.66],[196.00,246.94,293.66,392.00],[123.47,155.56,185.00,246.94],[110.00,146.83,174.61,220.00]],
+      [[116.54,146.83,174.61,233.08],[155.56,196.00,233.08,311.13],[98.00,123.47,155.56,196.00],[87.31,110.00,130.81,174.61]],
+      [[164.81,207.65,246.94,329.63],[220.00,277.18,329.63,440.00],[146.83,185.00,220.00,293.66],[130.81,164.81,196.00,261.63]]
+    ];
+    function setRoomMusic(i){
+      CHORDS = MUSIC_VARIANTS[i % MUSIC_VARIANTS.length];
+    }
+    function applyOpponents(){
+      var pick = function(id){ return OPP_HOSTS.filter(function(h){ return h.f === document.getElementById(id).value; })[0]; };
+      PLAYERS[1] = hostPlayer(pick('oppW'));
+      PLAYERS[2] = hostPlayer(pick('oppN'));
+      PLAYERS[3] = hostPlayer(pick('oppE'));
+      renderScores(); renderSeats();
+    }
+    function dedupeOpponents(changedId){
+      var ids = ['oppW','oppN','oppE'];
+      var vals = ids.map(function(id){ return document.getElementById(id).value; });
+      ids.forEach(function(id, idx){
+        if (id === changedId) return;
+        if (vals.indexOf(vals[idx]) !== idx){
+          for (var k = 0; k < OPP_HOSTS.length; k++){
+            if (vals.indexOf(OPP_HOSTS[k].f) < 0){
+              document.getElementById(id).value = OPP_HOSTS[k].f;
+              vals[idx] = OPP_HOSTS[k].f;
+              break;
+            }
+          }
+        }
+      });
+    }
+    function randomOpponents(){
+      var pool = OPP_HOSTS.slice();
+      for (var i = pool.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+      document.getElementById('oppW').value = pool[0].f;
+      document.getElementById('oppN').value = pool[1].f;
+      document.getElementById('oppE').value = pool[2].f;
+      applyOpponents();
+      say('A fresh table — new faces, same hunger. Shuffle when ready.');
+    }
+    function setMode(m){
+      MODE = m;
+      document.getElementById('modeSolo').setAttribute('aria-pressed', m === 'solo' ? 'true' : 'false');
+      document.getElementById('modeTeam').setAttribute('aria-pressed', m === 'team' ? 'true' : 'false');
+      document.getElementById('modeNote').textContent = m === 'team'
+        ? 'Team: you & North vs West & East — both partners bid 0–13; combined bid is the law, minimum 4.'
+        : 'Solo: every soul for itself — min bid 3, Egg Rule in force.';
+      newMatch();
+      updateChatLock();
+      say(m === 'team' ? 'Team League. You and the North seat, against West and East — both partners bid, and the combined bid is the law.'
+        : 'Solo League. Every soul for themselves — minimum bid three, and the Egg Rule is in force.');
+    }
+
+    /* ==================== v2: EGG CEREMONY ==================== */
+    function showEgg(seatIdx){
+      var seat = document.getElementById('seat' + seatIdx);
+      if (!seat) return;
+      var e = document.createElement('span');
+      e.className = 'egg-drop'; e.textContent = '🥚';
+      seat.appendChild(e);
+      setTimeout(function(){ if (e.parentNode) e.parentNode.removeChild(e); }, 1300);
+    }
+
+    /* ==================== v2: RECORDS ==================== */
+    function saveRecord(rec){
+      var r = loadJSON('cts.records.v1', []);
+      r.unshift(rec);
+      saveJSON('cts.records.v1', r.slice(0, 30));
+    }
+    function renderRecords(){
+      var box = document.getElementById('recordsList');
+      if (box){
+        var r = loadJSON('cts.records.v1', []);
+        box.innerHTML = r.length ? r.map(function(x){
+          return '<li><b>' + escHtml(x.result) + '</b> — ' + escHtml(x.mode) + ' at the ' + escHtml(x.room) + ' · ' + escHtml(x.score) + ' · ' + escHtml(x.date) + '</li>';
+        }).join('') : '<li>No matches on the board yet. Play a hand and the Parlor will remember it.</li>';
+      }
+      var hb = document.getElementById('holeBoard');
+      if (hb){
+        var hole = loadJSON('cts.hole.v1', []);
+        hb.innerHTML = hole.length ? hole.map(function(x){
+          return '<li><b>' + escHtml(x.name) + '</b> — finished in the hole at ' + escHtml(x.score) + ' · ' + escHtml(x.date) + '</li>';
+        }).join('') : '<li>The board is clean. Nobody has finished in the hole yet.</li>';
+      }
+    }
+
+    /* ==================== v2: TOURNAMENT ==================== */
+    var TOURNEY = null;
+    function drawTournament(){
+      var names = ['You'].concat(OPP_HOSTS.map(function(h){ return h.n; }));
+      for (var i = names.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = names[i]; names[i] = names[j]; names[j] = t; }
+      TOURNEY = {a: names.slice(0,4), b: names.slice(4,8)};
+      renderTournament();
+      say('The names are drawn from the bowl — two semifinal tables of four. Win your table and the Final is yours.');
+    }
+    function renderTournament(){
+      var box = document.getElementById('tourneyBracket');
+      if (!box) return;
+      if (!TOURNEY){
+        box.innerHTML = '<p style="color:var(--parchment)">Eight names. Two semifinal tables. One champion. Draw the names and the Parlor does the rest.</p>';
+        return;
+      }
+      var tableHtml = function(title, names, key){
+        var mine = names.indexOf('You') >= 0;
+        var h = '<div class="tourney-table"><h4>' + title + '</h4><ul>';
+        names.forEach(function(n){ h += '<li>' + escHtml(n) + '</li>'; });
+        h += '</ul><button class="btn btn-gold btn-small" type="button" data-tourney="' + key + '"' + (mine ? '' : ' disabled') + '>' +
+          (mine ? 'Play this table' : 'The other semifinal') + '</button></div>';
+        return h;
+      };
+      box.innerHTML = tableHtml('Semifinal Table One', TOURNEY.a, 'a') + tableHtml('Semifinal Table Two', TOURNEY.b, 'b');
+      box.querySelectorAll('[data-tourney]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var key = btn.getAttribute('data-tourney');
+          var names = TOURNEY[key];
+          var opps = names.filter(function(n){ return n !== 'You'; });
+          var sels = ['oppW','oppN','oppE'];
+          opps.forEach(function(nm, i){
+            var h = OPP_HOSTS.filter(function(hh){ return hh.n === nm; })[0];
+            if (h && sels[i]) document.getElementById(sels[i]).value = h.f;
+          });
+          applyOpponents();
+          document.getElementById('table').scrollIntoView({behavior:'smooth'});
+          newMatch();
+          say('Semifinal table, ' + (key === 'a' ? 'One' : 'Two') + ' — win it and the Final is yours. Shuffle when ready.');
+        });
+      });
+    }
+
+    /* ==================== v2: LIVE — MATCHMAKING, CHAT, CAMERA, PORTRAIT ==================== */
+    function sbGet(table, query){
+      return fetch(SUPABASE_URL + '/rest/v1/' + table + (query ? '?' + query : ''), {headers: sbHeaders()})
+        .then(function(r){ if (!r.ok) throw new Error('Supabase ' + r.status); return r.json(); });
+    }
+    function loadLobbies(){
+      var box = document.getElementById('lobbyList');
+      if (!box) return;
+      box.innerHTML = '<p>Looking for open tables…</p>';
+      sbGet('spades_lobbies', "status=eq.open&select=*&order=created_at.desc&limit=10")
+        .then(function(rows){
+          if (!rows || !rows.length){
+            box.innerHTML = '<p>No open tables right now. Create one below and the Parlor will seat the next player who walks in.</p>';
+            return;
+          }
+          var h = '';
+          rows.forEach(function(r){
+            h += '<div class="lobby-row"><div><b>' + escHtml(r.room || 'A Parlor table') + '</b> · host ' + escHtml(r.host_name || r.host || 'a player') + ' · ' + escHtml(String(r.players || 1)) + ' seated</div>' +
+              '<button class="btn btn-gold btn-small" type="button" data-lobby="' + escHtml(r.id) + '">Take a seat</button></div>';
+          });
+          box.innerHTML = h;
+          /* v3: Take a seat actually seats you — switches to that table's room and takes you to the table */
+          box.querySelectorAll('[data-lobby]').forEach(function(btn){
+            btn.addEventListener('click', function(){
+              var id = btn.getAttribute('data-lobby');
+              var row = (rows || []).filter(function(r){ return String(r.id) === id; })[0];
+              if (row && row.room){
+                var idx = -1;
+                ROOMS.forEach(function(rm, i){ if (rm.n === row.room) idx = i; });
+                if (idx >= 0) setRoom(idx);
+              }
+              var m = document.getElementById('lobbyMsg');
+              if (m) m.textContent = 'Seat taken at the live table — the Parlor has you down. Play at the table below.';
+              say('You take a seat at the live table. Shuffle when ready — the room is watching.');
+              document.getElementById('table').scrollIntoView({behavior:'smooth'});
+              loadLobbies();
+            });
+          });
+        })
+        .catch(function(){
+          box.innerHTML = '<p>Live tables need a connection — you are playing offline right now. The solo table below is always open.</p>';
+        });
+    }
+    function createLobby(){
+      var name = (typeof PROFILE !== 'undefined' && PROFILE && PROFILE.name) || 'Guest';
+      fetch(SUPABASE_URL + '/rest/v1/spades_lobbies', {method:'POST', headers: Object.assign(sbHeaders(), {Prefer:'return=representation'}),
+        body: JSON.stringify({room: ROOMS[ROOM_IDX].n, host_name: name, players: 1, status: 'open'})})
+        .then(function(r){
+          if (!r.ok) throw new Error('Supabase ' + r.status);
+          loadLobbies();
+          var m = document.getElementById('lobbyMsg');
+          if (m) m.textContent = 'Your table is open — the Parlor is seating the next player who walks in.';
+        })
+        .catch(function(){
+          var m = document.getElementById('lobbyMsg');
+          if (m) m.textContent = 'Could not open a live table right now (no connection). Your solo table is open.';
+        });
+    }
+    /* v3: table chat is off during a live competitive Team match — Solo and the lobby keep it */
+    function chatLocked(){
+      return !!(G && G.mode === 'team' && G.phase !== 'idle' && G.phase !== 'matchEnd');
+    }
+    function updateChatLock(){
+      var inp = document.getElementById('chatInput'), btn = document.getElementById('chatSend'), note = document.getElementById('chatLock');
+      var locked = chatLocked();
+      if (inp) inp.disabled = locked;
+      if (btn) btn.disabled = locked;
+      if (note) note.hidden = !locked;
+      if (locked){
+        var box = document.getElementById('chatList');
+        if (box) box.innerHTML = '<p style="color:var(--muted)">Table talk is off during Team League — no chat, no voice, no hints.</p>';
+      } else {
+        loadChat();
+      }
+    }
+    function loadChat(){
+      var box = document.getElementById('chatList');
+      if (!box) return;
+      sbGet('spades_chat', "order=created_at.desc&limit=20&select=*")
+        .then(function(rows){
+          var local = loadJSON('cts.chat.local', []);
+          var all = (rows || []).slice().reverse().concat(local);
+          box.innerHTML = all.length ? all.map(function(m){
+            return '<p><span class="cwho">' + escHtml(m.player_name || m.name || 'Guest') + ':</span> ' + escHtml(m.message || m.text || '') + '</p>';
+          }).join('') : '<p style="color:var(--muted)">No table talk yet. Say something sharp — 140 characters, no more.</p>';
+          box.scrollTop = box.scrollHeight;
+        })
+        .catch(function(){
+          var local = loadJSON('cts.chat.local', []);
+          box.innerHTML = local.length ? local.map(function(m){
+            return '<p><span class="cwho">' + escHtml(m.player_name || m.name || 'Guest') + ':</span> ' + escHtml(m.message || m.text || '') + '</p>';
+          }).join('') : '<p style="color:var(--muted)">Table talk is on this phone only right now — no connection to the live Parlor.</p>';
+        });
+    }
+    function sendChat(){
+      if (chatLocked()) return;
+      var inp = document.getElementById('chatInput');
+      if (!inp) return;
+      var text = (inp.value || '').trim().slice(0, 140);
+      if (!text) return;
+      var name = (typeof PROFILE !== 'undefined' && PROFILE && PROFILE.name) || 'Guest';
+      var msg = {player_name: name, message: text, room: ROOMS[ROOM_IDX].n, created_at: new Date().toISOString()};
+      var local = loadJSON('cts.chat.local', []);
+      local.push(msg);
+      saveJSON('cts.chat.local', local.slice(-20));
+      inp.value = '';
+      var box0 = document.getElementById('chatList');
+      if (box0){
+        var p0 = document.createElement('p');
+        p0.innerHTML = '<span class="cwho">' + escHtml(name) + ':</span> ' + escHtml(text);
+        box0.appendChild(p0);
+        box0.scrollTop = box0.scrollHeight;
+      }
+      loadChat();
+      fetch(SUPABASE_URL + '/rest/v1/spades_chat', {method:'POST', headers: Object.assign(sbHeaders(), {Prefer:'return=representation'}),
+        body: JSON.stringify(msg)}).catch(function(){});
+    }
+    async function toggleCamera(){
+      var btn = document.getElementById('camBtn');
+      if (cameraOn){
+        if (liveStream){ liveStream.getTracks().forEach(function(t){ t.stop(); }); liveStream = null; }
+        cameraOn = false;
+        document.getElementById('liveTile').hidden = true;
+        var v = document.getElementById('liveVideo');
+        if (v) v.srcObject = null;
+        if (btn) btn.textContent = 'Turn Camera On';
+        renderSeats();
+        return;
+      }
+      try {
+        var stream = await navigator.mediaDevices.getUserMedia({video: {width: {ideal: 640}, height: {ideal: 480}}, audio: false});
+        liveStream = stream; cameraOn = true;
+        var v2 = document.getElementById('liveVideo');
+        v2.srcObject = stream;
+        document.getElementById('liveName').textContent = ((typeof PROFILE !== 'undefined' && PROFILE && PROFILE.name) || 'You') + ' — live';
+        document.getElementById('liveTile').hidden = false;
+        if (btn) btn.textContent = 'Turn Camera Off';
+        renderSeats();
+        say('The South seat is live on camera now — big and proud, the way it should be. The camera never touches the cards.');
+      } catch (e){
+        var m = document.getElementById('camMsg');
+        if (m) m.textContent = 'Camera is not available on this device — play goes on exactly the same.';
+      }
+    }
+    function initCreatePlayer(){
+      var input = document.getElementById('seatPhotoInput');
+      if (!input) return;
+      input.addEventListener('change', function(){
+        var file = input.files && input.files[0];
+        if (!file) return;
+        var img = new Image();
+        var url = URL.createObjectURL(file);
+        img.onload = function(){
+          var c = document.createElement('canvas');
+          c.width = 256; c.height = 256;
+          var ctx = c.getContext('2d');
+          var side = Math.min(img.width, img.height);
+          ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, 256, 256);
+          PROFILE.photo = c.toDataURL('image/jpeg', 0.82);
+          saveProfile(); renderSeats(); renderSeatPreview();
+          say('A fine portrait, South — the Parlor has your likeness now.');
+          URL.revokeObjectURL(url);
+        };
+        img.src = url;
+      });
+      var rm = document.getElementById('seatPhotoRemove');
+      if (rm) rm.addEventListener('click', function(){
+        PROFILE.photo = ''; saveProfile(); renderSeats(); renderSeatPreview();
+      });
+    }
+    function renderSeatPreview(){
+      var el = document.getElementById('seatPhotoPreview');
+      if (!el) return;
+      el.innerHTML = (typeof PROFILE !== 'undefined' && PROFILE && PROFILE.photo)
+        ? '<img src="' + PROFILE.photo + '" alt="Your seat portrait" />'
+        : '<span class="you-medal">YOU</span>';
+    }
+
+    /* ==================== v2: INIT ==================== */
+    function initV2(){
+      renderRoomStrip();
+      setRoom(ROOM_IDX);
+      var defaults = ['marcus-reed','amara-shah','isabelle-laurent'];
+      ['oppW','oppN','oppE'].forEach(function(id, idx){
+        var sel = document.getElementById(id);
+        OPP_HOSTS.forEach(function(h){
+          var o = document.createElement('option');
+          o.value = h.f; o.textContent = h.n;
+          sel.appendChild(o);
+        });
+        sel.value = defaults[idx];
+        sel.addEventListener('change', function(){ dedupeOpponents(id); applyOpponents(); });
+      });
+      applyOpponents();
+      var rnd = document.getElementById('oppRandom');
+      if (rnd) rnd.addEventListener('click', randomOpponents);
+      document.getElementById('modeSolo').addEventListener('click', function(){ setMode('solo'); });
+      document.getElementById('modeTeam').addEventListener('click', function(){ setMode('team'); });
+      var lbPlay = document.getElementById('lbPlay');
+      if (lbPlay) lbPlay.addEventListener('click', function(){
+        if (currentLbRoom !== null && currentLbRoom !== undefined) setRoom(currentLbRoom);
+        closeRoom();
+        document.getElementById('table').scrollIntoView({behavior:'smooth'});
+      });
+      initCreatePlayer(); renderSeatPreview();
+      var camBtn = document.getElementById('camBtn');
+      if (camBtn) camBtn.addEventListener('click', toggleCamera);
+      var matchBtn = document.getElementById('matchBtn');
+      if (matchBtn) matchBtn.addEventListener('click', loadLobbies);
+      var createBtn = document.getElementById('createLobbyBtn');
+      if (createBtn) createBtn.addEventListener('click', createLobby);
+      var chatBtn = document.getElementById('chatSend');
+      if (chatBtn) chatBtn.addEventListener('click', sendChat);
+      var chatInp = document.getElementById('chatInput');
+      if (chatInp) chatInp.addEventListener('keydown', function(e){ if (e.key === 'Enter') sendChat(); });
+      loadChat();
+      updateChatLock();
+      var drawBtn = document.getElementById('tourneyDraw');
+      if (drawBtn) drawBtn.addEventListener('click', drawTournament);
+      renderTournament(); renderRecords();
+      renderChampGrid();
+      if (typeof PROFILE !== 'undefined' && PROFILE && PROFILE.name) PLAYERS[0].name = PROFILE.name;
+      renderScores(); renderSeats();
+    }
+
+    newMatch();
+
+    /* ==== CASH APP COINS: BEGIN ====
+       Parlor Shop — real-money coin packs, paid with Cash App.
+       Stripe stays switched off: there is no Stripe code anywhere in
+       this build. Walter's Cash App business cashtag is $DevellRajels
+       (2.75% fee, no receiving cap). The game is web-only, so no app
+       store takes a cut — Walter keeps ~97% of each sale.
+       Flow: player pays on Cash App with their in-game player name in
+       the note -> taps "I Paid" -> a claim is recorded (localStorage +
+       the spades_coin_claims table in Supabase) -> Walter sees the
+       payment in Cash App, opens the Coin claims list in the shop, taps
+       "Mark credited" -> the next time the game loads on the player's
+       phone, the coins land in their purse. Coins buy looks only —
+       nothing here touches a card, a bid, a score, or anyone's odds.
+       Everything below fails soft offline: a claim that cannot reach
+       Supabase stays in localStorage and retries on the next load.
+       NOTE: the spades_coin_claims table does not exist yet (verified
+       Nov 15, 2026 — PostgREST 404). Run CREATE-COIN-CLAIMS-TABLE.sql
+       in the Supabase dashboard SQL editor; until then claims live on
+       the player's phone only and the owner list shows local claims. */
+    var CASHAPP_CASHTAG = "DevellRajels";
+    var SUPABASE_URL = "https://tsymtakfrwqpgqdzuptx.supabase.co";
+    var SUPABASE_KEY = "sb_publishable_mDWzc4n_67JBKHs2rFpSdg_ZaS6HekP";
+    var COIN_CLAIMS_TABLE = "spades_coin_claims";
+    var COIN_PACKS = [
+      { id:"pack-starter", name:"Starter Purse",       coins:500,  usd:"$4.99",  amount:"4.99"  },
+      { id:"pack-parlor",  name:"Parlor Purse",        coins:1200, usd:"$9.99",  amount:"9.99"  },
+      { id:"pack-vault",   name:"High Roller's Vault", coins:3000, usd:"$19.99", amount:"19.99" },
+      { id:"pack-gilded",  name:"The Gilded Vault",    coins:7500, usd:"$39.99", amount:"39.99" }
+    ];
+    var PROFILE_KEY = "cts.profile.v1";
+    var CLAIMS_LOCAL_KEY = "cts.coinClaims.local";
+    var CLAIMS_APPLIED_KEY = "cts.coinClaims.applied";
+
+    function cashAppUrl(pack){ return "https://cash.app/$" + CASHAPP_CASHTAG + "/" + pack.amount; }
+    function packById(id){ for (var i = 0; i < COIN_PACKS.length; i++) if (COIN_PACKS[i].id === id) return COIN_PACKS[i]; return null; }
+    function newClaimId(){
+      var bytes = [], i;
+      if (typeof crypto !== "undefined" && crypto.getRandomValues){
+        var a = new Uint8Array(16); crypto.getRandomValues(a);
+        a[6] = (a[6] & 0x0f) | 0x40; a[8] = (a[8] & 0x3f) | 0x80;
+        for (i = 0; i < 16; i++) bytes.push(("0" + a[i].toString(16)).slice(-2));
+      } else {
+        for (i = 0; i < 16; i++) bytes.push(("0" + Math.floor(Math.random() * 256).toString(16)).slice(-2));
+        bytes[6] = "4" + bytes[6].slice(1);
+        bytes[8] = (parseInt(bytes[8], 16) & 0x3f | 0x80).toString(16);
+      }
+      var h = bytes.join("");
+      return h.slice(0, 8) + "-" + h.slice(8, 12) + "-" + h.slice(12, 16) + "-" + h.slice(16, 20) + "-" + h.slice(20);
+    }
+    function loadJSON(key, fallback){ try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e){ return fallback; } }
+    function saveJSON(key, val){ try { localStorage.setItem(key, JSON.stringify(val)); } catch (e){ /* storage full or blocked — the purse just won't persist */ } }
+    function loadProfile(){
+      var p = loadJSON(PROFILE_KEY, null);
+      if (!p || typeof p !== "object") p = {};
+      if (typeof p.name !== "string") p.name = "";
+      if (typeof p.coins !== "number" || !isFinite(p.coins)) p.coins = 0;
+      return p;
+    }
+    var PROFILE = loadProfile();
+    function saveProfile(){ saveJSON(PROFILE_KEY, PROFILE); }
+    function coinBalance(){ return Math.max(0, Math.floor(PROFILE.coins || 0)); }
+    function localClaims(){ var l = loadJSON(CLAIMS_LOCAL_KEY, []); return Array.isArray(l) ? l : []; }
+    function saveLocalClaims(list){ saveJSON(CLAIMS_LOCAL_KEY, list); }
+    function appliedClaimIds(){ var l = loadJSON(CLAIMS_APPLIED_KEY, []); return Array.isArray(l) ? l : []; }
+    function markClaimApplied(id){ var l = appliedClaimIds(); if (l.indexOf(id) < 0){ l.push(id); saveJSON(CLAIMS_APPLIED_KEY, l); } }
+    function escHtml(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(ch){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]; }); }
+
+    function sbHeaders(){
+      return { "apikey": SUPABASE_KEY, "Authorization": "Bearer " + SUPABASE_KEY, "Content-Type": "application/json" };
+    }
+    function sbClaimURL(query){
+      return SUPABASE_URL + "/rest/v1/" + COIN_CLAIMS_TABLE + (query ? "?" + query : "");
+    }
+    function sbPostClaim(claim){
+      return fetch(sbClaimURL(""), {
+        method: "POST",
+        headers: Object.assign(sbHeaders(), { "Prefer": "return=representation" }),
+        body: JSON.stringify({ id: claim.id, player_name: claim.player_name, pack: claim.pack, amount: claim.amount, status: claim.status })
+      }).then(function(r){ if (!r.ok) throw new Error("Supabase " + r.status); return r.json(); });
+    }
+
+    function claimMsg(text, ok){
+      var el = document.getElementById("coinClaimMsg");
+      if (!el) return;
+      el.textContent = text;
+      el.style.color = ok ? "var(--gold-bright)" : "var(--parchment)";
+    }
+    function renderPurse(){
+      var el = document.getElementById("purseBalance");
+      if (el) el.textContent = coinBalance().toLocaleString("en-US");
+      var nm = document.getElementById("playerName");
+      if (nm && document.activeElement !== nm) nm.value = PROFILE.name || "";
+    }
+    function setPlayerName(name){
+      PROFILE.name = (name || "").trim().slice(0, 40);
+      saveProfile(); renderPurse();
+      PLAYERS[0].name = PROFILE.name || 'You';
+      renderScores(); renderSeats(); renderSeatPreview();
+    }
+
+    /* Player paid on Cash App and came back: record the claim. */
+    function recordClaim(packId){
+      var pack = packById(packId);
+      if (!pack) return false;
+      if (!PROFILE.name){
+        claimMsg("First tell the Parlor your player name above — it must match the name you put in the Cash App note.");
+        var nm = document.getElementById("playerName"); if (nm) nm.focus();
+        return false;
+      }
+      var claim = { id: newClaimId(), player_name: PROFILE.name, pack: pack.id, amount: parseFloat(pack.amount), status: "pending", created_at: new Date().toISOString(), synced: false };
+      var list = localClaims(); list.push(claim); saveLocalClaims(list);
+      sbPostClaim(claim).then(function(){
+        var l2 = localClaims();
+        for (var i = 0; i < l2.length; i++) if (l2[i].id === claim.id) l2[i].synced = true;
+        saveLocalClaims(l2);
+      }).catch(function(){ /* stays local; retried on the next load */ });
+      claimMsg("Claim recorded — " + pack.name + " (" + pack.usd + "). Walter credits your " + pack.coins.toLocaleString("en-US") + " coins once he sees your Cash App payment under the name \"" + PROFILE.name + "\".", true);
+      var btn = document.getElementById("paid-" + pack.id);
+      if (btn){ btn.textContent = "Claim recorded ✓"; btn.disabled = true; }
+      return true;
+    }
+
+    /* Retry any claims that never reached Supabase (offline, or the table
+       not created yet). Silent — a claim that still can't sync just waits. */
+    function flushPendingClaims(){
+      var unsynced = localClaims().filter(function(c){ return !c.synced && c.status === "pending"; });
+      if (!unsynced.length) return;
+      unsynced.forEach(function(claim){
+        sbPostClaim(claim).then(function(){
+          var l2 = localClaims();
+          for (var i = 0; i < l2.length; i++) if (l2[i].id === claim.id) l2[i].synced = true;
+          saveLocalClaims(l2);
+        }).catch(function(){});
+      });
+    }
+
+    /* Credit delivery: on load, pay out every credited claim for this
+       player name that this device hasn't applied yet. Never double-credit. */
+    function applyCreditedClaims(){
+      var changed = false;
+      localClaims().forEach(function(c){
+        if (c.status === "credited" && appliedClaimIds().indexOf(c.id) < 0){
+          var p = packById(c.pack);
+          if (p){ PROFILE.coins = coinBalance() + p.coins; markClaimApplied(c.id); changed = true; }
+        }
+      });
+      if (changed){ saveProfile(); renderPurse(); }
+      if (PROFILE.name){
+        var q = "player_name=eq." + encodeURIComponent(PROFILE.name) + "&status=eq.credited&select=id,pack,amount,created_at&order=created_at.desc&limit=50";
+        fetch(sbClaimURL(q), { headers: sbHeaders() })
+          .then(function(r){ if (!r.ok) throw new Error("Supabase " + r.status); return r.json(); })
+          .then(function(rows){
+            var grew = false;
+            (rows || []).forEach(function(row){
+              if (appliedClaimIds().indexOf(row.id) < 0){
+                var p = packById(row.pack);
+                if (p){ PROFILE.coins = coinBalance() + p.coins; markClaimApplied(row.id); grew = true; }
+              }
+            });
+            if (grew){ saveProfile(); renderPurse(); claimMsg("Coins credited to your purse — welcome to the sharp end of the rail.", true); }
+          })
+          .catch(function(){ /* offline, or the table isn't created yet — nothing to apply */ });
+      }
+    }
+
+    /* Owner view: pending claims from Supabase merged with pending claims
+       recorded on this phone, so Walter always sees something even before
+       the table exists. */
+    function ownerClaimsList(){
+      var local = localClaims().filter(function(c){ return c.status === "pending"; });
+      var toRow = function(c, localOnly){ return { id: c.id, player_name: c.player_name, pack: c.pack, amount: c.amount, created_at: c.created_at, _local: !!localOnly }; };
+      return fetch(sbClaimURL("status=eq.pending&select=*&order=created_at.desc&limit=50"), { headers: sbHeaders() })
+        .then(function(r){ if (!r.ok) throw new Error("Supabase " + r.status); return r.json(); })
+        .then(function(rows){
+          var seen = {}, out = [];
+          (rows || []).forEach(function(r){ seen[r.id] = true; out.push(toRow(r, false)); });
+          local.forEach(function(c){ if (!seen[c.id]) out.push(toRow(c, true)); });
+          return out;
+        })
+        .catch(function(){ return local.map(function(c){ return toRow(c, true); }); });
+    }
+    function renderOwnerClaims(){
+      var box = document.getElementById("ownerClaims");
+      if (!box) return;
+      box.innerHTML = "<p>Checking the till…</p>";
+      ownerClaimsList().then(function(claims){
+        if (!claims.length){
+          box.innerHTML = "<p>No pending coin claims. When a player pays on Cash App and taps “I Paid”, their claim appears here.</p>";
+          return;
+        }
+        var html = "";
+        claims.forEach(function(c){
+          var p = packById(c.pack);
+          var when = c.created_at ? new Date(c.created_at).toLocaleString("en-US") : "";
+          html += '<div class="claim-row"><div><b>' + escHtml(c.player_name) + '</b> — ' + escHtml(p ? p.name : c.pack) +
+                  ' · $' + Number(c.amount).toFixed(2) + ' · ' + escHtml(when) +
+                  (c._local ? ' · <i>on this phone only</i>' : '') + '</div>' +
+                  '<button class="btn btn-gold btn-small" type="button" data-claim="' + escHtml(c.id) + '" onclick="markCredited(this)">Mark credited</button></div>';
+        });
+        box.innerHTML = html;
+      });
+    }
+    function markCredited(btn){
+      var id = btn.getAttribute("data-claim");
+      btn.disabled = true; btn.textContent = "Crediting…";
+      fetch(sbClaimURL("id=eq." + encodeURIComponent(id)), {
+        method: "PATCH", headers: sbHeaders(), body: JSON.stringify({ status: "credited" })
+      })
+        .then(function(r){ if (!r.ok) throw new Error("Supabase " + r.status); })
+        .catch(function(){ /* table may not exist yet — credit it locally instead */ })
+        .then(function(){
+          var l = localClaims();
+          for (var i = 0; i < l.length; i++) if (l[i].id === id) l[i].status = "credited";
+          saveLocalClaims(l);
+          renderOwnerClaims();
+        });
+    }
+
+    function initCashAppCoins(){
+      renderPurse();
+      var nm = document.getElementById("playerName");
+      if (nm){
+        nm.value = PROFILE.name || "";
+        nm.addEventListener("change", function(){ setPlayerName(nm.value); });
+      }
+      COIN_PACKS.forEach(function(pack){
+        var b = document.getElementById("paid-" + pack.id);
+        if (b) b.addEventListener("click", function(){ recordClaim(pack.id); });
+      });
+      var ownBtn = document.getElementById("ownerClaimsBtn");
+      var ownPanel = document.getElementById("ownerClaimsPanel");
+      if (ownBtn && ownPanel){
+        ownBtn.addEventListener("click", function(){
+          var open = ownPanel.hidden;
+          ownPanel.hidden = !open;
+          ownBtn.textContent = open ? "Hide coin claims" : "For Walter — Coin claims";
+          if (open) renderOwnerClaims();
+        });
+      }
+      var refreshBtn = document.getElementById("ownerRefresh");
+      if (refreshBtn) refreshBtn.addEventListener("click", renderOwnerClaims);
+      flushPendingClaims();
+      applyCreditedClaims();
+    }
+    initCashAppCoins();
+    initV2();
+    /* ==== CASH APP COINS: END ==== */
+    </script>
+  </body>
+</html>

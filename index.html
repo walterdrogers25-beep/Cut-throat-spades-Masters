@@ -6,18 +6,18 @@
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="data:," />
     <title>Cut Throat Spades Masters</title>
-    <meta name="description" content="Cut Throat Spades Masters — the Victorian Parlor where spades is a test of nerve. Respect must be earned. Play Solo or Team League on the room's own table — cards dealt on the photograph, faces at the seats, live video big, the room all around you." />
+    <meta name="description" content="Cut Throat Spades Masters — the modern luxury penthouse where spades is a test of nerve. Reputation over luck. Play Solo or Team League at the green-felt table — cards dealt on the felt, faces at the seats, live video big, the penthouse all around you." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Jost:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
     <style>
       :root{
         --ink:#0d0a08;
         --coal:#161009;
         --panel:#1c130b;
         --panel-2:#241708;
-        --burgundy:#571c26;
-        --burgundy-deep:#33101a;
+        --pine:#123524;
+        --pine-deep:#0a1f16;
         --gold:#c7a65b;
         --gold-bright:#ecd28c;
         --gold-dim:#8f7648;
@@ -28,8 +28,8 @@
         --felt-deep:#0f3a22;
         --red:#c8452c;
         --line:rgba(199,166,91,.32);
-        --serif:"Playfair Display",Georgia,serif;
-        --body:"Cormorant Garamond",Georgia,serif;
+        --serif:"Cinzel",Georgia,serif;
+        --body:"Jost","Segoe UI",sans-serif;
       }
       *{box-sizing:border-box}
       html{scroll-behavior:smooth}
@@ -41,7 +41,7 @@
       img{display:block;max-width:100%}
       button{font-family:inherit;cursor:pointer;min-height:2.75rem}
       a{color:var(--gold-bright)}
-      ::selection{background:var(--burgundy);color:var(--ivory)}
+      ::selection{background:var(--pine);color:var(--ivory)}
 
       /* ---------- menu — one corner button, everything tucked inside ---------- */
       .menu-wrap{position:fixed;top:.55rem;right:.55rem;z-index:70}
@@ -94,6 +94,7 @@
       }
       @keyframes flicker{0%,100%{opacity:.85}38%{opacity:1}52%{opacity:.72}64%{opacity:.95}81%{opacity:.8}}
       .hero-inner{max-width:68rem;margin:0 auto;padding:7.5rem 1.25rem 2.2rem;text-align:center;width:100%}
+      .hero-emblem{width:74px;height:74px;margin:0 auto 1.1rem;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:2.1rem;color:var(--gold-bright);background:rgba(13,10,8,.72);box-shadow:0 0 24px rgba(236,210,140,.25)}
       .hero-rule{display:flex;align-items:center;gap:.9rem;justify-content:center;margin-bottom:1.1rem}
       .hero-rule::before,.hero-rule::after{content:"";height:1px;width:min(120px,22vw);
         background:linear-gradient(90deg,transparent,var(--gold));display:block}
@@ -104,7 +105,7 @@
         font-size:clamp(2.9rem,11.5vw,6.4rem);letter-spacing:.01em;
         color:var(--ivory);text-shadow:0 4px 34px rgba(0,0,0,.75);
       }
-      h1 .goldword{color:var(--gold-bright);font-style:italic;font-weight:800}
+      h1 .goldword{color:var(--gold-bright);font-weight:800}
       .tagline{
         margin:1.15rem 0 0;font-family:var(--serif);font-weight:600;
         font-size:clamp(.95rem,3.6vw,1.35rem);letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
@@ -153,7 +154,7 @@
       }
       .rafael-bar{
         display:flex;gap:.9rem;align-items:flex-start;
-        background:var(--burgundy-deep);border:1px solid rgba(199,166,91,.4);
+        background:var(--pine-deep);border:1px solid rgba(199,166,91,.4);
         border-radius:8px;padding:.8rem .95rem;margin-bottom:1rem;
       }
       .rafael-bar img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top;
@@ -173,22 +174,26 @@
       @media (max-width:640px){.score-strip{grid-template-columns:repeat(2,1fr)}}
       .felt-zone{position:relative;padding:.4rem 0 .2rem}
       .felt{
-        position:relative;margin:0 auto;width:min(100%,620px);aspect-ratio:1.28;
-        background:#0f3a22;
+        position:relative;z-index:2;margin:0 auto;width:min(100%,600px);aspect-ratio:1.28;
+        background:radial-gradient(ellipse at 50% 40%,#24804f 0%,#1d5c3a 46%,#123d26 100%);
         border-radius:50%;
-        border:10px solid #4a2c14;
-        outline:2px solid var(--gold-dim);
-        box-shadow:inset 0 0 60px rgba(0,0,0,.55),0 18px 40px rgba(0,0,0,.5);
+        border:5px solid #d8b96a;
+        outline:2px solid rgba(236,210,140,.55);outline-offset:3px;
+        box-shadow:inset 0 0 60px rgba(0,0,0,.55),0 0 0 12px #171208,0 18px 40px rgba(0,0,0,.5);
       }
+      .felt-brand{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;z-index:0;pointer-events:none;text-align:center}
+      .felt-brand .felt-spade{font-size:2.3rem;color:rgba(236,210,140,.5);line-height:1}
+      .felt-brand .felt-brand-text{font-family:var(--serif);font-weight:800;font-size:clamp(.8rem,2.6vw,1.1rem);letter-spacing:.3em;text-transform:uppercase;color:rgba(236,210,140,.42);line-height:1.55;text-indent:.3em}
       .felt::after{content:"";position:absolute;inset:9%;border:1px solid rgba(236,210,140,.22);border-radius:50%;pointer-events:none}
-      .seat{position:absolute;display:flex;flex-direction:column;align-items:center;gap:.2rem;z-index:3;width:86px;margin-left:-43px;text-align:center}
-      .seat img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--gold);background:#000}
+      .seat{position:absolute;display:flex;flex-direction:column;align-items:center;gap:.2rem;z-index:3;width:120px;margin-left:-60px;text-align:center}
+      .seat img{width:68px;height:68px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--gold);background:#000;box-shadow:0 0 0 2px #14100a,0 0 18px rgba(236,210,140,.35)}
+      .seat .srank{font-family:var(--serif);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-shadow:0 1px 4px #000}
       .seat .sname{font-family:var(--serif);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory);text-shadow:0 1px 4px #000}
       .seat .sbooks{font-size:.82rem;color:var(--gold-bright);background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:99px;padding:.02rem .5rem}
-      .seat-n{left:50%;top:-14px}
-      .seat-w{left:9%;top:50%;transform:translateY(-50%)}
-      .seat-e{left:91%;top:50%;transform:translateY(-50%)}
-      .seat-s{left:50%;bottom:-16px}
+      .seat-n{left:50%;top:-26px}
+      .seat-w{left:5%;top:50%;transform:translateY(-50%)}
+      .seat-e{left:95%;top:50%;transform:translateY(-50%)}
+      .seat-s{left:50%;bottom:-28px}
       .slot{position:absolute;width:52px;height:74px;margin:-37px 0 0 -26px;z-index:2}
       .slot-n{left:50%;top:33%}.slot-s{left:50%;top:67%}
       .slot-w{left:33%;top:50%}.slot-e{left:67%;top:50%}
@@ -209,7 +214,7 @@
       .shuffle-stage{position:absolute;inset:0;display:none;place-items:center;z-index:5}
       .shuffle-stage.on{display:grid}
       .deck-half{position:absolute;width:52px;height:74px;border-radius:6px;
-        background:repeating-linear-gradient(45deg,#571c26 0 6px,#43121c 6px 12px);
+        background:repeating-linear-gradient(45deg,#123524 0 6px,#0a1f16 6px 12px);
         border:2px solid var(--gold-dim);box-shadow:0 8px 18px rgba(0,0,0,.5)}
       .deck-l{animation:riffleL .9s ease-in-out infinite}
       .deck-r{animation:riffleR .9s ease-in-out infinite}
@@ -219,14 +224,14 @@
       .deck-cut{
         position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;
         width:60px;height:86px;border-radius:7px;border:2px solid var(--gold);
-        background:repeating-linear-gradient(45deg,#571c26 0 6px,#43121c 6px 12px);
-        box-shadow:4px 4px 0 -1px #2a0d13,8px 8px 0 -2px #571c26,0 14px 26px rgba(0,0,0,.55);
+        background:repeating-linear-gradient(45deg,#123524 0 6px,#0a1f16 6px 12px);
+        box-shadow:4px 4px 0 -1px #0a1f16,8px 8px 0 -2px #123524,0 14px 26px rgba(0,0,0,.55);
         padding:0;min-height:0;
       }
       .deck-cut .cut-top{
         position:absolute;left:0;right:0;top:0;height:52%;border-radius:6px 6px 0 0;
         border-bottom:2px solid var(--gold);
-        background:repeating-linear-gradient(45deg,#571c26 0 6px,#43121c 6px 12px);
+        background:repeating-linear-gradient(45deg,#123524 0 6px,#0a1f16 6px 12px);
       }
       .deck-cut.cutting .cut-top{animation:cutMove .58s ease forwards}
       @keyframes cutMove{0%{transform:none}45%{transform:translate(30px,-5px)}100%{transform:translate(3px,32px)}}
@@ -307,7 +312,7 @@
       .league{
         border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);
       }
-      .league header{padding:1.3rem 1.4rem 1rem;background:linear-gradient(160deg,var(--burgundy-deep),var(--panel));border-bottom:1px solid var(--line)}
+      .league header{padding:1.3rem 1.4rem 1rem;background:linear-gradient(160deg,var(--pine-deep),var(--panel));border-bottom:1px solid var(--line)}
       .league h3{font-family:var(--serif);font-size:1.65rem;margin:0;font-weight:800}
       .league header p{margin:.25rem 0 0;font-style:italic;color:var(--parchment)}
       .league ul{list-style:none;margin:0;padding:1rem 1.4rem 1.4rem}
@@ -317,7 +322,7 @@
       .league li b{color:var(--ivory)}
       .house-code{
         margin-top:1.1rem;border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.4rem;
-        background:linear-gradient(180deg,rgba(87,28,38,.35),rgba(0,0,0,.25));
+        background:linear-gradient(180deg,rgba(18,53,36,.45),rgba(0,0,0,.25));
       }
       .house-code h3{font-family:var(--serif);margin:0 0 .6rem;font-size:1.15rem;letter-spacing:.06em;color:var(--gold-bright);text-align:center}
       .house-code ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.35rem 2rem}
@@ -346,7 +351,7 @@
         color:var(--gold-bright);font-family:var(--serif);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
         padding:.28rem .6rem;border-radius:99px;
       }
-      .room .badge.newb{background:var(--burgundy);border-color:#d98a97;color:#ffe9dd}
+      .room .badge.newb{background:var(--pine);border-color:var(--gold);color:var(--gold-bright)}
       .room .plate{padding:.75rem .9rem .9rem;display:flex;align-items:baseline;justify-content:space-between;gap:.6rem}
       .room .rname{font-family:var(--serif);font-weight:700;font-size:1.06rem;line-height:1.2}
       .room .rnum{font-family:var(--serif);color:var(--gold);font-size:.85rem;flex:none}
@@ -373,7 +378,7 @@
       .rafael-feature{
         display:grid;grid-template-columns:300px 1fr;gap:1.6rem;align-items:center;
         border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin-bottom:1.4rem;
-        background:linear-gradient(140deg,var(--burgundy-deep),var(--panel) 62%);
+        background:linear-gradient(140deg,var(--pine-deep),var(--panel) 62%);
       }
       @media (max-width:700px){.rafael-feature{grid-template-columns:1fr;text-align:center;justify-items:center}}
       .rafael-feature img{width:100%;max-width:300px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:8px;border:2px solid var(--gold)}
@@ -410,7 +415,7 @@
       .duo h3{font-family:var(--serif);font-size:1.3rem;margin:0 0 .5rem;color:var(--gold-bright)}
       .duo p{color:var(--parchment);margin:0 0 .5rem}
       .duo p:last-child{margin-bottom:0}
-      /* ---------- parlor shop — cash app coin packs ---------- */
+      /* ---------- masters shop — cash app coin packs ---------- */
       .pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.9rem 0}
       @media (max-width:560px){.pack-grid{grid-template-columns:1fr}}
       .pack-card{border:1px solid var(--line);border-radius:8px;padding:1rem;background:var(--panel-2)}
@@ -430,7 +435,7 @@
       .claim-row .btn{flex:none}
       .gate{
         margin-top:1.2rem;border:1px solid var(--gold-dim);border-radius:10px;padding:1.3rem 1.4rem;text-align:center;
-        background:linear-gradient(180deg,rgba(87,28,38,.3),rgba(0,0,0,.25));
+        background:linear-gradient(180deg,rgba(18,53,36,.4),rgba(0,0,0,.25));
       }
       .gate h3{font-family:var(--serif);margin:0 0 .4rem;font-size:1.3rem;color:var(--gold-bright)}
       .gate p{color:var(--parchment);margin:0;font-style:italic;font-size:1.16rem}
@@ -441,11 +446,14 @@
       footer a{font-style:normal}
 
 
-      /* ---------- v2: the room photo IS the table ---------- */
-      .room-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:0}
-      .room-veil{position:absolute;inset:0;border-radius:50%;z-index:1;pointer-events:none;
-        background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,.10),rgba(0,0,0,.42) 82%)}
-      .room-plate{position:absolute;left:50%;top:7px;transform:translateX(-50%);z-index:4;
+      /* ---------- v4: the room photo is the penthouse around the table — the felt IS the table ---------- */
+      .table-scene{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--gold-dim);
+        box-shadow:0 30px 60px rgba(0,0,0,.5);background:#0a0908;
+        display:flex;align-items:center;justify-content:center;padding:3.4rem .9rem}
+      .table-scene .room-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+      .table-scene .room-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+        background:linear-gradient(180deg,rgba(5,4,3,.58),rgba(5,4,3,.16) 42%,rgba(5,4,3,.66))}
+      .table-scene .room-plate{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:4;
         font-family:var(--serif);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;
         color:var(--gold-bright);background:rgba(0,0,0,.55);border:1px solid var(--line);border-radius:99px;padding:.16rem .8rem}
       .felt.cam-on #seat0{display:none}
@@ -482,8 +490,8 @@
         box-shadow:0 0 6px #ff5a5a;animation:livepulse 1.2s infinite}
       @keyframes livepulse{50%{opacity:.35}}
       /* ---------- v2: seats, egg, records ---------- */
-      .you-medal{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;
-        background:radial-gradient(circle at 35% 30%,#f3d98a,#b8933f 65%,#8a6b22);color:#1a1410;font-weight:800;font-size:13px;
+      .you-medal{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;
+        background:radial-gradient(circle at 35% 30%,#f3d98a,#b8933f 65%,#8a6b22);color:#1a1410;font-weight:800;font-size:15px;
         border:2px solid var(--gold);flex:none}
       .score-chip .you-medal{width:38px;height:38px;font-size:10px}
       .seat .egg-drop{position:absolute;top:-26px;left:50%;margin-left:-13px;font-size:26px;animation:eggf 1.2s ease-in forwards;pointer-events:none;z-index:6}
@@ -524,23 +532,117 @@
       .bid-prompt{font-family:var(--serif);color:var(--gold-bright);font-size:.95rem;align-self:center}
       .lb-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
 
+      /* ---------- v4: luxury services (the board's panel) ---------- */
+      .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+      @media (max-width:760px){.services-grid{grid-template-columns:1fr}}
+      .service-card{border:1px solid var(--gold-dim);border-radius:10px;overflow:hidden;background:var(--panel);display:flex;flex-direction:column}
+      .service-card .svc-visual{position:relative;aspect-ratio:3/2;overflow:hidden;background:#0a0908;border-bottom:1px solid var(--line)}
+      .service-card .svc-visual img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+      .service-card .svc-visual .svc-mono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,rgba(199,166,91,.16),rgba(10,9,8,.9) 75%)}
+      .service-card .svc-visual .svc-mono span{width:74px;height:74px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:900;font-size:2rem;color:var(--gold-bright);background:rgba(13,10,8,.8)}
+      .service-card .svc-body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+      .service-card h3{font-family:var(--serif);font-size:1.35rem;margin:0;color:var(--gold-bright)}
+      .svc-list{list-style:none;margin:0;padding:0}
+      .svc-list li{padding:.28rem 0 .28rem 1.5rem;position:relative;color:var(--parchment)}
+      .svc-list li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
+      .svc-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:auto}
+      .svc-panel{border-top:1px dashed rgba(199,166,91,.35);padding-top:.7rem}
+      .svc-item{display:flex;justify-content:space-between;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid rgba(199,166,91,.12)}
+      .svc-item:last-child{border-bottom:none}
+      .svc-item .svc-name{font-family:var(--serif);font-size:.98rem;color:var(--ivory)}
+      .svc-item .svc-note{display:block;font-size:.92rem;color:var(--muted);font-style:italic;font-family:var(--body)}
+      .svc-item .svc-price{font-family:var(--serif);color:var(--gold-bright);font-size:.9rem;white-space:nowrap}
+      .svc-item .btn{flex:none}
+      .btn.armed{background:#7a2415;color:#ffe9dd;border-color:#e8a58c}
+      .service-msg{text-align:center;font-style:italic;color:var(--parchment);min-height:1.5em;margin:1.2rem 0 .4rem;font-size:1.12rem}
+      .service-purse{text-align:center;font-size:1.1rem;margin:.2rem 0 .8rem}
+      .service-log{max-width:40rem;margin:0 auto}
+      .service-log .svc-log-row{display:flex;justify-content:space-between;gap:.8rem;border:1px solid var(--line);border-radius:6px;padding:.55rem .8rem;margin:.4rem 0;background:var(--panel-2);font-size:1rem;color:var(--parchment)}
+      .service-log .svc-log-row b{color:var(--gold-bright);font-family:var(--serif)}
+      .service-note{text-align:center;color:var(--muted);font-style:italic;max-width:38rem;margin:1rem auto 0;font-size:1rem}
+      /* ---------- v4: the board's 23 destinations ---------- */
+      .dest-title{font-family:var(--serif);font-weight:800;text-align:center;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-bright);font-size:.95rem;margin:0 0 1rem}
+      .dest-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin-bottom:2.2rem}
+      .dest{display:block;border:2px solid var(--gold);border-radius:8px;overflow:hidden;background:#0a0908;padding:0;cursor:pointer;text-align:left;color:inherit;width:100%}
+      .dest img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;transition:transform .5s ease}
+      .dest:hover img,.dest:focus-visible img{transform:scale(1.05)}
+      .dest .dname{display:block;padding:.5rem .6rem;font-family:var(--serif);font-size:.88rem;font-weight:700;color:var(--ivory)}
+      .dest .dname b{color:var(--gold)}
+      /* ---------- v4: board ribbon + footer ---------- */
+      .four-players-ribbon{margin-top:1.1rem;text-align:center;font-family:var(--serif);font-weight:800;letter-spacing:.24em;text-transform:uppercase;font-size:.8rem;color:var(--gold-bright);background:#0a0908;border:1px solid var(--gold);border-radius:4px;padding:.85rem 1rem;box-shadow:0 0 22px rgba(236,210,140,.14)}
+      .board-footer{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;align-items:center;font-family:var(--serif);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:1.4rem}
+      .board-footer i{color:var(--gold-dim);font-style:normal;font-size:.6rem}
+
       @media (prefers-reduced-motion: reduce){
         html{scroll-behavior:auto}
         .hero-bg img,.hero-glow,.deck-l,.deck-r,.pcard,.deck-cut.cutting .cut-top{animation:none}
         .room img{transition:none}
       }
+    /* ==== THE CLUB (v4): gold plaques, club map, trophy room, theatre, terrace ==== */
+    .sec-kicker{background:#000;border:1px solid var(--gold);color:var(--gold-bright);display:inline-block;padding:6px 14px;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;border-radius:2px}
+    .hero-lobby{color:var(--gold-bright);letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;margin:0 0 10px}
+    .lobby-greeting{color:var(--parchment);font-style:italic;margin:10px 0 0}
+    .hero-motto{color:var(--gold-bright);letter-spacing:.14em;text-transform:uppercase;font-size:.85rem;margin:14px 0 0}
+    .footer-motto{text-align:center;color:var(--gold-bright);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;margin:0 0 18px}
+    .clubmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+    .club-room{display:block;background:#0d0d0d;border:1px solid #3a2f14;border-radius:8px;padding:14px;color:var(--ivory);text-decoration:none}
+    .club-room:hover{border-color:var(--gold)}
+    .club-room h3{margin:0 0 6px;font-size:1rem;color:var(--gold-bright)}
+    .club-room p{margin:0;color:var(--parchment);font-size:.9rem}
+    .club-room.soon{opacity:.75}
+    .club-room.soon h3{color:var(--muted)}
+    .trophy-case{background:linear-gradient(180deg,#1a1405,#0d0d0d);border:1px solid var(--gold);border-radius:10px;padding:22px;text-align:center;margin-bottom:22px}
+    .trophy-case h3{color:var(--gold-bright);margin:6px 0}
+    .trophy-glyph{font-size:2.6rem;color:var(--gold-bright)}
+    .rings-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+    .ring-badge{border:1px solid var(--gold);border-radius:999px;padding:5px 12px;color:var(--gold-bright);font-size:.85rem;background:#000}
+    .arena-draw{border:2px solid var(--gold);margin-top:22px}
+    .svc-room{color:var(--gold-bright);letter-spacing:.18em;text-transform:uppercase;font-size:.68rem;margin:2px 0 8px}
+    .service-card-wide{grid-column:1/-1}
+    .concierge-row{display:flex;gap:8px;margin-top:12px}
+    .concierge-row input{flex:1;background:#0d0d0d;border:1px solid #3a2f14;color:var(--ivory);border-radius:6px;padding:8px 10px;font-family:inherit}
+    .concierge-log{margin-top:10px;font-size:.9rem;color:var(--parchment)}
+    .tour-map-note{text-align:center;color:var(--gold-bright);font-style:italic;margin:6px 0 0}
+    .theatre{background:#050505;border:1px solid var(--gold);border-radius:10px;padding:18px}
+    .theatre-screen{position:relative;border:1px solid #3a2f14;border-radius:8px;overflow:hidden}
+    .theatre-screen img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+    .theatre-screen p{position:absolute;left:0;right:0;bottom:0;margin:0;padding:10px 14px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent);color:var(--ivory)}
+    .theatre-seats{display:flex;flex-direction:column;gap:6px;align-items:center;margin:16px 0}
+    .theatre-seats i{display:block;width:100%;height:10px}
+    .theatre-seats i::before{content:"";display:block;height:10px;background:radial-gradient(circle at 8px 5px,#3a2f14 4px,transparent 5px);background-size:18px 10px;background-repeat:repeat-x}
+    .terrace-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gold);border-radius:10px;overflow:hidden;background:#0d0d0d}
+    .terrace-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .terrace-body{padding:22px}
+    .terrace-body h3{color:var(--gold-bright);margin-top:0}
+    @media (max-width:640px){.terrace-card{grid-template-columns:1fr}}
+    /* ==== LIVING 3D SCENE (v4) ==== */
+    .table-scene canvas.m3d-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    .table-scene.scene-3d-on .room-photo,.table-scene.scene-3d-on .room-veil{display:none}
+    .table-scene.scene-3d-on .felt{background:transparent;border-color:transparent;outline:none;box-shadow:none}
+    .table-scene.scene-3d-on .felt::after{display:none}
+    .table-scene.scene-3d-on .felt-brand{display:none}
+    .seat img{transition:filter .4s,transform .4s}
+    .seat-celebrate img{animation:seatBounce 2.4s ease}
+    .seat-slump img{filter:grayscale(.7) brightness(.7);transform:translateY(5px)}
+    @keyframes seatBounce{0%,100%{transform:translateY(0) rotate(0)}20%{transform:translateY(-14px) rotate(-4deg)}40%{transform:translateY(0) rotate(4deg)}60%{transform:translateY(-10px) rotate(-2deg)}80%{transform:translateY(0)}}
     </style>
   </head>
   <body>
     <div class="menu-wrap">
       <button class="menu-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false" aria-controls="menuPanel">&#9776; Menu</button>
-      <div class="menu-panel" id="menuPanel" role="menu" aria-label="Parlor menu" hidden>
-        <a href="#table" role="menuitem">The Table</a>
-        <a href="#leagues" role="menuitem">The Leagues</a>
-        <a href="#tour" role="menuitem">World Tour</a>
-        <a href="#hosts" role="menuitem">The Hosts</a>
-        <a href="#records" role="menuitem">Hall of Records</a>
-        <a href="#finishing" role="menuitem">Finishing Touches</a>
+      <div class="menu-panel" id="menuPanel" role="menu" aria-label="Masters menu" hidden>
+        <a href="#clubmap" role="menuitem">The Club Map</a>
+        <a href="#table" role="menuitem">Main Game Room</a>
+        <a href="#services" role="menuitem">VIP Bar &amp; Butler Service</a>
+        <a href="#tour" role="menuitem">World Tour Lounge</a>
+        <a href="#championships" role="menuitem">Championship Arena</a>
+        <a href="#hosts" role="menuitem">Hall of Masters</a>
+        <a href="#records" role="menuitem">Trophy Room</a>
+        <a href="#replay" role="menuitem">Replay Theatre</a>
+        <a href="#terrace" role="menuitem">Luxury Terrace</a>
+        <a href="#lounge" role="menuitem">Luxury Lounge</a>
+        <a href="#suite" role="menuitem">Personal Master Suite</a>
+        <a href="#leagues" role="menuitem">The House Rules</a>
         <div class="menu-sep" aria-hidden="true"></div>
         <button class="menu-item" id="menuSound" role="menuitem">Sound <span class="menu-state" id="soundState">On</span></button>
         <button class="menu-item" id="menuVoice" role="menuitem">Rafael's Voice <span class="menu-state" id="voiceState">On</span></button>
@@ -551,19 +653,23 @@
       </div>
     </div>
 
-    <header class="hero">
-      <div class="hero-bg"><img src="assets/hero.jpg" alt="The New Orleans Jazz Parlor — crimson drapes, chandeliers, and card tables under stained glass" /></div>
+    <header class="hero" id="entrance">
+      <div class="hero-bg"><img src="assets/rooms/new-york-grand-suite.jpg" alt="A Manhattan penthouse above the skyline — the Masters club at night" /></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-inner">
-        <div class="hero-rule"><span>The Victorian Card League</span></div>
-        <h1>Cut Throat<br /><span class="goldword">Spades</span></h1>
+        <div class="hero-emblem" aria-hidden="true">♠</div>
+        <p class="hero-lobby">The Grand Lobby · The Personalized Masters Entrance</p>
+        <div class="hero-rule"><span>♛&nbsp; Reputation Over Luck — Masters Earn Their Respect</span></div>
+        <h1>Cut Throat<br /><span class="goldword">Spades Masters</span></h1>
         <p class="tagline">Respect Must Be Earned</p>
+        <p class="lobby-greeting" id="lobbyGreeting">Welcome to the Masters Club — the butler will show you to your table.</p>
         <p class="hero-sub">Four seats. Fifty-two cards. Thirty-two rooms around the world, eight hosts who know your name — and not one guaranteed friend at the table.</p>
+        <p class="hero-motto">A World of Luxury. A Legacy of Champions.</p>
         <div class="hero-ctas">
           <a class="btn btn-gold" href="#table">Take Your Seat</a>
           <a class="btn btn-ghost" href="#tour">Walk the World Tour</a>
         </div>
-        <div class="hero-stats" aria-label="The Parlor in numbers">
+        <div class="hero-stats" aria-label="The Club in numbers">
           <div><b>32</b><span>Rooms on the tour</span></div>
           <div><b>8</b><span>Hosts of the house</span></div>
           <div><b>2</b><span>Leagues — Solo &amp; Team</span></div>
@@ -572,10 +678,38 @@
       </div>
     </header>
 
+    <!-- ================= THE CLUB MAP ================= -->
+    <section id="clubmap">
+      <div class="sec-head">
+        <p class="sec-kicker">Walk the Club</p>
+        <h2>The Masters Club — Every Room, One Address</h2>
+        <p>The game table lives inside the Main Game Room, and the Club lives around it. Walk the map — every room below is a real place in the app.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+      <div class="clubmap-grid">
+        <a class="club-room" href="#entrance"><h3>The Grand Lobby</h3><p>The butler greets you by name at the grand staircase.</p></a>
+        <a class="club-room" href="#table"><h3>Main Game Room</h3><p>Four seats, green felt, gold trim. The game lives here.</p></a>
+        <a class="club-room" href="#services"><h3>VIP Bar &amp; Butler Service</h3><p>Summon the butler, order at the bar, pick a cigar, book the spa.</p></a>
+        <a class="club-room" href="#svc-drinks"><h3>The Masters Bar</h3><p>Cocktails poured under the neon sign.</p></a>
+        <a class="club-room" href="#svc-cigars"><h3>The Cigar Lounge</h3><p>Leather chairs, the humidor wall, slow smoke.</p></a>
+        <a class="club-room" href="#svc-massage"><h3>The Masters Spa</h3><p>Massage &amp; relaxation, candles lit.</p></a>
+        <a class="club-room" href="#tour"><h3>World Tour Lounge</h3><p>The gold map wall — 23 destinations, one doorway each.</p></a>
+        <a class="club-room" href="#championships"><h3>Championship Arena</h3><p>Six rooms, one champion.</p></a>
+        <a class="club-room" href="#hosts"><h3>Hall of Masters</h3><p>The eight hosts, gold-ringed and on duty.</p></a>
+        <a class="club-room" href="#records"><h3>Trophy Room</h3><p>Rings, records, and the hall of shame.</p></a>
+        <a class="club-room" href="#replay"><h3>Replay Theatre</h3><p>Watch a finished match again on the big screen.</p></a>
+        <a class="club-room" href="#terrace"><h3>Luxury Terrace</h3><p>Pool below, Dubai above. Open air, warm night.</p></a>
+        <a class="club-room" href="#lounge"><h3>Luxury Lounge</h3><p>Fireplace, piano, live tables.</p></a>
+        <a class="club-room" href="#suite"><h3>Personal Master Suite</h3><p>Your room, your purse, your rewards.</p></a>
+        <a class="club-room" href="#leagues"><h3>The House Rules</h3><p>Walter's rules, exactly as written.</p></a>
+        <div class="club-room soon"><h3>Private Dining</h3><p>Opening soon — reserve a table with the concierge.</p></div>
+      </div>
+    </section>
+
     <!-- ================= THE TABLE ================= -->
     <section id="table">
       <div class="sec-head">
-        <p class="sec-kicker">The Practice Table</p>
+        <p class="sec-kicker">The Masters Game Room</p>
         <h2>Sit Down. The Cards Are Real.</h2>
         <p>This is the dream, playable: a Solo League hand against three of the house's own, dealt with a shuffle and a cut, called live by Rafael Torres. The table never leaves your sight — every card played stays in view.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
@@ -586,7 +720,7 @@
           <img src="assets/hosts/rafael-torres.webp" alt="Rafael Torres" />
           <div>
             <p class="who">Rafael Torres · Live Commentary</p>
-            <p class="says" id="rafaelSays" aria-live="polite">Welcome to the Parlor, friend. Press shuffle and deal — and remember, in this house, respect must be earned.</p>
+            <p class="says" id="rafaelSays" aria-live="polite">Welcome to the Club, friend. Press shuffle and deal — and remember, in this house, respect must be earned.</p>
           </div>
         </div>
 
@@ -616,24 +750,27 @@
         <div class="room-strip" id="roomStrip" role="group" aria-label="Choose your room"></div>
 
         <div class="felt-zone">
-          <div class="felt" id="felt">
+          <div class="table-scene" id="tableScene">
             <img class="room-photo" id="roomPhoto" src="assets/rooms/rome-imperial-table.jpg" alt="Rome Imperial Table — room photograph" />
             <div class="room-veil"></div>
             <div class="room-plate" id="roomPlate">Rome Imperial Table</div>
-            <div class="seat seat-n" id="seat2"></div>
-            <div class="seat seat-w" id="seat1"></div>
-            <div class="seat seat-e" id="seat3"></div>
-            <div class="seat seat-s" id="seat0"></div>
-            <div class="slot slot-n" id="slot2"></div>
-            <div class="slot slot-w" id="slot1"></div>
-            <div class="slot slot-e" id="slot3"></div>
-            <div class="slot slot-s" id="slot0"></div>
-            <p class="trick-note" id="trickNote">The felt is empty.<br />Shuffle and deal to begin.</p>
-            <div class="shuffle-stage" id="shuffleStage" aria-hidden="true">
-              <div class="deck-half deck-l"></div>
-              <div class="deck-half deck-r"></div>
+            <div class="felt" id="felt">
+              <div class="felt-brand" aria-hidden="true"><span class="felt-spade">♠</span><span class="felt-brand-text">Cut Throat<br />Spades Masters</span></div>
+              <div class="seat seat-n" id="seat2"></div>
+              <div class="seat seat-w" id="seat1"></div>
+              <div class="seat seat-e" id="seat3"></div>
+              <div class="seat seat-s" id="seat0"></div>
+              <div class="slot slot-n" id="slot2"></div>
+              <div class="slot slot-w" id="slot1"></div>
+              <div class="slot slot-e" id="slot3"></div>
+              <div class="slot slot-s" id="slot0"></div>
+              <p class="trick-note" id="trickNote">The felt is empty.<br />Shuffle and deal to begin.</p>
+              <div class="shuffle-stage" id="shuffleStage" aria-hidden="true">
+                <div class="deck-half deck-l"></div>
+                <div class="deck-half deck-r"></div>
+              </div>
+              <button class="deck-cut" id="cutDeck" aria-label="Cut the deck" hidden><span class="cut-top" aria-hidden="true"></span></button>
             </div>
-            <button class="deck-cut" id="cutDeck" aria-label="Cut the deck" hidden><span class="cut-top" aria-hidden="true"></span></button>
           </div>
         </div>
 
@@ -662,12 +799,97 @@
           </table>
         </div>
       </div>
+      <div class="four-players-ribbon" role="note">♠&nbsp; Four Players Only — Premium 3D Gameplay &nbsp;♠</div>
+    </section>
+
+    <!-- ================= LUXURY SERVICES ================= -->
+    <section id="services">
+      <div class="sec-head">
+        <p class="sec-kicker">VIP Bar &amp; Butler Service</p>
+        <h2>Interactive Luxury Services</h2>
+        <p>The staff is on duty at every table. Summon the butler, order at the bar, pick a cigar, book the massage room — paid from your coin purse, and never touching the cards.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card" id="svc-butler">
+          <div class="svc-visual"><img src="assets/board/waiter.png" alt="The club butler, tray in hand" /></div>
+          <div class="svc-body">
+            <h3>Butler Service</h3>
+            <p class="svc-room">Room · Butler Service</p>
+            <ul class="svc-list"><li>Summon Butler</li><li>Request Service</li><li>Enjoy Service</li></ul>
+            <div class="svc-actions">
+              <button class="btn btn-gold btn-small" type="button" data-svc="summon-butler">Summon Butler</button>
+              <button class="btn btn-ghost btn-small" type="button" data-svc="request-service">Request Service</button>
+            </div>
+            <div class="svc-panel" id="svcPanelButler" hidden></div>
+          </div>
+        </article>
+        <article class="service-card" id="svc-drinks">
+          <div class="svc-visual"><div class="svc-mono" aria-hidden="true"><span>D</span></div></div>
+          <div class="svc-body">
+            <h3>Drinks &amp; Bar</h3>
+            <p class="svc-room">Room · The Masters Bar</p>
+            <ul class="svc-list"><li>Browse Menu</li><li>Purchase Drinks</li><li>Enjoy Service</li></ul>
+            <div class="svc-actions">
+              <button class="btn btn-gold btn-small" type="button" data-svc="menu-drinks">Browse Menu</button>
+            </div>
+            <div class="svc-panel" id="svcPanelDrinks" hidden></div>
+          </div>
+        </article>
+        <article class="service-card" id="svc-cigars">
+          <div class="svc-visual"><div class="svc-mono" aria-hidden="true"><span>C</span></div></div>
+          <div class="svc-body">
+            <h3>Cigars</h3>
+            <p class="svc-room">Room · The Cigar Lounge</p>
+            <ul class="svc-list"><li>Select Cigars</li><li>Purchase</li><li>Relax in Lounge</li></ul>
+            <div class="svc-actions">
+              <button class="btn btn-gold btn-small" type="button" data-svc="menu-cigars">Select Cigars</button>
+            </div>
+            <div class="svc-panel" id="svcPanelCigars" hidden></div>
+          </div>
+        </article>
+        <article class="service-card" id="svc-massage">
+          <div class="svc-visual"><div class="svc-mono" aria-hidden="true"><span>M</span></div></div>
+          <div class="svc-body">
+            <h3>Massage Service</h3>
+            <p class="svc-room">Room · The Masters Spa</p>
+            <ul class="svc-list"><li>Book Massage</li><li>Relax &amp; Enjoy</li></ul>
+            <div class="svc-actions">
+              <button class="btn btn-gold btn-small" type="button" data-svc="menu-massage">Book Massage</button>
+            </div>
+            <div class="svc-panel" id="svcPanelMassage" hidden></div>
+          </div>
+        </article>
+        <article class="service-card service-card-wide" id="svc-amenities">
+          <div class="svc-visual"><div class="svc-mono" aria-hidden="true"><span>A</span></div></div>
+          <div class="svc-body">
+            <h3>Amenities &amp; Concierge</h3>
+            <p class="svc-room">Room · Amenities &amp; Concierge</p>
+            <ul class="svc-list"><li>Chilled Towels</li><li>Champagne on Ice</li><li>Ask the Concierge</li></ul>
+            <div class="svc-actions">
+              <button class="btn btn-gold btn-small" type="button" data-svc="menu-amenities">Browse Amenities</button>
+            </div>
+            <div class="svc-panel" id="svcPanelAmenities" hidden></div>
+            <div class="concierge-row">
+              <input id="conciergeInput" type="text" maxlength="140" placeholder="Ask the concierge — a table, a room, a favour" aria-label="Concierge request" />
+              <button class="btn btn-ghost btn-small" type="button" id="conciergeSend">Ask</button>
+            </div>
+            <div class="concierge-log" id="conciergeLog"></div>
+          </div>
+        </article>
+      </div>
+
+      <p class="service-msg" id="serviceMsg" aria-live="polite"></p>
+      <p class="service-purse">Your purse: <b id="servicePurse">0</b> coins</p>
+      <div class="service-log" id="serviceLog"></div>
+      <p class="service-note">Coin prices are the house's opening menu — Walter sets the final numbers. Services are atmosphere only: they never affect the cards, the bids, or who wins.</p>
     </section>
 
     <!-- ================= THE LEAGUES ================= -->
     <section id="leagues">
       <div class="sec-head">
-        <p class="sec-kicker">Two Ways to Bleed</p>
+        <p class="sec-kicker">The House Rules</p>
         <h2>The Leagues</h2>
         <p>Walter's rules, exactly as he set them in the Masters brief. They override every older spec, every prototype, every house habit.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
@@ -722,11 +944,15 @@
     <!-- ================= WORLD TOUR ================= -->
     <section id="tour">
       <div class="sec-head">
-        <p class="sec-kicker">Thirty-Two Doors, One League</p>
+        <p class="sec-kicker">The World Tour Lounge</p>
         <h2>The World Tour</h2>
-        <p>Every stop is a real room from Walter's own Parlor — and every room gets its own table, designed from its own photograph. Win a stop and it is cleared in gold. The count: the 23 original rooms — including Tokyo, Sydney, the Swiss Alps, and the ISS, the four Emergent once marked “Coming Soon” and which are open now — plus the four new arrivals Walter sent over on November 14, and the five Home Turf stops where the game really lives. Thirty-two doors in all.</p>
+        <p>Every stop is a real room from Walter's own Club — and every room gets its own table, designed from its own photograph. Win a stop and it is cleared in gold. The count: the 23 original rooms — including Tokyo, Sydney, the Swiss Alps, and the ISS, the four Emergent once marked “Coming Soon” and which are open now — plus the four new arrivals Walter sent over on November 14, and the five Home Turf stops where the game really lives. Thirty-two doors in all.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
       </div>
+
+      <p class="dest-title">The 23 Destinations — World Tour</p>
+      <p class="tour-map-note">The gold map on the lounge wall — every stop a doorway, every doorway a table.</p>
+      <div class="dest-strip" id="destStrip" role="group" aria-label="The 23 destinations in board order"></div>
 
       <div class="chips" role="group" aria-label="Filter rooms">
         <button class="chip" data-filter="all" aria-pressed="true">All Rooms</button>
@@ -753,31 +979,38 @@
     <!-- ================= CHAMPIONSHIPS ================= -->
     <section class="champ-section" id="championships">
       <div class="sec-head">
-        <p class="sec-kicker">Same Room, Same Stakes</p>
+        <p class="sec-kicker">The World Championship Arena</p>
         <h2>Championships</h2>
         <p>Six championship rooms. Every player at a championship match sees the same room — same table, same lights, same stakes. Pick your room and play for your reputation.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
       </div>
       <div class="champ-grid" id="champGrid"></div>
+      <article class="plaque arena-draw">
+        <div class="glyph" aria-hidden="true">♛</div>
+        <h3>The Tournament Draw</h3>
+        <p>Eight names. Two semifinal tables of four. Win your table and the Final is yours — the Club keeps the draw honest.</p>
+        <button class="btn btn-gold" type="button" id="tourneyDraw">Draw the Names</button>
+        <div class="tourney-bracket" id="tourneyBracket"><p style="color:var(--parchment)">Eight names. Two semifinal tables. One champion. Draw the names and the house does the rest.</p></div>
+      </article>
     </section>
 
     <!-- ================= HOSTS ================= -->
     <section id="hosts">
       <div class="sec-head">
-        <p class="sec-kicker">The House Staff</p>
+        <p class="sec-kicker">Hall of Masters</p>
         <h2>Eight Hosts. Zero Strangers.</h2>
-        <p>The same eight faces from the original Parlor — gold-ringed, named, and on duty in every room.</p>
+        <p>The same eight faces from the original Club — gold-ringed, named, and on duty in every room.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
       </div>
 
       <article class="rafael-feature">
-        <img src="assets/hosts/rafael-torres.webp" alt="Rafael Torres, the Parlor's commentator, in a crimson jacket" />
+        <img src="assets/hosts/rafael-torres.webp" alt="Rafael Torres, the Club's commentator, in a crimson jacket" />
         <div>
           <h3>Rafael Torres</h3>
-          <p class="role">AI Commentator · The Voice of the Parlor</p>
-          <p style="color:var(--parchment);margin:0">Rafael calls the moments that matter — the set, the spade break, the last-trick steal — live, as the cards fall. You heard him at the table above. In the finished Parlor, he never misses a hand.</p>
+          <p class="role">AI Commentator · The Voice of the Club</p>
+          <p style="color:var(--parchment);margin:0">Rafael calls the moments that matter — the set, the spade break, the last-trick steal — live, as the cards fall. You heard him at the table above. In the finished Club, he never misses a hand.</p>
           <blockquote>“Spades have entered the dance — and the whole table just held its breath.”</blockquote>
-          <blockquote>“Set! The bid collapses. The Parlor shows no mercy, and neither do I.”</blockquote>
+          <blockquote>“Set! The bid collapses. The house shows no mercy, and neither do I.”</blockquote>
         </div>
       </article>
 
@@ -787,10 +1020,17 @@
     <!-- ================= HALL OF RECORDS ================= -->
     <section id="records">
       <div class="sec-head">
-        <p class="sec-kicker">Glory &amp; Shame, Both Framed</p>
-        <h2>The Hall of Records</h2>
+        <p class="sec-kicker">The Trophy Room</p>
+        <h2>Trophies, Rings &amp; Records</h2>
         <p>Maya Redbird keeps the board. What happens at the table does not stay at the table.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+
+      <div class="trophy-case">
+        <div class="trophy-glyph" aria-hidden="true">♠</div>
+        <h3>Cut Throat Spades Masters</h3>
+        <p>Win a room on the World Tour and its ring joins the case — cleared in gold, forever.</p>
+        <div class="rings-row" id="ringsRow"><p id="ringsNote">No rings yet. Win a match and the first ring is yours.</p></div>
       </div>
 
       <div class="plaque-grid">
@@ -809,31 +1049,64 @@
           <h3>In the Hole</h3>
           <p>End a match in the negative and your name is carved letter by letter in glowing gold and hung on the Hall of Records board — where it stays, shining, until you play your way off it.</p>
         </article>
+      </div>
       <div class="records-live">
         <article class="plaque">
-          <div class="glyph" aria-hidden="true">♛</div>
-          <h3>The Tournament Draw</h3>
-          <p>Eight names. Two semifinal tables of four. Win your table and the Final is yours — the Parlor keeps the draw honest.</p>
-          <button class="btn btn-gold" type="button" id="tourneyDraw">Draw the Names</button>
-          <div class="tourney-bracket" id="tourneyBracket"><p style="color:var(--parchment)">Eight names. Two semifinal tables. One champion. Draw the names and the Parlor does the rest.</p></div>
+          <div class="glyph" aria-hidden="true">♠</div>
+          <h3>Match History</h3>
+          <p>Every match that ends at your table is written here — win or loss — so the Club remembers what the room saw.</p>
+          <ul class="records-list" id="recordsList"><li>No matches on the board yet. Play a hand and the Club will remember it.</li></ul>
         </article>
         <article class="plaque">
           <div class="glyph" aria-hidden="true">♠</div>
-          <h3>Match History &amp; In the Hole</h3>
-          <p>Every match that ends at your table is written here — win, loss, or in the hole — so the Parlor remembers what the room saw.</p>
-          <ul class="records-list" id="recordsList"><li>No matches on the board yet. Play a hand and the Parlor will remember it.</li></ul>
-          <h3 style="margin-top:14px">In the Hole</h3>
+          <h3>In the Hole</h3>
           <p>The hall of shame, kept honest: anyone who finishes a match below zero.</p>
           <ul class="records-list" id="holeBoard"><li>The board is clean. Nobody has finished in the hole yet.</li></ul>
         </article>
       </div>
     </section>
 
-    <!-- ================= FINISHING TOUCHES ================= -->
-    <section id="finishing">
+    <!-- ================= REPLAY THEATRE ================= -->
+    <section id="replay">
       <div class="sec-head">
-        <p class="sec-kicker">The Dream, Finished Properly</p>
-        <h2>The Finishing Touches</h2>
+        <p class="sec-kicker">The Replay Theatre</p>
+        <h2>Watch It Again</h2>
+        <p>Every match you finish is written into the theatre's program. Pick one, and the room comes back up on the big screen — then take that same table and deal again.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+      <div class="theatre">
+        <div class="theatre-screen">
+          <img id="replayScreen" src="assets/rooms/paris-salon.jpg" alt="The replay screen — the room of the match being re-watched" />
+          <p id="replayCaption">No match on the screen yet — finish a hand and it plays here.</p>
+        </div>
+        <div class="theatre-seats" aria-hidden="true"><i></i><i></i><i></i></div>
+        <ul class="records-list" id="replayList"><li>No matches recorded yet. Play a hand and the theatre will keep the program.</li></ul>
+      </div>
+    </section>
+
+    <!-- ================= LUXURY TERRACE ================= -->
+    <section id="terrace">
+      <div class="sec-head">
+        <p class="sec-kicker">The Luxury Terrace</p>
+        <h2>Pool Below, Dubai Above</h2>
+        <p>Open air, warm night, the skyline lit. The terrace table is the Dubai Gold Room — take your seat under the stars.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
+      <div class="terrace-card">
+        <img src="assets/rooms/dubai-gold-room.jpg" alt="Dubai Gold Room — the terrace table under the Burj Khalifa" />
+        <div class="terrace-body">
+          <h3>Dubai Gold Room</h3>
+          <p>The Burj Khalifa above polished gold accents. This is the terrace table — the same room, the same stakes, the night air instead of the ceiling.</p>
+          <button class="btn btn-gold" type="button" id="terracePlay">Play at the Terrace Table</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= THE LUXURY LOUNGE ================= -->
+    <section id="lounge">
+      <div class="sec-head">
+        <p class="sec-kicker">The Luxury Lounge</p>
+        <h2>Fireplace, Piano &amp; Live Tables</h2>
         <p>Three details were left unfinished in the Emergent build. In this design, they are the crown jewels — two of them you can already hear and see at the table above.</p>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
       </div>
@@ -847,7 +1120,7 @@
         <article class="finish-item">
           <p class="no">02</p>
           <h3>Rafael, Live</h3>
-          <p>Full live commentary from Rafael Torres, calling the big moments as they land: the set, the spade break, the last-trick steal, the egg. The table above runs his voice in miniature — the finished Parlor gives him every hand.</p>
+          <p>Full live commentary from Rafael Torres, calling the big moments as they land: the set, the spade break, the last-trick steal, the egg. The table above runs his voice in miniature — the finished Club gives him every hand.</p>
         </article>
         <article class="finish-item">
           <p class="no">03</p>
@@ -856,15 +1129,14 @@
         </article>
       </div>
 
-      <div class="duo">
-        <article class="panel live-panel">
+      <article class="panel live-panel">
           <h3>Live at the Table</h3>
-          <p><b style="color:var(--ivory)">“Match me with anyone online.”</b> One tap and the Parlor finds you a real table — open matchmaking against live players, with table chat capped at 140 characters, short and sharp like the game itself.</p>
+          <p><b style="color:var(--ivory)">“Match me with anyone online.”</b> One tap and the Club finds you a real table — open matchmaking against live players, with table chat capped at 140 characters, short and sharp like the game itself.</p>
           <div class="live-row">
             <button class="btn btn-gold btn-small" type="button" id="matchBtn">Find a Live Table</button>
             <button class="btn btn-ghost btn-small" type="button" id="createLobbyBtn">Open My Table</button>
           </div>
-          <div class="lobby-list" id="lobbyList"><p>Open tables appear here when the Parlor is connected.</p></div>
+          <div class="lobby-list" id="lobbyList"><p>Open tables appear here when the Club is connected.</p></div>
           <p class="lobby-msg" id="lobbyMsg" aria-live="polite"></p>
           <h4>Table Talk</h4>
           <div class="chat-list" id="chatList"><p style="color:var(--muted)">No table talk yet.</p></div>
@@ -888,8 +1160,18 @@
             <button class="btn btn-ghost btn-small" type="button" id="seatPhotoRemove">Remove</button>
           </div>
         </article>
+    </section>
+
+    <!-- ================= PERSONAL MASTER SUITE ================= -->
+    <section id="suite">
+      <div class="sec-head">
+        <p class="sec-kicker">Personal Master Suite</p>
+        <h2>Your Suite, Your Rewards</h2>
+        <p>Your room in the Club — your purse, your name, your coins, your rewards. The shop lives here, and nothing in it touches the cards.</p>
+        <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="none" stroke="currentColor"/></svg></div>
+      </div>
         <article class="panel">
-          <h3>The Parlor Shop</h3>
+          <h3>The Masters Shop</h3>
           <p>Clothes, accessories, and services, bought with coins earned at the table — the sharper you play, the sharper you dress. Real-money coin packs are open now — pay with Cash App. (Stripe stays switched off until it's ready.)</p>
           <p>One law above all: <b style="color:var(--ivory)">nothing in the shop touches the cards, the bids, or who wins.</b> Style is for sale. Victory is not.</p>
           <p class="purse-line">Your purse: <b id="purseBalance">0</b> coins</p>
@@ -907,7 +1189,7 @@
               <button class="btn btn-ghost btn-small" id="paid-pack-starter" type="button">I Paid — record my claim</button>
             </article>
             <article class="pack-card">
-              <h4>Parlor Purse</h4>
+              <h4>Masters Purse</h4>
               <p class="pack-coins">1,200 coins</p>
               <p class="pack-price">$9.99</p>
               <a class="btn btn-cash" href="https://cash.app/$DevellRajels/9.99" target="_blank" rel="noopener">Pay with Cash App</a>
@@ -941,7 +1223,6 @@
             </div>
           </div>
         </article>
-      </div>
 
       <div class="gate">
         <h3>What “Finished” Means Here</h3>
@@ -950,6 +1231,15 @@
     </section>
 
     <footer>
+      <div class="board-footer" aria-label="Masters at a glance">
+        <span>Realistic 3D Environments</span><i>◆</i>
+        <span>Competitive AI</span><i>◆</i>
+        <span>Rankings &amp; Tournaments</span><i>◆</i>
+        <span>Exclusive Rewards</span><i>◆</i>
+        <span>Original Soundtrack</span><i>◆</i>
+        <span>Android • iPhone • Web</span>
+      </div>
+      <p class="footer-motto">PLAY • COMPETE • CONNECT • BELONG</p>
       <p class="fname">Cut Throat Spades Masters</p>
       <p>The dream design, drawn entirely from Walter's original Emergent build of October 16, 2026 — his rooms, his hosts, his rules. <a href="https://spades-parlor.preview.emergentagent.com/" target="_blank" rel="noopener">Visit the original Spades-Parlor</a>.</p>
     </footer>
@@ -990,7 +1280,7 @@
       {n:"Athens Olympian Lounge", f:"rooms/athens-olympian-lounge.jpg", d:"Acropolis stone and classical gold. The gods are watching, and they keep score.", kind:"classic"},
       {n:"Swiss Alpine Retreat", f:"rooms/swiss-alpine-retreat.jpg", d:"The Matterhorn, timber and stone, a warm fireplace against the snow. Once Coming Soon — now open.", kind:"classic", open:true},
       {n:"Caribbean Private Island", f:"rooms/caribbean-private-island.jpg", d:"Tropical ocean around a private terrace lounge. The only thing cut throat here is the game.", kind:"classic"},
-      {n:"New Orleans Jazz Parlor", f:"rooms/new-orleans-jazz-parlor.jpg", d:"French Quarter soul — brass on the walls, crimson drapes, stained glass, and a band that never quite stops. The Parlor's beating heart.", kind:"classic"},
+      {n:"New Orleans Jazz Parlor", f:"rooms/new-orleans-jazz-parlor.jpg", d:"French Quarter soul — brass on the walls, crimson drapes, stained glass, and a band that never quite stops. The Club's beating heart.", kind:"classic"},
       {n:"Marrakech Lantern Room", f:"rooms/marrakech-lantern-room.jpg", d:"The historic medina outside, patterned tile and warm lantern light inside. Every shadow is golden.", kind:"classic"},
       {n:"Singapore Skyline Club", f:"rooms/singapore-skyline-club.jpg", d:"Marina Bay below, sleek modern luxury all around. Precision play for a precision city.", kind:"classic"},
       {n:"Antarctic Expedition", f:"rooms/antarctic-expedition.jpg", d:"A polar research station in the ice — futuristic, warm inside, and a hundred miles from the nearest excuse.", kind:"classic"},
@@ -999,16 +1289,16 @@
       {n:"Atlantis Underwater", f:"new/atlantis-underwater.jpg", d:"Walter's newest arrival: a mermaid statue, jellyfish chandeliers, and a table grown from an octopus's embrace. Twenty fathoms down, the pressure is real.", kind:"new"},
       {n:"Amazon Jungle Room", f:"new/amazon-jungle.jpg", d:"Walter's newest arrival: an elephant stands at the table, leopard-print chairs, a parrot on duty, and the river burning gold at sunset.", kind:"new"},
       {n:"Tokyo Cherry Blossom", f:"new/tokyo-cherry-blossom.jpg", d:"Walter's newest arrival: cherry blossoms, Mt. Fuji, a pagoda, and a full moon over the felt. Beauty this calm should not be trusted.", kind:"new"},
-      {n:"Gothic Red Parlor", f:"new/gothic-red-parlor.jpg", d:"Walter's newest arrival: fireplace, candles, red velvet — and a storm pressing its face to the window. The Parlor's dark heart.", kind:"new"},
+      {n:"Gothic Red Parlor", f:"new/gothic-red-parlor.jpg", d:"Walter's newest arrival: fireplace, candles, red velvet — and a storm pressing its face to the window. The Club's dark heart.", kind:"new"},
       {n:"Backyard Cookout", f:"rooms/backyard-cookout.jpg", d:"The grill is going, the music is on, and the table is a picnic bench with a game on it. This is where it started.", kind:"turf"},
-      {n:"Home Living Room", f:"rooms/home-living-room.jpg", d:"Couch, coffee table, and the game that built the Parlor. No velvet, no gold — just the cards and the people you love.", kind:"turf"},
+      {n:"Home Living Room", f:"rooms/home-living-room.jpg", d:"Couch, coffee table, and the game that built the Club. No velvet, no gold — just the cards and the people you love.", kind:"turf"},
       {n:"Jail Day Room", f:"rooms/jail-day-room.jpg", d:"A hard room and an honest game. The day room table takes no prisoners and gives no quarter.", kind:"turf"},
       {n:"The Park", f:"rooms/the-park.jpg", d:"A bench, a breeze, and a deck that has seen a thousand summers. The game travels anywhere the people do.", kind:"turf"},
       {n:"Hangout Spot", f:"rooms/hangout-spot.jpg", d:"The spot where everybody gathers — folding chairs, a wobbly table, and the loudest game in the building.", kind:"turf"}
     ];
 
     var HOSTS = [
-      {n:"Evelyn Brooks", f:"evelyn-brooks", r:"Grand Parlor Hostess"},
+      {n:"Evelyn Brooks", f:"evelyn-brooks", r:"Masters Hostess"},
       {n:"Alexander Chen", f:"alexander-chen", r:"Tournament Steward"},
       {n:"Amara Shah", f:"amara-shah", r:"Paris Salon Host"},
       {n:"Samir Haddad", f:"samir-haddad", r:"ISS Station Guide"},
@@ -1050,6 +1340,24 @@
       });
     }
     renderTourGrid();
+
+    /* v4: the board's 23 destinations, in the board's own order */
+    var DEST_NAMES = ["Paris","London","Rome","Cairo","Tokyo","New York","Las Vegas","Venice","Dubai","Rio","Sydney","Moscow","Mumbai","Hong Kong","Athens","Switzerland","Caribbean","New Orleans","Marrakech","Singapore","Antarctica","Lunar Outpost","International Space Station"];
+    function renderDestStrip(){
+      var strip = document.getElementById("destStrip");
+      if (!strip) return;
+      strip.innerHTML = "";
+      ROOMS.forEach(function(room, i){
+        if (room.kind !== "classic") return;
+        if (!DEST_NAMES[i]) return;
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "dest";
+        b.innerHTML = '<img src="assets/' + room.f + '" alt="' + room.n + '" /><span class="dname"><b>' + (i + 1) + '.</b> ' + DEST_NAMES[i] + '</span>';
+        b.addEventListener("click", function(){ openRoom(i); });
+        strip.appendChild(b);
+      });
+    }
+    renderDestStrip();
 
     var chips = document.querySelectorAll('.chip');
     chips.forEach(function(chip){
@@ -1190,6 +1498,11 @@
         strip.appendChild(chip);
       });
     }
+    function seatRank(i){
+      if (i === 0) return "Challenger";
+      for (var k = 0; k < HOSTS.length; k++) if (HOSTS[k].n === PLAYERS[i].name) return HOSTS[k].r;
+      return "House Host";
+    }
     function renderSeats(){
       var felt = document.getElementById('felt');
       if (felt) felt.classList.toggle('cam-on', !!cameraOn);
@@ -1200,6 +1513,7 @@
         var live = (i === 0 && cameraOn) ? ' <span class="live-dot"></span>LIVE' : '';
         seat.innerHTML = seatImgHtml(PLAYERS[i], i) +
           '<span class="sname">' + PLAYERS[i].short + live + '</span>' +
+          '<span class="srank">' + seatRank(i) + '</span>' +
           '<span class="sbooks">' + (G && G.phase !== 'idle' ? left + ' cards · ' + G.books[i] + ' books' : 'Waiting') + '</span>' +
           ((G && G.dealer === i) ? '<span class="dealer-badge">Dealer</span>' : '');
       });
@@ -1606,10 +1920,10 @@
       renderScores(); renderSeats(); renderHand();
       if (notes.indexOf('eggYou') !== -1 || notes.indexOf('setYou') !== -1) sfx('bad');
       if (notes.indexOf('eggYou') !== -1) say('EGGED. Zero books, and the ceremony is merciless — your score returns to zero, South. The room will remember this hand.');
-      else if (notes.indexOf('setYou') !== -1) say('Set! The South bid collapses, and the Parlor shows no mercy. Shake it off — the next shuffle is already calling.');
+      else if (notes.indexOf('setYou') !== -1) say('Set! The South bid collapses, and the house shows no mercy. Shake it off — the next shuffle is already calling.');
       else if (G.mode === 'solo' && G.bids[0] >= 7 && G.books[0] >= G.bids[0]) say('A giant’s bid, and it stands! Twenty a book, and the whole room felt that one.');
-      else if (G.mode === 'team') say('Hand ' + G.handNo + ' is in the books. ' + (G.teamScores[0] > G.teamScores[1] ? 'Your team leads — ' : (G.teamScores[1] > G.teamScores[0] ? 'West and East lead — ' : 'Level after hand ' + G.handNo + ' — ')) + 'first to 250 takes the Parlor.');
-      else say('Hand ' + G.handNo + ' is in the books. ' + PLAYERS[leaderIdx].short + ' leads the match at ' + G.scores[leaderIdx] + ' — first to 250 takes the Parlor.');
+      else if (G.mode === 'team') say('Hand ' + G.handNo + ' is in the books. ' + (G.teamScores[0] > G.teamScores[1] ? 'Your team leads — ' : (G.teamScores[1] > G.teamScores[0] ? 'West and East lead — ' : 'Level after hand ' + G.handNo + ' — ')) + 'first to 250 takes the Club.');
+      else say('Hand ' + G.handNo + ' is in the books. ' + PLAYERS[leaderIdx].short + ' leads the match at ' + G.scores[leaderIdx] + ' — first to 250 takes the Club.');
       if (matchWinner >= 0){
         G.matchOver = true; G.phase = 'matchEnd';
         if (winnerIsYou){ markRoomCleared(ROOM_IDX); renderTourGrid(); }
@@ -1618,11 +1932,11 @@
           winnerIsYou ? 'You take the match!' : winnerLabel + ' take the match';
         document.getElementById('matchSub').textContent =
           instantNote || (winnerIsYou
-            ? 'Champion of the Parlor. Respect, as ever, was earned — every single book of it.'
+            ? 'Champion of the Club. Respect, as ever, was earned — every single book of it.'
             : 'The room applauds through its teeth. Your seat will be here when you want it back.');
         sfx(winnerIsYou ? 'champion' : 'bad');
         banner.classList.add('on');
-        say(instantNote || (winnerIsYou ? 'CHAMPION! The South seat rules the Parlor tonight. Remember the name, because the Hall of Records certainly will.' : winnerLabel + ' take the match. The Parlor bows — this time.'));
+        say(instantNote || (winnerIsYou ? 'CHAMPION! The South seat rules the Club tonight. Remember the name, because the Hall of Records certainly will.' : winnerLabel + ' take the match. The Club bows — this time.'));
         document.getElementById('mainBtn').textContent = 'Start a New Match';
         setStatus('Match over. Start a new match whenever you are ready.');
         var rec = {result: (winnerIsYou ? 'Won' : 'Lost') + ' — ' + winnerLabel, mode: G.mode === 'team' ? 'Team League' : 'Solo League',
@@ -1889,7 +2203,7 @@
       var sbF = document.getElementById('stopShuffleBtn');
       if (sbF) sbF.hidden = true;
       document.getElementById('matchTitle').textContent = 'You forfeit the match';
-      document.getElementById('matchSub').textContent = 'The Parlor notes the empty chair — and keeps your seat warm for the rematch.';
+      document.getElementById('matchSub').textContent = 'The Club notes the empty chair — and keeps your seat warm for the rematch.';
       document.getElementById('matchBanner').classList.add('on');
       document.getElementById('mainBtn').textContent = 'Start a New Match';
       document.getElementById('mainBtn').disabled = false;
@@ -1928,7 +2242,7 @@
     function autoBid(){
       if (!G || G.phase !== 'bidding') return;
       var bid = (G.mode === 'team') ? estimateBidTeam(G.hands[0]) : estimateBid(G.hands[0]);
-      say('The clock ran out on the South seat — the Parlor bids ' + bid + ' for you. Play faster next time, friend.');
+      say('The clock ran out on the South seat — the Club bids ' + bid + ' for you. Play faster next time, friend.');
       placeBid(bid);
     }
     function forceLowest(){
@@ -2160,7 +2474,7 @@
         var r = loadJSON('cts.records.v1', []);
         box.innerHTML = r.length ? r.map(function(x){
           return '<li><b>' + escHtml(x.result) + '</b> — ' + escHtml(x.mode) + ' at the ' + escHtml(x.room) + ' · ' + escHtml(x.score) + ' · ' + escHtml(x.date) + '</li>';
-        }).join('') : '<li>No matches on the board yet. Play a hand and the Parlor will remember it.</li>';
+        }).join('') : '<li>No matches on the board yet. Play a hand and the Club will remember it.</li>';
       }
       var hb = document.getElementById('holeBoard');
       if (hb){
@@ -2169,6 +2483,8 @@
           return '<li><b>' + escHtml(x.name) + '</b> — finished in the hole at ' + escHtml(x.score) + ' · ' + escHtml(x.date) + '</li>';
         }).join('') : '<li>The board is clean. Nobody has finished in the hole yet.</li>';
       }
+      if (typeof renderTrophyRoom === 'function') renderTrophyRoom();
+      if (typeof renderReplayTheatre === 'function') renderReplayTheatre();
     }
 
     /* ==================== v2: TOURNAMENT ==================== */
@@ -2184,7 +2500,7 @@
       var box = document.getElementById('tourneyBracket');
       if (!box) return;
       if (!TOURNEY){
-        box.innerHTML = '<p style="color:var(--parchment)">Eight names. Two semifinal tables. One champion. Draw the names and the Parlor does the rest.</p>';
+        box.innerHTML = '<p style="color:var(--parchment)">Eight names. Two semifinal tables. One champion. Draw the names and the house does the rest.</p>';
         return;
       }
       var tableHtml = function(title, names, key){
@@ -2226,12 +2542,12 @@
       sbGet('spades_lobbies', "status=eq.open&select=*&order=created_at.desc&limit=10")
         .then(function(rows){
           if (!rows || !rows.length){
-            box.innerHTML = '<p>No open tables right now. Create one below and the Parlor will seat the next player who walks in.</p>';
+            box.innerHTML = '<p>No open tables right now. Create one below and the Club will seat the next player who walks in.</p>';
             return;
           }
           var h = '';
           rows.forEach(function(r){
-            h += '<div class="lobby-row"><div><b>' + escHtml(r.room || 'A Parlor table') + '</b> · host ' + escHtml(r.host_name || r.host || 'a player') + ' · ' + escHtml(String(r.players || 1)) + ' seated</div>' +
+            h += '<div class="lobby-row"><div><b>' + escHtml(r.room || 'A Club table') + '</b> · host ' + escHtml(r.host_name || r.host || 'a player') + ' · ' + escHtml(String(r.players || 1)) + ' seated</div>' +
               '<button class="btn btn-gold btn-small" type="button" data-lobby="' + escHtml(r.id) + '">Take a seat</button></div>';
           });
           box.innerHTML = h;
@@ -2246,7 +2562,7 @@
                 if (idx >= 0) setRoom(idx);
               }
               var m = document.getElementById('lobbyMsg');
-              if (m) m.textContent = 'Seat taken at the live table — the Parlor has you down. Play at the table below.';
+              if (m) m.textContent = 'Seat taken at the live table — the Club has you down. Play at the table below.';
               say('You take a seat at the live table. Shuffle when ready — the room is watching.');
               document.getElementById('table').scrollIntoView({behavior:'smooth'});
               loadLobbies();
@@ -2265,7 +2581,7 @@
           if (!r.ok) throw new Error('Supabase ' + r.status);
           loadLobbies();
           var m = document.getElementById('lobbyMsg');
-          if (m) m.textContent = 'Your table is open — the Parlor is seating the next player who walks in.';
+          if (m) m.textContent = 'Your table is open — the Club is seating the next player who walks in.';
         })
         .catch(function(){
           var m = document.getElementById('lobbyMsg');
@@ -2305,7 +2621,7 @@
           var local = loadJSON('cts.chat.local', []);
           box.innerHTML = local.length ? local.map(function(m){
             return '<p><span class="cwho">' + escHtml(m.player_name || m.name || 'Guest') + ':</span> ' + escHtml(m.message || m.text || '') + '</p>';
-          }).join('') : '<p style="color:var(--muted)">Table talk is on this phone only right now — no connection to the live Parlor.</p>';
+          }).join('') : '<p style="color:var(--muted)">Table talk is on this phone only right now — no connection to the live Club.</p>';
         });
     }
     function sendChat(){
@@ -2374,7 +2690,7 @@
           ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, 256, 256);
           PROFILE.photo = c.toDataURL('image/jpeg', 0.82);
           saveProfile(); renderSeats(); renderSeatPreview();
-          say('A fine portrait, South — the Parlor has your likeness now.');
+          say('A fine portrait, South — the Club has your likeness now.');
           URL.revokeObjectURL(url);
         };
         img.src = url;
@@ -2442,7 +2758,7 @@
     newMatch();
 
     /* ==== CASH APP COINS: BEGIN ====
-       Parlor Shop — real-money coin packs, paid with Cash App.
+       Masters Shop — real-money coin packs, paid with Cash App.
        Stripe stays switched off: there is no Stripe code anywhere in
        this build. Walter's Cash App business cashtag is $DevellRajels
        (2.75% fee, no receiving cap). The game is web-only, so no app
@@ -2466,7 +2782,7 @@
     var COIN_CLAIMS_TABLE = "spades_coin_claims";
     var COIN_PACKS = [
       { id:"pack-starter", name:"Starter Purse",       coins:500,  usd:"$4.99",  amount:"4.99"  },
-      { id:"pack-parlor",  name:"Parlor Purse",        coins:1200, usd:"$9.99",  amount:"9.99"  },
+      { id:"pack-parlor",  name:"Masters Purse",        coins:1200, usd:"$9.99",  amount:"9.99"  },
       { id:"pack-vault",   name:"High Roller's Vault", coins:3000, usd:"$19.99", amount:"19.99" },
       { id:"pack-gilded",  name:"The Gilded Vault",    coins:7500, usd:"$39.99", amount:"39.99" }
     ];
@@ -2531,6 +2847,8 @@
     function renderPurse(){
       var el = document.getElementById("purseBalance");
       if (el) el.textContent = coinBalance().toLocaleString("en-US");
+      var sp = document.getElementById("servicePurse");
+      if (sp) sp.textContent = coinBalance().toLocaleString("en-US");
       var nm = document.getElementById("playerName");
       if (nm && document.activeElement !== nm) nm.value = PROFILE.name || "";
     }
@@ -2539,6 +2857,7 @@
       saveProfile(); renderPurse();
       PLAYERS[0].name = PROFILE.name || 'You';
       renderScores(); renderSeats(); renderSeatPreview();
+      if (typeof renderLobbyGreeting === 'function') renderLobbyGreeting();
     }
 
     /* Player paid on Cash App and came back: record the claim. */
@@ -2546,7 +2865,7 @@
       var pack = packById(packId);
       if (!pack) return false;
       if (!PROFILE.name){
-        claimMsg("First tell the Parlor your player name above — it must match the name you put in the Cash App note.");
+        claimMsg("First tell the Club your player name above — it must match the name you put in the Cash App note.");
         var nm = document.getElementById("playerName"); if (nm) nm.focus();
         return false;
       }
@@ -2659,6 +2978,142 @@
         });
     }
 
+    /* ==== LUXURY SERVICES (v4): the board's service panel ====
+       Butler, drinks, cigars, massage — the board's exact items.
+       Purchases deduct real coins from the same purse the coin shop
+       credits (PROFILE.coins, cts.profile.v1) and are recorded on
+       this device (cts.services.v1). Prices are the house's opening
+       menu — Walter sets the final numbers. No moving NPC figures
+       exist yet (Phase 5); the staff answer in words and in Rafael's
+       voice instead. Services never touch the cards. */
+    var SERVICES = {
+      drinks: [
+        { id:"drink-old-fashioned", name:"The Cut Throat Old Fashioned", price:25, note:"Bourbon, gold sugar, orange — the house pour." },
+        { id:"drink-martini", name:"Gold Rush Martini", price:25, note:"Gin, gold leaf, dry vermouth." },
+        { id:"drink-sparkling", name:"Sparkling Water & Lime", price:10, note:"For the player keeping a clear head." }
+      ],
+      cigars: [
+        { id:"cigar-house", name:"House Cigar", price:40, note:"The club standard, cut and lit at your seat." },
+        { id:"cigar-gold", name:"Gold Label Reserve", price:75, note:"The rarest stick in the lounge humidor." }
+      ],
+      massage: [
+        { id:"massage-30", name:"Massage — 30 minutes", price:100, note:"The relaxation area, shoulders and neck." },
+        { id:"massage-60", name:"Massage — 60 minutes", price:150, note:"The full hour, head to toe, then back to the table." }
+      ],
+      amenities: [
+        { id:"amenity-towels", name:"Chilled Towels", price:5, note:"Cold towels, brought to your seat between hands." },
+        { id:"amenity-champagne", name:"Champagne on Ice", price:30, note:"A bottle on ice at the table, poured by the butler." }
+      ]
+    };
+    var SERVICES_LOG_KEY = "cts.services.v1";
+    function serviceMsg(text, ok){
+      var el = document.getElementById("serviceMsg");
+      if (!el) return;
+      el.textContent = text;
+      el.style.color = ok ? "var(--gold-bright)" : "var(--parchment)";
+    }
+    function servicePurchases(){ var l = loadJSON(SERVICES_LOG_KEY, []); return Array.isArray(l) ? l : []; }
+    function renderServiceLog(){
+      var box = document.getElementById("serviceLog");
+      var sp = document.getElementById("servicePurse");
+      if (sp) sp.textContent = coinBalance().toLocaleString("en-US");
+      if (!box) return;
+      var list = servicePurchases();
+      if (!list.length){ box.innerHTML = '<p style="text-align:center;color:var(--muted);font-style:italic">No services yet — your purchases will be listed here.</p>'; return; }
+      var html = "";
+      list.slice(-5).reverse().forEach(function(p){
+        var when = p.at ? new Date(p.at).toLocaleString("en-US") : "";
+        html += '<div class="svc-log-row"><span><b>' + escHtml(p.name) + '</b> · ' + escHtml(when) + '</span><span>' + Number(p.price) + ' coins</span></div>';
+      });
+      box.innerHTML = html;
+    }
+    function buyService(item){
+      if (coinBalance() < item.price){
+        serviceMsg("Not enough coins — your purse holds " + coinBalance().toLocaleString("en-US") + " coins. Top up in the Masters Shop below.");
+        say("The house is sorry — your purse is short for that one. The Masters Shop below can fix it.");
+        return false;
+      }
+      PROFILE.coins = coinBalance() - item.price;
+      saveProfile(); renderPurse();
+      var list = servicePurchases();
+      list.push({ id:newClaimId(), item:item.id, name:item.name, price:item.price, at:new Date().toISOString() });
+      saveJSON(SERVICES_LOG_KEY, list);
+      renderServiceLog();
+      if (window.Masters3D){
+        if (item.id.indexOf("drink-") === 0 || item.id === "amenity-champagne") Masters3D.serveDrink();
+        else if (item.id.indexOf("cigar-") === 0) Masters3D.serveCigar();
+        else if (item.id.indexOf("massage-") === 0) Masters3D.bookMassage();
+        else if (item.id === "amenity-towels") Masters3D.summonButler();
+      }
+      serviceMsg(item.name + " — " + item.price + " coins. Enjoy it, and mind the cards.", true);
+      say("The " + item.name + " is on its way. Enjoy the service — and keep your eye on the table.");
+      return true;
+    }
+    function renderServiceMenu(kind, panelId){
+      var panel = document.getElementById(panelId);
+      if (!panel) return;
+      var items = SERVICES[kind] || [];
+      var html = "";
+      items.forEach(function(it){
+        html += '<div class="svc-item"><div><span class="svc-name">' + escHtml(it.name) + '</span>' +
+          '<span class="svc-note">' + escHtml(it.note) + '</span></div>' +
+          '<span class="svc-price">' + it.price + ' coins</span>' +
+          '<button class="btn btn-gold btn-small" type="button" data-buy="' + escHtml(it.id) + '" data-kind="' + kind + '">Purchase</button></div>';
+      });
+      panel.innerHTML = html;
+      panel.hidden = false;
+    }
+    function serviceItemById(kind, id){
+      var items = SERVICES[kind] || [];
+      for (var i = 0; i < items.length; i++) if (items[i].id === id) return items[i];
+      return null;
+    }
+    function initServices(){
+      var sec = document.getElementById("services");
+      if (!sec) return;
+      renderServiceLog();
+      sec.addEventListener("click", function(e){
+        var t = e.target;
+        if (!t || !t.getAttribute) return;
+        var act = t.getAttribute("data-svc");
+        var buyId = t.getAttribute("data-buy");
+        if (buyId){
+          var kind = t.getAttribute("data-kind");
+          var item = serviceItemById(kind, buyId);
+          if (!item) return;
+          if (t.classList.contains("armed")){
+            t.classList.remove("armed");
+            if (buyService(item)) t.textContent = "Enjoy ✓";
+            else t.textContent = "Purchase";
+            setTimeout(function(){ if (t.textContent === "Enjoy ✓") t.textContent = "Purchase"; }, 4000);
+          } else {
+            sec.querySelectorAll("[data-buy].armed").forEach(function(b){ b.classList.remove("armed"); b.textContent = "Purchase"; });
+            t.classList.add("armed");
+            t.textContent = "Confirm — " + item.price + " coins?";
+          }
+          return;
+        }
+        if (!act) return;
+        if (act === "summon-butler"){
+          serviceMsg("Your butler is on his way — he will take your request at the table.", true);
+          say("Your butler is on his way. What can the house bring you?");
+          if (window.Masters3D && Masters3D.summonButler) Masters3D.summonButler();
+        } else if (act === "request-service"){
+          var p = document.getElementById("svcPanelButler");
+          if (p){
+            p.innerHTML = '<div class="svc-item"><div><span class="svc-name">What would you like?</span><span class="svc-note">The butler takes the request to the bar, the lounge, or the massage room.</span></div></div>' +
+              '<div class="svc-actions"><button class="btn btn-gold btn-small" type="button" data-svc="menu-drinks">A drink</button>' +
+              '<button class="btn btn-gold btn-small" type="button" data-svc="menu-cigars">A cigar</button>' +
+              '<button class="btn btn-gold btn-small" type="button" data-svc="menu-massage">A massage</button></div>';
+            p.hidden = false;
+          }
+        } else if (act === "menu-drinks"){ renderServiceMenu("drinks", "svcPanelDrinks"); }
+        else if (act === "menu-cigars"){ renderServiceMenu("cigars", "svcPanelCigars"); }
+        else if (act === "menu-massage"){ renderServiceMenu("massage", "svcPanelMassage"); }
+        else if (act === "menu-amenities"){ renderServiceMenu("amenities", "svcPanelAmenities"); }
+      });
+    }
+
     function initCashAppCoins(){
       renderPurse();
       var nm = document.getElementById("playerName");
@@ -2687,7 +3142,808 @@
     }
     initCashAppCoins();
     initV2();
+    initServices();
     /* ==== CASH APP COINS: END ==== */
+    </script>
+    <script>
+    /* ==== THE CLUB (v4): trophy room, replay theatre, grand lobby, terrace, concierge ====
+       Renders from the same device-local records the Trophy Room already keeps
+       (cts.cleared.v1 rings, cts.records.v1 matches). The Replay Theatre re-opens
+       the room a finished match was played in — it does NOT replay the hands
+       card by card: hands are not recorded, so a true hand-by-hand replay
+       needs a future data change. */
+    function renderTrophyRoom(){
+      var row = document.getElementById('ringsRow');
+      if (!row) return;
+      var cleared = (typeof clearedRooms === 'function') ? clearedRooms() : [];
+      if (!cleared.length){
+        row.innerHTML = '<p id="ringsNote">No rings yet. Win a match and the first ring is yours.</p>';
+        return;
+      }
+      row.innerHTML = cleared.map(function(i){
+        var r = (typeof ROOMS !== 'undefined' && ROOMS[i]) ? ROOMS[i].n : ('Room ' + (i + 1));
+        return '<span class="ring-badge">' + escHtml(r) + ' · Cleared ✓</span>';
+      }).join('');
+    }
+    function renderReplayTheatre(){
+      var box = document.getElementById('replayList');
+      if (!box) return;
+      var recs = loadJSON('cts.records.v1', []);
+      if (!recs.length){
+        box.innerHTML = '<li>No matches recorded yet. Play a hand and the theatre will keep the program.</li>';
+        return;
+      }
+      box.innerHTML = recs.map(function(x){
+        return '<li><b>' + escHtml(x.result) + '</b> — ' + escHtml(x.mode) + ' at the ' + escHtml(x.room) + ' · ' + escHtml(x.score) + ' · ' + escHtml(x.date) +
+          ' <button class="btn btn-ghost btn-small" type="button" data-replay-room="' + escHtml(x.room) + '">Replay</button></li>';
+      }).join('');
+    }
+    function renderLobbyGreeting(){
+      var el = document.getElementById('lobbyGreeting');
+      if (!el) return;
+      var nm = (typeof PROFILE !== 'undefined' && PROFILE && PROFILE.name) ? PROFILE.name : '';
+      el.textContent = nm ? ('Welcome back, ' + nm + ' — the butler has your table ready.') : 'Welcome to the Masters Club — the butler will show you to your table.';
+    }
+    (function initClub(){
+      renderTrophyRoom();
+      renderReplayTheatre();
+      renderLobbyGreeting();
+      var tp = document.getElementById('terracePlay');
+      if (tp) tp.addEventListener('click', function(){
+        if (typeof setRoom === 'function') setRoom(8);
+        var t = document.getElementById('table');
+        if (t) t.scrollIntoView({behavior:'smooth'});
+        if (typeof say === 'function') say('The terrace table — Dubai, under the stars. The Burj Khalifa is watching, and so is the house.');
+      });
+      var rl = document.getElementById('replayList');
+      if (rl) rl.addEventListener('click', function(e){
+        var t = e.target;
+        if (!t || !t.getAttribute) return;
+        var roomName = t.getAttribute('data-replay-room');
+        if (!roomName) return;
+        var idx = -1;
+        for (var i = 0; i < ROOMS.length; i++) if (ROOMS[i].n === roomName){ idx = i; break; }
+        if (idx < 0) return;
+        var img = document.getElementById('replayScreen');
+        if (img) img.src = 'assets/' + ROOMS[idx].f;
+        var cap = document.getElementById('replayCaption');
+        if (cap) cap.textContent = roomName + ' — back on the big screen. The room is set at the table below; scroll down and deal.';
+        if (typeof setRoom === 'function') setRoom(idx);
+        if (typeof say === 'function') say('The Replay Theatre brings back ' + roomName + '. Same room, same stakes — take the table whenever you are ready.');
+      });
+      var cs = document.getElementById('conciergeSend');
+      var ci = document.getElementById('conciergeInput');
+      var cl = document.getElementById('conciergeLog');
+      function renderConcierge(){
+        if (!cl) return;
+        var list = loadJSON('cts.concierge.v1', []);
+        cl.innerHTML = list.length ? list.slice(-3).reverse().map(function(c){
+          return '<p>“' + escHtml(c.text) + '” — noted, ' + escHtml(c.at ? new Date(c.at).toLocaleDateString('en-US', {month:'short', day:'numeric'}) : '') + '</p>';
+        }).join('') : '';
+      }
+      renderConcierge();
+      if (cs && ci) cs.addEventListener('click', function(){
+        var text = (ci.value || '').trim().slice(0, 140);
+        if (!text) return;
+        var list = loadJSON('cts.concierge.v1', []);
+        list.push({ text: text, at: new Date().toISOString() });
+        saveJSON('cts.concierge.v1', list.slice(-5));
+        ci.value = '';
+        renderConcierge();
+        if (typeof say === 'function') say('The concierge has your request — a table, a room, a favour. Consider it done.');
+        if (window.Masters3D && Masters3D.summonButler) Masters3D.summonButler();
+      });
+    })();
+    </script>
+    <script src="assets/three.min.js"></script>
+    <script>
+    /* ==== LIVING 3D SCENE (v4): real Three.js penthouse, moving staff, win reactions ====
+       - A real 3D green-felt table (gold trim, Masters branding drawn on the felt)
+         inside a 3D penthouse: skyline wall, grand piano, fireplace, bar, cigar
+         lounge, spa. The camera sways gently; the DOM felt turns transparent
+         and the 3D table shows through it. DOM seats, slots and cards stay the
+         playable overlay on top.
+       - Staff are BILLBOARDED PORTRAITS (gold-arch framed), not 3D models:
+         the butler walks a curved path to the table and serves; the bartender
+         pours at the bar; the cigar attendant and the massage attendant work
+         their stations. Idle bob/sway/tilt keeps the room alive.
+       - Win reactions: the winning seat's portrait bounces, the others slump,
+         a gold particle burst + a "HA!" pop fire at the winning seat, and
+         Rafael's own commentary line (from the engine) carries the laugh.
+       - The skyline mood follows the room you are in (Tokyo neon, Cairo sand,
+         Antarctica ice, ISS black, ...); the 3D room itself is one penthouse —
+         per-destination 3D rooms are a later phase.
+       - Guards: if THREE is missing (jsdom / failed load) or WebGL fails,
+         nothing is added and the DOM look stays. rAF pauses when the tab is
+         hidden or the scene is off-screen. Pixel ratio capped at 1.5. */
+    (function(){
+      window.Masters3D = { summonButler:function(){}, serveDrink:function(){}, serveCigar:function(){}, bookMassage:function(){}, celebrate:function(){}, dealFlourish:function(){} };
+      if (typeof THREE === 'undefined') return;
+      var sceneEl = document.getElementById('tableScene');
+      var feltEl = document.getElementById('felt');
+      if (!sceneEl || !feltEl) return;
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true }); } catch (e) { return; }
+      if (!renderer.getContext()) return;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      renderer.domElement.className = 'm3d-canvas';
+      renderer.domElement.setAttribute('aria-hidden', 'true');
+      sceneEl.insertBefore(renderer.domElement, sceneEl.firstChild);
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 120);
+      var CAM_Y = 5.0, CAM_Z = 6.2;
+      camera.position.set(0, CAM_Y, CAM_Z);
+      camera.lookAt(0, 0, 0);
+      var COS_ELEV = Math.cos(Math.atan2(CAM_Y, CAM_Z));
+
+      var S = { r: 2, cx: 0, cz: 0, visible: true };
+      var clock = new THREE.Clock();
+      var tableGroup = new THREE.Group();
+      var roomGroup = new THREE.Group();
+      scene.add(tableGroup);
+      scene.add(roomGroup);
+
+      /* ---------- canvas texture helpers ---------- */
+      function canvasTex(w, h, draw){
+        var c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        var ctx = c.getContext('2d');
+        draw(ctx, w, h);
+        var tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = 4;
+        return { canvas: c, ctx: ctx, tex: tex };
+      }
+      function archPath(ctx, x, y, w, h, r){
+        ctx.beginPath();
+        ctx.moveTo(x, y + h);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h);
+        ctx.closePath();
+      }
+      function goldStroke(ctx, w, h){
+        var g = ctx.createLinearGradient(0, 0, 0, h);
+        g.addColorStop(0, '#f5d98a'); g.addColorStop(0.5, '#d8b96a'); g.addColorStop(1, '#8a6b22');
+        archPath(ctx, 4, 4, w - 8, h - 8, 46);
+        ctx.strokeStyle = g; ctx.lineWidth = 8; ctx.stroke();
+      }
+      function drawNamePlate(ctx, w, h, name){
+        ctx.fillStyle = 'rgba(0,0,0,0.72)';
+        ctx.fillRect(14, h - 58, w - 28, 44);
+        ctx.fillStyle = '#f5d98a';
+        ctx.font = 'bold 21px Cinzel, Georgia, serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(name.toUpperCase(), w / 2, h - 36);
+      }
+      function drawCover(ctx, img, x, y, w, h){
+        var iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
+        if (!iw || !ih) return;
+        var s = Math.max(w / iw, h / ih);
+        var dw = iw * s, dh = ih * s;
+        ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+      }
+
+      /* ---------- skyline (mood follows the room) ---------- */
+      var MOODS = [
+        { k:'Tokyo', sky:['#0b1030', '#1c1445', '#3d1f5c'], win:'#ff5fa2', moon:false },
+        { k:'Cairo', sky:['#1a1430', '#4a2c1c', '#8a5a28'], win:'#ffd98a', moon:true },
+        { k:'Antarctica', sky:['#0a1a2e', '#12334a', '#3a6a8a'], win:'#bfe8ff', moon:true },
+        { k:'International Space Station', sky:['#000005', '#050510', '#0a0a20'], win:'#ffffff', moon:false },
+        { k:'Lunar', sky:['#050508', '#0d0d1a', '#1a1a2e'], win:'#e8e8ff', moon:true },
+        { k:'Dubai', sky:['#0a1030', '#2a1a3a', '#6a3a1a'], win:'#ffd98a', moon:true },
+        { k:'Paris', sky:['#0b1030', '#241a3a', '#5c2a3a'], win:'#ffd98a', moon:true },
+        { k:'Las Vegas', sky:['#0b1030', '#2a1445', '#5c1f5c'], win:'#ff8ad2', moon:false },
+        { k:'Venice', sky:['#0b1230', '#1a2a44', '#3a4a5c'], win:'#ffe8b0', moon:true },
+        { k:'Sydney', sky:['#0a1230', '#14264a', '#2a4a6a'], win:'#bfe8ff', moon:true },
+        { k:'Moscow', sky:['#0a0f28', '#1a2438', '#3a2a3a'], win:'#ffd98a', moon:true },
+        { k:'Mumbai', sky:['#0b1030', '#3a1a2a', '#8a4a1a'], win:'#ffd98a', moon:true },
+        { k:'Hong Kong', sky:['#0b1030', '#1c1445', '#4a1f3a'], win:'#ff9a5c', moon:false },
+        { k:'Rio', sky:['#0b1230', '#1a2a44', '#2a5c4a'], win:'#ffe8b0', moon:true },
+        { k:'Caribbean', sky:['#0a1a30', '#123a5c', '#2a6a7a'], win:'#fff0c0', moon:true },
+        { k:'Marrakech', sky:['#140a20', '#4a1c1c', '#8a4a1c'], win:'#ffd98a', moon:true },
+        { k:'Singapore', sky:['#0b1030', '#1c2a44', '#3a4a2a'], win:'#bfff8a', moon:true },
+        { k:'Switzerland', sky:['#0a1428', '#14263a', '#2a4a6a'], win:'#d8ecff', moon:true },
+        { k:'Athens', sky:['#0b1030', '#2a2440', '#5c4a2a'], win:'#ffe8b0', moon:true },
+        { k:'New Orleans', sky:['#0b1030', '#241a44', '#4a2a4a'], win:'#ffd98a', moon:true },
+        { k:'London', sky:['#0a0f28', '#1a2438', '#3a3a4a'], win:'#ffe8b0', moon:true },
+        { k:'Rome', sky:['#0b1030', '#2a1a2a', '#6a3a1c'], win:'#ffd98a', moon:true },
+        { k:'New York', sky:['#0b1030', '#1c1445', '#3a2a4a'], win:'#ffd98a', moon:true }
+      ];
+      function moodFor(name){
+        for (var i = 0; i < MOODS.length; i++) if (name.indexOf(MOODS[i].k) >= 0) return MOODS[i];
+        return { sky:['#0b1030', '#1c1445', '#3a2a4a'], win:'#ffd98a', moon:true };
+      }
+      var sky = canvasTex(1024, 512, function(){});
+      function drawSkyline(mood){
+        var ctx = sky.ctx, w = 1024, h = 512;
+        var g = ctx.createLinearGradient(0, 0, 0, h);
+        g.addColorStop(0, mood.sky[0]); g.addColorStop(0.55, mood.sky[1]); g.addColorStop(1, mood.sky[2]);
+        ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        for (var s = 0; s < 60; s++){ ctx.fillRect(Math.random() * w, Math.random() * h * 0.4, 2, 2); }
+        if (mood.moon){
+          ctx.fillStyle = '#f5ead0';
+          ctx.beginPath(); ctx.arc(830, 80, 30, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = 'rgba(245,234,208,0.18)';
+          ctx.beginPath(); ctx.arc(830, 80, 48, 0, Math.PI * 2); ctx.fill();
+        }
+        var x = 0;
+        while (x < w){
+          var bw = 40 + Math.random() * 70;
+          var bh = 90 + Math.random() * 260;
+          ctx.fillStyle = '#05070f';
+          ctx.fillRect(x, h - bh, bw, bh);
+          ctx.fillStyle = mood.win;
+          for (var wy = h - bh + 12; wy < h - 14; wy += 18){
+            for (var wx = x + 7; wx < x + bw - 7; wx += 14){
+              if (Math.random() < 0.42){ ctx.globalAlpha = 0.35 + Math.random() * 0.65; ctx.fillRect(wx, wy, 5, 8); }
+            }
+          }
+          ctx.globalAlpha = 1;
+          x += bw + 6;
+        }
+        sky.tex.needsUpdate = true;
+      }
+      drawSkyline(moodFor('New York'));
+      var skyWall = new THREE.Mesh(new THREE.PlaneGeometry(16, 8), new THREE.MeshBasicMaterial({ map: sky.tex }));
+      skyWall.position.set(0, 3.2, -7);
+      roomGroup.add(skyWall);
+
+      /* ---------- floor ---------- */
+      var floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 20), new THREE.MeshStandardMaterial({ color: 0x12100d, roughness: 0.9, metalness: 0.1 }));
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = -0.02;
+      roomGroup.add(floor);
+
+      /* ---------- the 3D table: green felt, gold trim, Masters branding ---------- */
+      var feltTex = canvasTex(1024, 1024, function(ctx, w, h){
+        var g = ctx.createRadialGradient(512, 512, 60, 512, 512, 512);
+        g.addColorStop(0, '#2a8a55'); g.addColorStop(0.5, '#1d5c3a'); g.addColorStop(1, '#123d26');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = 'rgba(216,185,106,0.9)'; ctx.lineWidth = 12;
+        ctx.beginPath(); ctx.arc(512, 512, 478, 0, Math.PI * 2); ctx.stroke();
+        ctx.strokeStyle = 'rgba(236,210,140,0.25)'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(512, 512, 420, 0, Math.PI * 2); ctx.stroke();
+        ctx.save();
+        ctx.translate(512, 512); ctx.scale(1, 1.28);
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '10px';
+        ctx.fillStyle = 'rgba(236,210,140,0.5)';
+        ctx.font = '90px serif';
+        ctx.fillText('♠', 0, -95);
+        ctx.font = 'bold 58px Cinzel, Georgia, serif';
+        ctx.fillText('CUT THROAT', 0, -10);
+        ctx.fillText('SPADES MASTERS', 0, 62);
+        ctx.restore();
+      });
+      var feltMesh = new THREE.Mesh(new THREE.CircleGeometry(1, 64), new THREE.MeshStandardMaterial({ map: feltTex.tex, roughness: 0.95 }));
+      feltMesh.rotation.x = -Math.PI / 2;
+      tableGroup.add(feltMesh);
+      var rimMesh = new THREE.Mesh(new THREE.CircleGeometry(1.035, 64), new THREE.MeshStandardMaterial({ color: 0xd8b96a, roughness: 0.35, metalness: 0.6 }));
+      rimMesh.rotation.x = -Math.PI / 2; rimMesh.position.y = -0.012;
+      tableGroup.add(rimMesh);
+      var railMesh = new THREE.Mesh(new THREE.CircleGeometry(1.1, 64), new THREE.MeshStandardMaterial({ color: 0x171208, roughness: 0.8 }));
+      railMesh.rotation.x = -Math.PI / 2; railMesh.position.y = -0.025;
+      tableGroup.add(railMesh);
+      var deck = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.05, 0.48), new THREE.MeshStandardMaterial({ color: 0x123d26, roughness: 0.6 }));
+      deck.position.set(0, 0.03, 0);
+      tableGroup.add(deck);
+
+      /* ---------- lights ---------- */
+      scene.add(new THREE.AmbientLight(0xffe8c0, 0.55));
+      var tableLight = new THREE.PointLight(0xffd98a, 0.9, 14);
+      tableLight.position.set(0, 3.5, 1.5);
+      scene.add(tableLight);
+      var fireLight = new THREE.PointLight(0xff7733, 1.6, 9);
+      fireLight.position.set(2.0, 0.6, -1.4);
+      roomGroup.add(fireLight);
+
+      /* ---------- furniture helpers ---------- */
+      function box(parent, w, h, d, color, x, y, z, opts){
+        var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshStandardMaterial({ color: color, roughness: (opts && opts.rough) || 0.85, metalness: (opts && opts.metal) || 0.05 }));
+        m.position.set(x, y, z);
+        if (opts && opts.ry) m.rotation.y = opts.ry;
+        if (opts && opts.rx) m.rotation.x = opts.rx;
+        if (opts && opts.rz) m.rotation.z = opts.rz;
+        parent.add(m);
+        return m;
+      }
+      function cyl(parent, rt, rb, h, color, x, y, z, opts){
+        var m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, 16), new THREE.MeshStandardMaterial({ color: color, roughness: (opts && opts.rough) || 0.85, metalness: (opts && opts.metal) || 0.05 }));
+        m.position.set(x, y, z);
+        parent.add(m);
+        return m;
+      }
+
+      /* grand piano (silhouette, left-back) */
+      var piano = new THREE.Group();
+      piano.position.set(-1.9, 0, -1.2); piano.rotation.y = 0.5;
+      roomGroup.add(piano);
+      box(piano, 1.1, 0.26, 0.6, 0x0a0908, 0, 0.42, 0, { rough: 0.3 });
+      box(piano, 1.1, 0.03, 0.6, 0x0a0908, 0, 0.58, -0.05, { rough: 0.3, rx: 0.18 });
+      cyl(piano, 0.03, 0.03, 0.42, 0x0a0908, -0.48, 0.21, 0.24);
+      cyl(piano, 0.03, 0.03, 0.42, 0x0a0908, 0.48, 0.21, 0.24);
+      cyl(piano, 0.03, 0.03, 0.42, 0x0a0908, 0, 0.21, -0.24);
+      box(piano, 0.7, 0.07, 0.28, 0x0a0908, 0.1, 0.3, 0.75, { rough: 0.3 });
+
+      /* fireplace (right-back) */
+      box(roomGroup, 1.0, 0.85, 0.3, 0x1a1512, 2.0, 0.425, -1.7);
+      box(roomGroup, 1.15, 0.08, 0.38, 0x8a6b22, 2.0, 0.89, -1.7, { metal: 0.5, rough: 0.4 });
+      var fireTex = canvasTex(128, 128, function(ctx){
+        ctx.clearRect(0, 0, 128, 128);
+        var g = ctx.createRadialGradient(64, 100, 4, 64, 100, 70);
+        g.addColorStop(0, 'rgba(255,240,180,0.95)'); g.addColorStop(0.4, 'rgba(255,160,60,0.85)'); g.addColorStop(1, 'rgba(200,60,10,0)');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, 128, 128);
+      });
+      var fire = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.42), new THREE.MeshBasicMaterial({ map: fireTex.tex, transparent: true, depthWrite: false }));
+      fire.position.set(2.0, 0.32, -1.53);
+      roomGroup.add(fire);
+
+      /* the Masters Bar (right) */
+      box(roomGroup, 1.4, 0.6, 0.4, 0x241a12, 1.9, 0.3, -0.5);
+      box(roomGroup, 1.5, 0.05, 0.5, 0x8a6b22, 1.9, 0.63, -0.5, { metal: 0.5, rough: 0.35 });
+      box(roomGroup, 1.4, 0.9, 0.14, 0x1a1512, 1.9, 0.85, -1.05);
+      var bottleColors = [0xc8862a, 0x2a7a3a, 0x8a2a2a, 0xd8b96a, 0x3a6a8a];
+      for (var bi = 0; bi < 5; bi++){
+        var b = box(roomGroup, 0.09, 0.3, 0.09, bottleColors[bi], 1.45 + bi * 0.22, 0.8, -0.95, { rough: 0.2, metal: 0.1 });
+        b.material.emissive = new THREE.Color(bottleColors[bi]);
+        b.material.emissiveIntensity = 0.35;
+      }
+
+      /* cigar lounge (left) */
+      box(roomGroup, 0.55, 0.28, 0.55, 0x3a1f14, -2.1, 0.28, -0.4);
+      box(roomGroup, 0.55, 0.55, 0.12, 0x3a1f14, -2.1, 0.55, -0.65);
+      cyl(roomGroup, 0.22, 0.22, 0.4, 0x8a6b22, -1.45, 0.2, -0.5, { metal: 0.4, rough: 0.4 });
+
+      /* the Masters Spa (far left) */
+      box(roomGroup, 1.3, 0.1, 0.5, 0x3a2a1a, -2.2, 0.18, -1.8);
+      box(roomGroup, 1.2, 0.16, 0.45, 0xe8e0d0, -2.2, 0.3, -1.8);
+      box(roomGroup, 0.4, 0.22, 0.45, 0xe8e0d0, -2.65, 0.4, -1.8, { rx: -0.4 });
+
+      /* ---------- staff: billboarded portraits in gold arches (NOT 3D models) ---------- */
+      var figures = [];
+      function makeFigure(imgPath, name, homeX, homeZ){
+        var tex = canvasTex(256, 384, function(ctx, w, h){
+          archPath(ctx, 4, 4, w - 8, h - 8, 46);
+          ctx.fillStyle = '#0d0d0d'; ctx.fill();
+          goldStroke(ctx, w, h);
+          archPath(ctx, 14, 14, w - 28, h - 28, 40);
+          ctx.fillStyle = '#14100a'; ctx.fill();
+          drawNamePlate(ctx, w, h, name);
+        });
+        var mat = new THREE.MeshBasicMaterial({ map: tex.tex, transparent: true, side: THREE.DoubleSide });
+        var mesh = new THREE.Mesh(new THREE.PlaneGeometry(0.52, 0.78), mat);
+        mesh.position.y = 0.39;
+        var group = new THREE.Group();
+        group.position.set(homeX, 0, homeZ);
+        group.add(mesh);
+        roomGroup.add(group);
+        var fig = { group: group, mesh: mesh, home: { x: homeX, z: homeZ }, phase: Math.random() * 6.28, walk: null, pourUntil: 0 };
+        figures.push(fig);
+        var img = new Image();
+        img.onload = function(){
+          var ctx = tex.ctx;
+          ctx.save();
+          archPath(ctx, 14, 14, 228, 356, 40);
+          ctx.clip();
+          drawCover(ctx, img, 14, 14, 228, 356);
+          ctx.restore();
+          drawNamePlate(ctx, 256, 384, name);
+          goldStroke(ctx, 256, 384);
+          tex.tex.needsUpdate = true;
+        };
+        img.onerror = function(){};
+        img.src = imgPath;
+        return fig;
+      }
+      var butler = makeFigure('assets/board/waiter.png', 'The Butler', 1.55, 0.55);
+      var bartender = makeFigure('assets/hosts/evelyn-brooks.webp', 'Evelyn Brooks', 1.9, -0.72);
+      var marcus = makeFigure('assets/hosts/marcus-reed.webp', 'Marcus Reed', -1.7, -0.95);
+      var amara = makeFigure('assets/hosts/amara-shah.webp', 'Amara Shah', -1.7, -1.9);
+
+      /* ---------- the served glass / cigar / massage ring ---------- */
+      var glass = new THREE.Group();
+      var glassCup = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.06, 0.15, 16), new THREE.MeshStandardMaterial({ color: 0xcfe8ff, transparent: true, opacity: 0.45, roughness: 0.1, metalness: 0.1 }));
+      glassCup.position.y = 0.075;
+      var glassLiquid = new THREE.Mesh(new THREE.CylinderGeometry(0.062, 0.055, 0.09, 16), new THREE.MeshStandardMaterial({ color: 0xc8862a, roughness: 0.2, emissive: 0x7a4a10, emissiveIntensity: 0.4 }));
+      glassLiquid.position.y = 0.06;
+      glass.add(glassCup); glass.add(glassLiquid);
+      glass.visible = false;
+      roomGroup.add(glass);
+      var glassState = 'hidden';
+      var glassFadeAt = 0;
+      function glassTo(state){
+        glassState = state;
+        if (state === 'bar'){ glass.visible = true; glass.position.set(1.9, 0.66, -0.35); }
+        else if (state === 'table'){ glass.visible = true; glass.position.set(0.62, 0.02, 0.28); glassFadeAt = clock.elapsedTime + 12; }
+        else if (state === 'hidden'){ glass.visible = false; }
+      }
+      var cigar = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.22, 8), new THREE.MeshStandardMaterial({ color: 0x5a3a1a, roughness: 0.7 }));
+      cigar.rotation.set(Math.PI / 2, 0, 0.6);
+      cigar.position.set(-0.62, 0.03, -0.28);
+      cigar.visible = false;
+      roomGroup.add(cigar);
+      var ring = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.025, 12, 40), new THREE.MeshStandardMaterial({ color: 0xd8b96a, roughness: 0.3, metalness: 0.7, emissive: 0x8a6b22, emissiveIntensity: 0.4 }));
+      ring.rotation.x = Math.PI / 2;
+      ring.position.set(-2.2, 0.45, -1.8);
+      ring.visible = false;
+      roomGroup.add(ring);
+      var ringGrow = false;
+
+      /* ---------- twinkle + dust motes ---------- */
+      function makePoints(count, xr, yr, z, size, color, opacity){
+        var pos = new Float32Array(count * 3);
+        for (var i = 0; i < count; i++){
+          pos[i * 3] = xr[0] + Math.random() * (xr[1] - xr[0]);
+          pos[i * 3 + 1] = yr[0] + Math.random() * (yr[1] - yr[0]);
+          pos[i * 3 + 2] = z;
+        }
+        var g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        var m = new THREE.PointsMaterial({ color: color, size: size, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false });
+        var p = new THREE.Points(g, m);
+        roomGroup.add(p);
+        return p;
+      }
+      var tw1 = makePoints(90, [-6, 6], [0.4, 5.6], -6.9, 0.12, 0xffd98a, 0.8);
+      var tw2 = makePoints(60, [-6, 6], [0.4, 5.6], -6.9, 0.09, 0xfff0c0, 0.8);
+      var motes = makePoints(40, [-2.5, 2.5], [0.2, 2.4], -2, 0.06, 0xffe8c0, 0.4);
+
+      /* ---------- gold particle burst + HA! pop ---------- */
+      var P_COUNT = 70;
+      var pGeo = new THREE.BufferGeometry();
+      var pPos = new Float32Array(P_COUNT * 3);
+      var pVel = [];
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      var pMat = new THREE.PointsMaterial({ color: 0xffd98a, size: 0.12, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      var burstPts = new THREE.Points(pGeo, pMat);
+      roomGroup.add(burstPts);
+      var burst = { active: false, life: 0 };
+      function fireBurst(x, y, z){
+        for (var i = 0; i < P_COUNT; i++){
+          pPos[i * 3] = x; pPos[i * 3 + 1] = y; pPos[i * 3 + 2] = z;
+          var a = Math.random() * Math.PI * 2, e = Math.random() * Math.PI - Math.PI / 2;
+          var sp = 0.9 + Math.random() * 1.3;
+          pVel[i] = { x: Math.cos(a) * Math.cos(e) * sp, y: Math.abs(Math.sin(e)) * sp * 0.9 + 0.5, z: Math.sin(a) * Math.cos(e) * sp };
+        }
+        pGeo.attributes.position.needsUpdate = true;
+        burst.active = true; burst.life = 0;
+      }
+      function updateBurst(dt){
+        if (!burst.active) return;
+        burst.life += dt;
+        for (var i = 0; i < P_COUNT; i++){
+          pPos[i * 3] += pVel[i].x * dt;
+          pPos[i * 3 + 1] += pVel[i].y * dt;
+          pPos[i * 3 + 2] += pVel[i].z * dt;
+          pVel[i].y -= 2.2 * dt;
+        }
+        pGeo.attributes.position.needsUpdate = true;
+        pMat.opacity = Math.max(0, 1 - burst.life / 1.2);
+        if (burst.life >= 1.2){ burst.active = false; pMat.opacity = 0; }
+      }
+      var haTex = canvasTex(256, 128, function(ctx, w, h){
+        ctx.clearRect(0, 0, w, h);
+        ctx.font = 'bold 92px Cinzel, Georgia, serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.lineWidth = 10; ctx.strokeStyle = '#3a2a00';
+        ctx.strokeText('HA!', w / 2, h / 2);
+        ctx.fillStyle = '#ffd98a';
+        ctx.fillText('HA!', w / 2, h / 2);
+      });
+      var ha = new THREE.Sprite(new THREE.SpriteMaterial({ map: haTex.tex, transparent: true, opacity: 0, depthTest: false }));
+      ha.scale.set(1.1, 0.55, 1);
+      ha.visible = false;
+      roomGroup.add(ha);
+      var haAnim = { active: false, t: 0 };
+      function popHa(x, y, z){
+        ha.position.set(x, y, z); ha.visible = true; haAnim.active = true; haAnim.t = 0;
+      }
+
+      /* ---------- deal flourish: cards that fly (cosmetic only) ---------- */
+      var cardTex = canvasTex(128, 176, function(ctx, w, h){
+        ctx.fillStyle = '#123d26'; ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = '#d8b96a'; ctx.lineWidth = 5; ctx.strokeRect(8, 8, w - 16, h - 16);
+        ctx.fillStyle = '#d8b96a'; ctx.font = '64px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('♠', w / 2, h / 2);
+      });
+      var cardGeo = new THREE.PlaneGeometry(0.17, 0.24);
+      var cardMat = new THREE.MeshBasicMaterial({ map: cardTex.tex, side: THREE.DoubleSide });
+      var cardPool = [];
+      for (var ci = 0; ci < 8; ci++){
+        var cm = new THREE.Mesh(cardGeo, cardMat);
+        cm.visible = false;
+        tableGroup.add(cm);
+        cardPool.push({ mesh: cm, t: 0, active: false, from: new THREE.Vector3(0, 0.12, 0), to: new THREE.Vector3() });
+      }
+      var SEAT_TARGETS = [new THREE.Vector3(0, 0, 0.75), new THREE.Vector3(-0.75, 0, 0), new THREE.Vector3(0, 0, -0.75), new THREE.Vector3(0.75, 0, 0)];
+      function dealFlourish(){
+        cardPool.forEach(function(c, i){
+          var seat = i % 4, round = Math.floor(i / 4);
+          c.from.set(0, 0.12, 0);
+          c.to.copy(SEAT_TARGETS[seat]);
+          c.t = -0.12 * (seat + round * 4);
+          c.active = true; c.mesh.visible = false;
+        });
+      }
+      function updateCards(dt){
+        cardPool.forEach(function(c){
+          if (!c.active) return;
+          c.t += dt / 0.9;
+          if (c.t < 0) return;
+          if (c.t >= 1){ c.active = false; c.mesh.visible = false; return; }
+          c.mesh.visible = true;
+          var tt = c.t;
+          c.mesh.position.set(
+            c.from.x + (c.to.x - c.from.x) * tt,
+            0.12 + Math.sin(Math.PI * tt) * 0.5,
+            c.from.z + (c.to.z - c.from.z) * tt
+          );
+          c.mesh.rotation.set(-Math.PI / 2 + Math.sin(Math.PI * tt) * 0.35, tt * 3, 0);
+        });
+      }
+
+      /* ---------- walkers + service sequences ---------- */
+      function quadBezier(p0, p1, p2, n){
+        var pts = [];
+        for (var i = 1; i <= n; i++){
+          var u = i / n, v = 1 - u;
+          pts.push({ x: v * v * p0.x + 2 * v * u * p1.x + u * u * p2.x, z: v * v * p0.z + 2 * v * u * p1.z + u * u * p2.z });
+        }
+        return pts;
+      }
+      function walkFigure(fig, pts, speed, done){
+        fig.walk = { pts: pts, i: 0, speed: speed, done: done || null };
+      }
+      function updateWalker(f, dt){
+        var w = f.walk;
+        if (!w) return;
+        var tgt = w.pts[w.i];
+        var dx = tgt.x - f.group.position.x, dz = tgt.z - f.group.position.z;
+        var dist = Math.sqrt(dx * dx + dz * dz);
+        var step = w.speed * dt;
+        if (dist <= step){
+          f.group.position.x = tgt.x; f.group.position.z = tgt.z;
+          w.i++;
+          if (w.i >= w.pts.length){
+            f.walk = null;
+            var done = w.done;
+            if (done) done();
+          }
+        } else {
+          f.group.position.x += (dx / dist) * step;
+          f.group.position.z += (dz / dist) * step;
+        }
+      }
+      var butlerBusy = false, cigarBusy = false, massageBusy = false;
+      function butlerServe(){
+        if (butlerBusy) return;
+        butlerBusy = true;
+        var home = { x: 1.55, z: 0.55 };
+        var serve = { x: 1.15, z: 0.3 };
+        walkFigure(butler, quadBezier(home, { x: 1.5, z: 0.9 }, serve, 10), 0.9, function(){
+          setTimeout(function(){
+            glassTo('table');
+            setTimeout(function(){
+              walkFigure(butler, quadBezier(serve, { x: 1.5, z: 0.9 }, home, 10), 0.9, function(){ butlerBusy = false; });
+            }, 900);
+          }, 1100);
+        });
+      }
+      function drinkServe(){
+        if (butlerBusy) return;
+        butlerBusy = true;
+        bartender.pourUntil = clock.elapsedTime + 1.0;
+        glassTo('bar');
+        setTimeout(function(){
+          var home = { x: 1.55, z: 0.55 };
+          var barPt = { x: 1.55, z: -0.15 };
+          var serve = { x: 1.15, z: 0.3 };
+          walkFigure(butler, quadBezier(home, { x: 1.7, z: 0.1 }, barPt, 8), 0.9, function(){
+            glassTo('carried');
+            setTimeout(function(){
+              walkFigure(butler, quadBezier(barPt, { x: 1.5, z: 0.6 }, serve, 8), 0.9, function(){
+                glassTo('table');
+                setTimeout(function(){
+                  walkFigure(butler, quadBezier(serve, { x: 1.5, z: 0.9 }, home, 8), 0.9, function(){ butlerBusy = false; });
+                }, 700);
+              });
+            }, 400);
+          });
+        }, 1100);
+      }
+      function cigarServe(){
+        if (cigarBusy) return;
+        cigarBusy = true;
+        var home = { x: -1.7, z: -0.95 };
+        var serve = { x: -1.15, z: -0.3 };
+        walkFigure(marcus, quadBezier(home, { x: -1.6, z: -0.6 }, serve, 8), 0.9, function(){
+          setTimeout(function(){
+            cigar.visible = true;
+            setTimeout(function(){
+              walkFigure(marcus, quadBezier(serve, { x: -1.6, z: -0.6 }, home, 8), 0.9, function(){ cigarBusy = false; });
+            }, 900);
+          }, 900);
+        });
+      }
+      function massageBook(){
+        if (massageBusy) return;
+        massageBusy = true;
+        var home = { x: -1.7, z: -1.9 };
+        var spaPt = { x: -1.9, z: -1.55 };
+        walkFigure(amara, quadBezier(home, { x: -1.9, z: -1.7 }, spaPt, 8), 0.8, function(){
+          setTimeout(function(){
+            ring.visible = true; ring.scale.setScalar(0.01); ringGrow = true;
+            setTimeout(function(){
+              walkFigure(amara, quadBezier(spaPt, { x: -1.9, z: -1.7 }, home, 8), 0.8, function(){ massageBusy = false; });
+            }, 1200);
+          }, 800);
+        });
+      }
+
+      /* ---------- win reactions ---------- */
+      function seatPos(seat){
+        var p = [[0, 0.72], [-0.72, 0], [0, -0.72], [0.72, 0]][seat] || [0, 0];
+        return { x: p[0], z: p[1] };
+      }
+      function celebrate(seat){
+        var sp = seatPos(seat);
+        fireBurst(sp.x, 0.25, sp.z);
+        popHa(sp.x, 0.85, sp.z);
+        for (var i = 0; i < 4; i++){
+          var el = document.getElementById('seat' + i);
+          if (!el) continue;
+          el.classList.toggle('seat-celebrate', i === seat);
+          el.classList.toggle('seat-slump', i !== seat);
+        }
+        setTimeout(function(){
+          for (var j = 0; j < 4; j++){
+            var el2 = document.getElementById('seat' + j);
+            if (el2){ el2.classList.remove('seat-celebrate'); el2.classList.remove('seat-slump'); }
+          }
+        }, 2600);
+      }
+      function pickWinnerSeat(){
+        try {
+          var G = window.G;
+          if (!G) return -1;
+          if (G.mode === 'team' && G.teamScores && G.books){
+            var team = (G.teamScores[0] >= G.teamScores[1]) ? 0 : 1;
+            var cands = team === 0 ? [0, 2] : [1, 3];
+            return (G.books[cands[0]] >= G.books[cands[1]]) ? cands[0] : cands[1];
+          }
+          if (G.scores){
+            var best = 0;
+            for (var i = 1; i < 4; i++) if (G.scores[i] > G.scores[best]) best = i;
+            return best;
+          }
+        } catch (e) {}
+        return -1;
+      }
+      var lastPhase = null, lastRoom = -1;
+      function poll(){
+        try {
+          if (typeof window.ROOM_IDX === 'number' && window.ROOM_IDX !== lastRoom){
+            lastRoom = window.ROOM_IDX;
+            if (window.ROOMS && window.ROOMS[window.ROOM_IDX]) drawSkyline(moodFor(window.ROOMS[window.ROOM_IDX].n));
+          }
+          if (typeof window.G === 'undefined' || !window.G) return;
+          var ph = window.G.phase;
+          if ((ph === 'handEnd' || ph === 'matchEnd') && lastPhase !== ph){
+            var seat = pickWinnerSeat();
+            if (seat >= 0) celebrate(seat);
+          }
+          lastPhase = ph;
+        } catch (e) {}
+      }
+
+      /* ---------- sizing: ortho frustum from the scene rect, table from the felt rect ---------- */
+      function resize(){
+        var sr = sceneEl.getBoundingClientRect();
+        var fr = feltEl.getBoundingClientRect();
+        if (!sr.width || sr.width < 10 || !fr.width || fr.width < 10) return;
+        renderer.setSize(sr.width, sr.height, false);
+        var U = 100;
+        camera.left = -sr.width / (2 * U); camera.right = sr.width / (2 * U);
+        camera.top = sr.height / (2 * U); camera.bottom = -sr.height / (2 * U);
+        camera.updateProjectionMatrix();
+        S.r = fr.width / (2 * U);
+        S.cx = (fr.left + fr.width / 2 - (sr.left + sr.width / 2)) / U;
+        S.cz = (fr.top + fr.height / 2 - (sr.top + sr.height / 2)) / (U * COS_ELEV);
+        tableGroup.position.set(S.cx, 0, S.cz);
+        tableGroup.scale.setScalar(S.r);
+        roomGroup.position.set(S.cx, 0, S.cz);
+        roomGroup.scale.setScalar(S.r);
+      }
+      if (typeof ResizeObserver !== 'undefined'){
+        try {
+          var ro = new ResizeObserver(function(){ resize(); });
+          ro.observe(sceneEl); ro.observe(feltEl);
+        } catch (e) { window.addEventListener('resize', resize); }
+      } else {
+        window.addEventListener('resize', resize);
+      }
+      if (typeof IntersectionObserver !== 'undefined'){
+        try {
+          var io = new IntersectionObserver(function(entries){ S.visible = entries.length ? entries[0].isIntersecting : true; }, { threshold: 0.02 });
+          io.observe(sceneEl);
+        } catch (e) {}
+      }
+
+      /* ---------- the living loop ---------- */
+      var _wp = new THREE.Vector3();
+      function loop(){
+        requestAnimationFrame(loop);
+        if (document.hidden || !S.visible) return;
+        var dt = Math.min(clock.getDelta(), 0.05);
+        var t = clock.elapsedTime;
+        camera.position.x = Math.sin(t * 0.21) * 0.14;
+        camera.position.y = CAM_Y + Math.sin(t * 0.17) * 0.06;
+        camera.lookAt(0, 0, 0);
+        fireLight.intensity = 1.5 + Math.sin(t * 7.3) * 0.25 + Math.sin(t * 12.7) * 0.18;
+        fire.scale.set(1 + Math.sin(t * 9.1) * 0.04, 1 + Math.sin(t * 11.3) * 0.05, 1);
+        tw1.material.opacity = 0.45 + 0.35 * Math.sin(t * 1.1);
+        tw2.material.opacity = 0.45 + 0.35 * Math.sin(t * 1.1 + Math.PI);
+        var mp = motes.geometry.attributes.position.array;
+        for (var mi = 1; mi < mp.length; mi += 3){ mp[mi] += dt * 0.06; if (mp[mi] > 2.4) mp[mi] = 0.2; }
+        motes.geometry.attributes.position.needsUpdate = true;
+        figures.forEach(function(f){
+          updateWalker(f, dt);
+          f.mesh.getWorldPosition(_wp);
+          if (f.walk){
+            var w = f.walk, tgt = w.pts[w.i];
+            f.mesh.rotation.y = Math.atan2(tgt.x - f.group.position.x, tgt.z - f.group.position.z);
+          } else {
+            f.mesh.rotation.y = Math.atan2(camera.position.x - _wp.x, camera.position.z - _wp.z);
+          }
+          f.mesh.rotation.z = Math.sin(t * 0.7 + f.phase) * 0.02;
+          f.mesh.position.y = 0.39 + Math.sin(t * 1.1 + f.phase) * 0.012;
+          if (f.pourUntil && t < f.pourUntil){
+            f.mesh.rotation.z = Math.sin(t * 9) * 0.06;
+            f.mesh.position.y = 0.39 + Math.sin(t * 9) * 0.02;
+          }
+        });
+        if (glassState === 'carried'){
+          glass.position.set(butler.group.position.x, 0.78, butler.group.position.z + 0.12);
+        } else if (glassState === 'table' && glassFadeAt && t > glassFadeAt){
+          glassTo('hidden');
+        }
+        if (ringGrow){
+          var rs = ring.scale.x + dt * 1.4;
+          if (rs >= 1){ rs = 1; ringGrow = false; }
+          ring.scale.setScalar(rs);
+        }
+        if (ring.visible) ring.rotation.z += dt * 0.25;
+        updateBurst(dt);
+        updateCards(dt);
+        if (haAnim.active){
+          haAnim.t += dt;
+          var ht = haAnim.t;
+          var hs = ht < 0.2 ? (ht / 0.2) * 1.15 : 1.15;
+          ha.scale.set(1.1 * hs, 0.55 * hs, 1);
+          ha.material.opacity = ht < 1.0 ? 1 : Math.max(0, 1 - (ht - 1.0) / 0.5);
+          if (ht > 1.5){ haAnim.active = false; ha.visible = false; }
+        }
+        renderer.render(scene, camera);
+      }
+
+      var mb = document.getElementById('mainBtn');
+      if (mb) mb.addEventListener('click', function(){ dealFlourish(); });
+      setInterval(poll, 500);
+      try {
+        resize();
+        renderer.render(scene, camera);
+        sceneEl.classList.add('scene-3d-on');
+      } catch (e) {
+        return;
+      }
+      window.Masters3D = { summonButler: butlerServe, serveDrink: drinkServe, serveCigar: cigarServe, bookMassage: massageBook, celebrate: celebrate, dealFlourish: dealFlourish };
+      loop();
+    })();
     </script>
   </body>
 </html>
